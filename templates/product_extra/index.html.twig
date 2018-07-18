@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+<div class="store-panel background-accent">
+
+  <div class="uk-container ">
+    <div class="jp-margin-top-bottom">
+      <h1 class="title-container">{{ controller_name }}</h1>
+    </div>
+
+  {{ include('store/games.html.twig',{ 'allgames' :  cards  }) }}
+
+  </div>
+
+</div>
+
+ {% include 'footer.html.twig' %}
+
+{% endblock %}

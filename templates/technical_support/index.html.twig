@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="store-panel background-accent">
+
+
+      <div class="uk-child-width-1-2@s uk-grid-match uk-grid-collapse" uk-grid>
+        <div>
+          <div class="uk-container uk-container-small jp-align-vertical-center-left">
+
+
+<div  class="uk-width-1-1">
+
+  <div class="jp-margin-top-bottom">
+    <h1 class="title-container">Soporte Técnico</h1>
+    <p class="regular-paragraph">Si tienes algun inconveniente con uno de nuestros productos, comunícate con nosotros
+a través del siguiente formulario.</p>
+  </div>
+
+{# Form to contact technical support #}
+
+{{ form_start(form_contact_support, { 'attr': {'class': 'support-form'} }) }}
+{{ form_errors(form_contact_support) }}
+<div class="uk-margin">
+<div class="uk-inline uk-width-1-1">
+    <span class="uk-form-icon" uk-icon="icon: user"></span>
+            {{ form_widget(form_contact_support.client_name, { 'attr': {'class': 'uk-input', 'placeholder': 'Nombres (Ej. Jhon Doe)'} }) }}
+
+</div>
+</div>
+
+<div class="uk-margin">
+    <div class="uk-inline uk-width-1-1">
+        <span class="uk-form-icon" uk-icon="icon: mail"></span>
+        {{ form_widget(form_contact_support.client_mail, { 'attr': {'class': 'uk-input', 'placeholder': 'Correo de Contacto (Ej. usuario@dominio.com)'} }) }}
+
+    </div>
+</div>
+
+<div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: phone"></span>
+            {{ form_widget(form_contact_support.client_phone, { 'attr': {'class': 'uk-input', 'placeholder': 'Número de Contacto(Ej. +56940444172)'} }) }}
+
+        </div>
+    </div>
+
+    <div class="uk-margin">
+            <div class="uk-inline uk-width-1-1">
+                <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+                {{ form_widget(form_contact_support.client_message, { 'attr': {'class': 'uk-input', 'placeholder': 'Mensaje'} }) }}
+
+            </div>
+        </div>
+
+        <button class="uk-button uk-button-primary">Enviar</button>
+
+{{ form_end(form_contact_support) }}
+
+</div>
+
+</div>
+
+        </div>
+        <div class="jp-collapse-mobile">
+          <div class="uk-background-cover jp-first-container" style="background-image: url({{ asset('images/technical-support.jpg') }});"></div>
+        </div>
+      </div>
+
+
+
+</div>
+
+
+{% include 'footer.html.twig' %}
+
+{% block javascripts %}
+
+{{ parent() }}
+
+{% if message_result == 'enviado' %}
+
+<script>
+  UIkit.notification("El mensaje fue enviado. Nos contactaremos en breve.", {status: 'success'})
+</script>
+
+{% endif %}
+
+{% endblock %}
+
+
+{% endblock %}

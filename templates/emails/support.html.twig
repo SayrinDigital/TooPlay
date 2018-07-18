@@ -1,0 +1,36 @@
+{# templates/emails/support.html.twig #}
+
+<style>
+
+html, body, html *, body *{
+       font-family: 'Poppins', sans-serif;
+}
+
+h3{
+  font-weight: 800;
+  color: #000;
+}
+
+    p{
+          color: #999;
+    }
+
+ul.client>li{
+    list-style-type: circle;
+}
+
+</style>
+
+<h3>Soporte Técnico - TooPlay</h3>
+
+<p>El cliente {{ name }} necesita ayuda. Información provista por el cliente:</p>
+
+<ul class="client">
+  <li>Nombre: {{ name }}</li>
+  <li>Email: {{ mail }}</li>
+  <li>Phone: {{ phone }}</li>
+  <li>Problema: {{ message }}</li>
+</ul>
+
+{# example, assuming you have a route named "login" #}
+ <a href="https://www.tooplay.cl">www.tooplay.cl</a>

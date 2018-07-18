@@ -1,0 +1,310 @@
+a, a:hover, a:focus{
+   text-decoration: none;
+}
+
+.background-accent{
+   background: #F8F8F8;
+}
+
+html, body, body *{
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body{
+    background: #F8F8F8;
+}
+
+%medium-font{
+  font-weight: 500;
+}
+
+%regular-size-font{
+  font-size: 13px;
+}
+
+%small-size-font{
+  font-size: 10px;
+}
+
+%medium-size-font{
+  font-size: 20px;
+}
+
+%large-size-font{
+  font-size: 30px;
+}
+
+%regular-font{
+  font-weight: 300;
+}
+
+%black-font{
+  font-weight: 900;
+}
+
+%bold-font{
+  font-weight: 700;
+}
+
+%neutral-easing{
+  transition: all 200ms ease-in-out;
+}
+
+$blue-color: #1774F0;
+$red-color: #FA5951;
+
+nav#mainnav, nav#navheader{
+  background: #fff;
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.05);
+
+  li{
+    a{
+      @extend %medium-font;
+      @extend %regular-size-font;
+      text-transform: capitalize;
+      font-family: 'Poppins', sans-serif;
+    }
+  }
+
+  li.uk-active>a{
+    color: $blue-color;
+
+  }
+
+   .header-system-title{
+      a{
+        @extend %black-font;
+        @extend %regular-size-font;
+      }
+   }
+
+}
+
+nav#navheader{
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+h6.admin-title{
+  @extend %bold-font;
+  @extend %small-size-font;
+  text-transform: uppercase;
+  color: #b5b5b5;
+  margin: 0;
+}
+
+h1.admin-title-section{
+  @extend %medium-font;
+  @extend %large-size-font;
+  color: #999;
+  margin: 0;
+}
+
+form.uk-search{
+
+margin: 20px 0;
+
+   input.uk-search-input{
+     border: 0;
+     background: #fff;
+     border-radius: 5px;
+     box-shadow: 0px 10px 25px rgba(0,0,0,0.04);
+     @extend %medium-font;
+     @extend %regular-size-font;
+   }
+
+}
+
+p.admin-description{
+  @extend %medium-font;
+  @extend %regular-size-font;
+  text-transform: capitalize;
+  color: #999;
+  margin: 20px 0px;
+}
+
+div.product-card{
+
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+    background: #fff;
+
+   @extend %neutral-easing;
+    &:hover{
+      box-shadow: 0px 10px 20px rgba(0,0,0,0.08);
+    }
+
+    div.header{
+      height: 150px;
+
+    }
+
+    div.description{
+      background: #fff;
+      padding: 15px;
+
+      p.product-title{
+        color: #999;
+        @extend %medium-font;
+        @extend %regular-size-font;
+      text-transform: capitalize;
+      }
+
+      p.product-description, p.product-description>a{
+        color: #b5b5b5;
+        @extend %medium-font;
+        @extend %regular-size-font;
+      }
+
+    }
+
+}
+
+p.admin-description{
+  color: #b5b5b5;
+  @extend %medium-font;
+  @extend %regular-size-font;
+  margin: 0 0 10px 0;
+}
+
+div.tag>p, div.tag>a{
+  background: #fff;
+  border-radius: 500px;
+  color: #999;
+  text-transform: capitalize;
+  @extend %bold-font;
+  @extend %small-size-font;
+  padding: 5px 10px;
+  box-shadow: 0px 5px 5px rgba(0,0,0,0.05);
+  margin: 0;
+}
+
+.splash{
+
+   .cover{
+     border-radius: 5px;
+     overflow: hidden;
+   }
+
+   .description{
+     h4{
+       color: #212121;
+       @extend %medium-font;
+       @extend %regular-size-font;
+       margin: 0;
+     }
+
+    p{
+      color: #b5b5b5;
+      @extend %medium-font;
+      @extend %regular-size-font;
+      margin: 10px 0;
+    }
+
+   }
+
+}
+
+.regular-margin-top-bottom{
+  margin: 25px 0;
+}
+
+p.jp-text-strike{
+  text-decoration: line-through;
+}
+
+.button-style-a{
+  @extend %bold-font;
+  @extend %small-size-font;
+  border-radius: 5px;
+  color: #fff;
+  background: $blue-color;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  box-shadow: 0px 5px 10px rgba(23, 116, 240,0.05);
+  @extend %neutral-easing;
+
+   &:hover{
+     background: #fff;
+     color: $blue-color;
+     box-shadow: 0px 5px 10px rgba(0,0,0,0.05);
+   }
+}
+
+.button-style-a.disabled-item{
+  background: $red-color;
+  &:hover{
+    background: #fff;
+    color: $red-color;
+     box-shadow: 0px 5px 10px rgba(0,0,0,0.05);
+  }
+}
+
+.button-style-b{
+  @extend %bold-font;
+  @extend %small-size-font;
+  border-radius: 5px;
+  color: #999;
+  background: #fff;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  border: 1px solid rgba(0,0,0,0.1);
+  @extend %neutral-easing;
+
+   &:hover{
+     background: #000;
+     color: #fff;
+     box-shadow: 0px 5px 10px rgba(0,0,0,0.05);
+   }
+}
+
+ul.questions{
+
+   li{
+     padding: 20px;
+     background: #fff;
+     color: #999;
+     @extend %regular-size-font;
+     @extend %medium-font;
+     box-shadow: 0px 5px 10px rgba(0,0,0,0.05);
+     border-radius: 5px;
+
+  a{
+    color: #999;
+    @extend %regular-size-font;
+    @extend %medium-font;
+  }
+
+   }
+
+}
+
+table.voucher-table{
+
+  td{
+    @extend %regular-size-font;
+    @extend %medium-font;
+    color: #999;
+  }
+
+}
+
+.jp-medium-collapse{
+  display: block;
+}
+
+.jp-medium-appear{
+  opacity: 0;
+}
+
+@media only screen and (max-width: 900px) {
+
+.jp-medium-collapse{
+  display: none;
+}
+
+.jp-medium-appear{
+  opacity: 1;
+}
+
+}

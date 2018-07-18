@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="icon" href="{{ asset('images/icon.png') }}" type="image/png" >
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% block seo %}
+        <meta name="author" content="sayrin.cl">
+        <meta name="keywords" content="TOOPLAY, videojuegos Chile, Geeky Toys, consolas, xbox, xbox360,PS Vita, PSVita,PS ,PS2 ,PS3, PS4 ,PlayStation ,Sony, Nintendo, WII, WII U, 3DS,  juegos usados, blu-ray, PREVENTA,Juguetes y Coleccionables, week ,Notebooks, Gamers,Electronic Arts,Comics,Videojuegos,Pioneer,Poleras J!NX,Juegos de Mesa,Videos,DVD,Saldos,servicio técnico, simuladores, libros, Walking Dead, Halo, Fifa,PES, Games of Thrones, juego de tronos" />
+
+        <!-- Open Graph -->
+       	<meta property="og:url" content="https://www.tooplay.cl/" />
+       	<meta property="og:title" content="{{ controller_name }}" />
+       	<meta property="og:type" content="website" />
+
+        {% endblock %}
+
+
+        {% block stylesheets %}
+          <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css') }}">
+          <link href= "{{asset('https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900') }}" rel="stylesheet">
+          <link rel="stylesheet" href="{{ asset('assets/app.css') }}">
+      {% endblock %}
+
+
+    </head>
+    <body>
+
+<div class="uk-offcanvas-content">
+
+        <div>{{ render(controller(
+        'App\\Controller\\NavigatorController::navigator'
+    )) }}</div>
+        {% block body %}{% endblock %}
+
+
+        <div style="z-index: 999;" class="horizontal-social-networks uk-position-bottom-left uk-position-fixed uk-margin-medium-bottom uk-margin-medium-left">
+
+          <ul class="uk-iconnav">
+            <li>
+              <a href="https://www.facebook.com/tooplay.cl/" uk-icon="icon: facebook"></a>
+            </li>
+            <li>
+              <a href="#" uk-icon="icon: youtube"></a>
+            </li>
+            <li>
+              <a href="https://api.whatsapp.com/send?phone=+56940444172&text=Hola%20" uk-icon="icon: whatsapp"></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/tooplay.cl/" uk-icon="icon: instagram"></a>
+            </li>
+          </ul>
+
+        </div>
+
+
+      </div>
+        {% block javascripts %}
+          <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js') }}"></script>
+          <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js') }}"></script>
+          <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
+           <script src="{{ asset('https://unpkg.com/scrollreveal/dist/scrollreveal.min.js') }}"></script>
+           <script src="{{ asset('assets/app.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

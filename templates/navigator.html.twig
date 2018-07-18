@@ -1,0 +1,134 @@
+<nav id="mainnav" class="uk-navbar-container" uk-navbar>
+
+    <div class="uk-navbar-left">
+
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="{{ path('home') }}">
+               <img id="nav-logo" src="{{ asset('images/logo-web.svg') }}" alt="">
+            </a></li>
+        </ul>
+
+    </div>
+
+    <div class="uk-navbar-center jp-collapse-tablet">
+
+      <ul class="uk-navbar-nav">
+          <li {% if app.request.attributes.get( '_route' ) starts with 'home' %} class='uk-active'{% endif %}><a href="{{ path('home') }}">Inicio</a></li>
+          <li {% if app.request.attributes.get( '_route' ) starts with 'store' %} class='uk-active'{% endif %}>
+              <a href="#">Tienda</a>
+              <div class="uk-navbar-dropdown uk-navbar-dropdown-width-3">
+                    <div class="uk-navbar-dropdown-grid uk-child-width-1-3" uk-grid>
+                        <div>
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li class="uk-nav-header">Playstation</li>
+                                {% if menu.8.isvisible %}
+                                <li {% if app.request.attributes.get( '_route' ) starts with 'store-pspreorder' %} class='uk-active'{% endif %}><a href="{{ path('store-pspreorder') }}">Pre Orden</a></li>
+                                {% endif %}
+                                <li class="uk-nav-divider"></li>
+                                {% if menu.9.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-ps3games' %} class='uk-active'{% endif %}><a href="{{ path('store-ps3games') }}">Juegos PS3</a></li>{% endif %}
+                                {% if menu.10.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-ps3packs' %} class='uk-active'{% endif %}><a href="{{ path('store-ps3packs') }}">Pack PS3</a></li>{% endif %}
+                                <li class="uk-nav-divider"></li>
+                                {% if menu.11.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-primaryps4games' %} class='uk-active'{% endif %}><a href="{{ path('store-primaryps4games') }}">Primarias PS4</a></li>{% endif %}
+                                {% if menu.12.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-secondaryps4games' %} class='uk-active'{% endif %}><a href="{{ path('store-secondaryps4games') }}">Secundarias PS4</a></li>{% endif %}
+                                <li class="uk-nav-divider"></li>
+                                {% if menu.13.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-psofflineprimary' %} class='uk-active'{% endif %}><a href="{{ path('store-psofflineprimary') }}">Primarias Offline</a></li>{% endif %}
+                                <li class="uk-nav-divider"></li>
+                                {% if menu.14.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-pscards' %} class='uk-active'{% endif %}><a href="{{ path('store-pscards') }}">Tarjetas</a></li>{% endif %}
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li class="uk-nav-header">PC / XBOX</li>
+                                {% if menu.15.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-steampreorder' %} class='uk-active'{% endif %}><a href="{{ path('store-steampreorder') }}">Pre Orden</a></li>{% endif %}
+                                <li class="uk-nav-divider"></li>
+                                {% if menu.16.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-steamgames' %} class='uk-active'{% endif %}><a href="{{ path('store-steamgames') }}">Juegos Steam</a></li>{% endif %}
+                                <li class="uk-nav-divider"></li>
+                                {% if menu.17.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-xboxonegames' %} class='uk-active'{% endif %}><a href="{{ path('store-xboxonegames') }}">Juegos XBOX One</a></li>{% endif %}
+                                <li class="uk-nav-divider"></li>
+                                {% if menu.18.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-xboxonecards' %} class='uk-active'{% endif %}><a href="{{ path('store-xboxonecards') }}">Tarjetas</a></li>{% endif %}
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li class="uk-nav-header">Gift Card</li>
+                                {% if menu.19.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-itunes' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-itunes') }}">iTunes</a></li>{% endif %}
+                                {% if menu.20.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-googleplay' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-googleplay') }}">Google Play</a></li>{% endif %}
+                                {% if menu.21.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-psn' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-psn') }}">PSN</a></li>{% endif %}
+                                {% if menu.22.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-amazon' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-amazon') }}">Amazon</a></li>{% endif %}
+                                {% if menu.23.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-paypal' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-paypal') }}">Paypal</a></li>{% endif %}
+                                {% if menu.24.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-steam' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-steam') }}">Steam</a></li>{% endif %}
+                                {% if menu.25.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-xbox' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-xbox') }}">XBOX</a></li>{% endif %}
+                                {% if menu.26.isvisible %}<li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-nintendoeshop' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-nintendoeshop') }}">Nintendo eShop</a></li>{% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+          </li>
+          <li {% if app.request.attributes.get( '_route' ) starts with 'offers' %} class='uk-active'{% endif %}><a href="{{ path('offers') }}">Ofertas</a></li>
+          <li {% if app.request.attributes.get( '_route' ) starts with 'services' %} class='uk-active'{% endif %}><a href="{{ path('services') }}">Servicios</a></li>
+          <li {% if app.request.attributes.get( '_route' ) starts with 'technical_support' %} class='uk-active'{% endif %}><a href="{{ path('technical_support') }}">Soporte</a></li>
+      </ul>
+    </div>
+
+    <div class="uk-navbar-right">
+
+        <ul class="uk-navbar-nav">
+            <li><a href="{{ path('cart') }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: cart"></span>{{ app.session.get('totalproductsincart') }}</a></li>
+            <div class="uk-navbar-item jp-collapse-mobile">
+              <li class="payment-check"><a href="{{ path('notification_payment') }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> Informa Tu Pago</a></li>
+            </div>
+            <li><a class="uk-navbar-toggle" href="{{ path('search') }}" uk-search-icon></a></li>
+            <li class="jp-display-mobile"><a class="uk-navbar-toggle" uk-toggle="target: #offcanvas-nav" uk-navbar-toggle-icon href="#"></a></li>
+
+        </ul>
+
+    </div>
+
+</nav>
+
+<div id="offcanvas-nav" uk-offcanvas="overlay: true">
+        <div class="uk-offcanvas-bar">
+
+            <ul class="uk-nav uk-nav-default">
+                <li {% if app.request.attributes.get( '_route' ) starts with 'home' %} class='uk-active'{% endif %}><a href="{{ path('home') }}">Inicio</a></li>
+                <li class="uk-parent">
+                    <a href="#">Tienda</a>
+                    <ul class="uk-nav-sub">
+                      <li class="uk-nav-header">Playstation</li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-pspreorder' %} class='uk-active'{% endif %}><a href="{{ path('store-pspreorder') }}">Pre Orden</a></li>
+                      <li class="uk-nav-divider"></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-ps3games' %} class='uk-active'{% endif %}><a href="{{ path('store-ps3games') }}">Juegos PS3</a></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-ps3packs' %} class='uk-active'{% endif %}><a href="{{ path('store-ps3packs') }}">Pack PS3</a></li>
+                      <li class="uk-nav-divider"></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-primaryps4games' %} class='uk-active'{% endif %}><a href="{{ path('store-primaryps4games') }}">Primarias PS4</a></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-secondaryps4games' %} class='uk-active'{% endif %}><a href="{{ path('store-secondaryps4games') }}">Secundarias PS4</a></li>
+                      <li class="uk-nav-divider"></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-psofflineprimary' %} class='uk-active'{% endif %}><a href="{{ path('store-psofflineprimary') }}">Primarias Offline</a></li>
+                      <li class="uk-nav-divider"></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-pscards' %} class='uk-active'{% endif %}><a href="{{ path('store-pscards') }}">Tarjetas</a></li>
+                      <li class="uk-nav-header">PC / XBOX</li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-steampreorder' %} class='uk-active'{% endif %}><a href="{{ path('store-steampreorder') }}">Pre Orden</a></li>
+                      <li class="uk-nav-divider"></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-steamgames' %} class='uk-active'{% endif %}><a href="{{ path('store-steamgames') }}">Juegos Steam</a></li>
+                      <li class="uk-nav-divider"></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-xboxonegames' %} class='uk-active'{% endif %}><a href="{{ path('store-xboxonegames') }}">Juegos XBOX One</a></li>
+                      <li class="uk-nav-divider"></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-xboxonecards' %} class='uk-active'{% endif %}><a href="{{ path('store-xboxonecards') }}">Tarjetas</a></li>
+                      <li class="uk-nav-header">Gift Card</li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-itunes' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-itunes') }}">iTunes</a></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-googleplay' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-googleplay') }}">Google Play</a></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-psn' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-psn') }}">PSN</a></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-amazon' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-amazon') }}">Amazon</a></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-paypal' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-paypal') }}">Paypal</a></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-steam' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-steam') }}">Steam</a></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-xbox' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-xbox') }}">XBOX</a></li>
+                      <li {% if app.request.attributes.get( '_route' ) starts with 'store-giftcard-nintendoeshop' %} class='uk-active'{% endif %}><a href="{{ path('store-giftcard-nintendoeshop') }}">Nintendo eShop</a></li>
+                    </ul>
+                </li>
+                <li {% if app.request.attributes.get( '_route' ) starts with 'offers' %} class='uk-active'{% endif %}><a href="{{ path('offers') }}">Ofertas</a></li>
+                <li {% if app.request.attributes.get( '_route' ) starts with 'services' %} class='uk-active'{% endif %}><a href="{{ path('services') }}">Servicios</a></li>
+                <li {% if app.request.attributes.get( '_route' ) starts with 'technical_support' %} class='uk-active'{% endif %}><a href="{{ path('technical_support') }}">Soporte</a></li>
+            </ul>
+
+        </div>
+    </div>

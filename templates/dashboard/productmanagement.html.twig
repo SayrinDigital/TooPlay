@@ -1,0 +1,99 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+<div class="background-accent">
+
+  <div class="uk-container">
+
+    <div class="uk-margin-medium-top">
+
+<div>
+<div >
+
+        {{ form_start(form, { 'attr': {'class': 'uk-form-stacked'} }) }}
+        {{ form_errors(form) }}
+
+  <div class="uk-modal-header">
+      <h2 class="uk-modal-title">{{ title }}</h2>
+  </div>
+
+  <div class="uk-modal-body" uk-overflow-auto>
+
+
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">Titulo</label>
+            <div class="uk-form-controls">
+                {{ form_widget(form.title, { 'attr': {'class': 'uk-input', 'placeholder': 'Titulo del Producto'} }) }}
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-select">Estado</label>
+            <div class="uk-form-controls">
+                 {{ form_widget(form.status, { 'attr': {'class': 'uk-select'} }) }}
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-select">Tipo</label>
+            <div class="uk-form-controls">
+                 {{ form_widget(form.target, { 'attr': {'class': 'uk-select'} }) }}
+            </div>
+        </div>
+
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">Precio Inicial</label>
+            <div class="uk-form-controls">
+                {{ form_widget(form.originalprice, { 'attr': {'class': 'uk-input', 'placeholder': '12990'} }) }}
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">Precio Final</label>
+            <div class="uk-form-controls">
+                {{ form_widget(form.finalprice, { 'attr': {'class': 'uk-input', 'placeholder': '5990'} }) }}
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-select">Género</label>
+            <div class="uk-form-controls">
+                {{ form_widget(form.genre, { 'attr': {'class': 'uk-select'} }) }}
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">Descripción</label>
+            <div class="uk-form-controls">
+                {{ form_widget(form.description, { 'attr': {'class': 'uk-textarea', 'placeholder': 'Descripción'} }) }}
+            </div>
+        </div>
+
+        <div class="uk-margin" uk-margin>
+       <div class="uk-width-1-1" uk-form-custom="target: true" >
+           {{ form_widget(form.cover) }}
+           <input class="uk-input uk-width-1-1" type="text" placeholder="Adjuntar portada (MAX 2MB)" disabled>
+       </div>
+   </div>
+
+  </div>
+
+  <div class="uk-text-right uk-margin-small-bottom">
+      <a class="uk-button uk-button-default uk-modal-close" href="{{ path('dashboard-home') }}" type="button">Cancelar</a>
+      {{ form_widget(form.save, { 'attr': {'class': 'uk-button uk-button-primary', 'placeholder': 'Descripción'} }) }}
+  </div>
+{{ form_end(form) }}
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+
+{% endblock %}

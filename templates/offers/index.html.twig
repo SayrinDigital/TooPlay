@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+<div id="mainhome" class="background-accent uk-position-relative uk-visible-toggle" uk-slideshow="animation: pull; ratio: false; autoplay: true">
+
+  <ul class="uk-slideshow-items height-container-home">
+
+
+{% for offerproduct in offerproducts %}
+
+<li>
+<div class="uk-background-cover uk-position-relative" style="background-image: url({{ asset('uploads/productcovers/' ~ offerproduct.cover) }});">
+<div class="jp-overlay-dark"></div>
+<div class="uk-container height-container-home uk-position-relative">
+  <div class="jp-align-vertical-center-left">
+    <div>
+      <p class="tag-title">
+        <span class="uk-icon uk-margin-small-right" uk-icon="icon: grid"></span>
+        OFERTAS</p>
+      <h1 class="product-title">{{ offerproduct.title }}</h1>
+  {#    <h4 class="product-subtitle">Last Night</h4> #}
+      <p class="availability-tag">{{ offerproduct.target }}</p>
+      <a class="circular-white-button" href="#{{ 'modal-full-' ~ offerproduct.id }}" uk-toggle>
+        <span class="uk-icon uk-margin-small-right" uk-icon="icon: plus"></span>
+        Comprar</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="modal-full-{{ offerproduct.id }}" class="uk-modal-full" uk-modal="uk-modal">
+<div class="uk-modal-dialog ">
+  <button class="uk-modal-close-full uk-close-large" type="button" uk-close="uk-close"></button>
+  <div class="uk-grid-collapse uk-child-width-1-2@s uk-text-center uk-flex-middle modal-game" uk-grid="uk-grid">
+    <div class="uk-background-cover" style="background-image: url({{ asset( 'uploads/productcovers/' ~ offerproduct.cover) }});" uk-height-viewport="uk-height-viewport"></div>
+    <div class="uk-padding-large">
+      <h1 class="game-title">{{ offerproduct.title }}</h1>
+      {% if offerproduct.description is not null %}
+        <p class="game-description">{{ offerproduct.description }}</p>
+      {% endif %}
+      <a class="circular-white-button" href="{{ path('additemcart',{ 'productid' : offerproduct.id }) }}" onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> {{ offerproduct.title }} fue agregado al carro.'})">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon: plus"></span>
+                Agregar al carro <span class="uk-icon" uk-icon="icon: minus"></span>CLP ${{ offerproduct.finalprice|number_format(0) }}</a>
+                <p class="previous-price"> CLP ${{ offerproduct.originalprice|number_format(0) }}</p>
+    </div>
+  </div>
+</div>
+</div>
+
+</li>
+
+{% endfor %}
+
+  </ul>
+
+  <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous="uk-slidenav-previous" uk-slideshow-item="previous"></a>
+  <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next="uk-slidenav-next" uk-slideshow-item="next"></a>
+
+</div>
+
+<div class="background-accent">
+
+<div class="uk-container store-panel">
+
+
+    <div class="jp-margin-top-bottom">
+      <h1 class="title-container">Ofertas Del Día</h1>
+    </div>
+
+
+    {{ include('store/newgames.html.twig', {'newgames': dailyofferproducts, 'tag' : 'OFERTA DEL DÍA'}) }}
+
+    <div class="jp-margin-top-bottom">
+      <h1 class="title-container">Ofertas PS4</h1>
+    </div>
+
+
+    {{ include('store/newgames.html.twig', {'newgames': psfourofferproducts, 'tag' : 'OFERTA PS4'}) }}
+
+    <div class="jp-margin-top-bottom">
+      <h1 class="title-container">Ofertas PS3</h1>
+    </div>
+
+
+    {{ include('store/newgames.html.twig', {'newgames': psthreeofferproducts, 'tag' : 'OFERTA PS3'}) }}
+
+</div>
+
+</div>
+
+
+
+
+{% include 'footer.html.twig' %}
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block title %}{{ controller_name }}
+{% endblock %}
+
+{% block body %}
+
+<style>
+
+ul.uk-subnav>li>a{
+    border-radius: 5px;
+}
+
+</style>
+
+<div class="uk-container">
+
+  <div class="uk-margin-medium-top">
+
+    <h6 class="admin-title">PAGOS</h6>
+    <h1 class="admin-title-section">Métodos de Pago</h1>
+    <p class="admin-description">Modifique y Administre la información relacionada a los métodos de Pago.</p>
+
+    <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-fade">
+    <li><a href="#">CAJA VECINA</a></li>
+    <li><a href="#">TRANSFERENCIA ELECTRÓNICA</a></li>
+    <li><a href="#">WEBPAY</a></li>
+    <li><a href="#">PAYPAL</a></li>
+</ul>
+
+<ul class="uk-switcher uk-margin">
+    <li><div class="uk-margin">
+            <pre>{{ ins_cajavecina.instructions }}</pre>
+        </div>
+        <a href="{{ path('dashboard-paymentmethods-edit', { 'id' : ins_cajavecina.id }) }}">EDITAR</a>
+</li>
+    <li><div class="uk-margin">
+            <pre>{{ ins_transferencia.instructions }}</pre>
+        </div>
+        <a href="{{ path('dashboard-paymentmethods-edit', { 'id' : ins_transferencia.id }) }}">EDITAR</a>
+</li>
+</li>
+    <li><div class="uk-margin">
+            <pre>{{ ins_webpay.instructions }}</pre>
+        </div>
+        <a href="{{ path('dashboard-paymentmethods-edit', { 'id' : ins_webpay.id }) }}">EDITAR</a>
+</li>
+</li>
+<li><div class="uk-margin">
+        <pre>{{ ins_paypal.instructions }}</pre>
+    </div>
+    <a href="{{ path('dashboard-paymentmethods-edit', { 'id' : ins_paypal.id }) }}">EDITAR</a>
+</li>
+</li>
+</ul>
+
+  </div>
+
+</div>
+
+
+{% endblock %}

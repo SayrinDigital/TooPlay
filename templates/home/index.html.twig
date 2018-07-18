@@ -1,0 +1,198 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}
+{% endblock %}
+
+{% block body %}
+
+  <div class="uk-child-width-1-2@m uk-grid-collapse" id="mainhome" uk-grid="uk-grid">
+
+    <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: pull; ratio: false; autoplay: true">
+
+      <ul class="uk-slideshow-items height-container-home">
+
+
+{% for highlightgame in highlightgames %}
+
+<li>
+  <div class="uk-background-cover uk-position-relative" style="background-image: url({{ asset('uploads/productcovers/' ~ highlightgame.cover) }});">
+    <div class="jp-overlay-dark"></div>
+    <div class="uk-container height-container-home uk-position-relative">
+      <div class="jp-align-vertical-center-left">
+        <div>
+          <p class="tag-title">
+            <span class="uk-icon uk-margin-small-right" uk-icon="icon: grid"></span>
+            Destacados</p>
+          <h1 class="product-title">{{ highlightgame.title }}</h1>
+      {#    <h4 class="product-subtitle">Last Night</h4> #}
+        {#  <p class="availability-tag">{{ highlightgame.target }}</p>#}
+          <a class="circular-white-button" href="#{{ 'modal-full-' ~ highlightgame.id }}" uk-toggle>
+            <span class="uk-icon uk-margin-small-right" uk-icon="icon: plus"></span>
+            Comprar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-full-{{ highlightgame.id }}" class="uk-modal-full" uk-modal="uk-modal">
+    <div class="uk-modal-dialog ">
+      <button class="uk-modal-close-full uk-close-large" type="button" uk-close="uk-close"></button>
+      <div class="uk-grid-collapse uk-child-width-1-2@s uk-text-center uk-flex-middle modal-game" uk-grid="uk-grid">
+        <div class="uk-background-cover" style="background-image: url({{ asset('uploads/productcovers/' ~ highlightgame.cover) }});" uk-height-viewport="uk-height-viewport"></div>
+        <div class="uk-padding-large">
+          <h1 class="game-title">{{ highlightgame.title }}</h1>
+          {% if highlightgame.description is not null %}
+            <p class="game-description">{{ highlightgame.description }}</p>
+          {% endif %}
+          <a class="circular-white-button" href="{{ path('additemcart',{ 'productid' : highlightgame.id }) }}" onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> {{ highlightgame.title }} fue agregado al carro.'})">
+                    <span class="uk-icon uk-margin-small-right" uk-icon="icon: plus"></span>
+                    Agregar al carro <span class="uk-icon" uk-icon="icon: minus"></span>CLP ${{ highlightgame.finalprice|number_format(0) }}</a>
+                    <p class="previous-price"> CLP ${{ highlightgame.originalprice|number_format(0) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</li>
+
+{% endfor %}
+
+      </ul>
+
+      <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous="uk-slidenav-previous" uk-slideshow-item="previous"></a>
+      <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next="uk-slidenav-next" uk-slideshow-item="next"></a>
+
+    </div>
+
+    <div>
+
+      <div class="top-container">
+
+        <div class="uk-position-relative top-container uk-visible-toggle" uk-slideshow="animation: pull; ratio: false; autoplay: true">
+
+          <ul class="uk-slideshow-items top-container">
+
+{% for weekendofferitem in weekendoffergames %}
+
+<li>
+  <div class="uk-container  top-container uk-position-relative  uk-background-cover uk-background-center-left" style="background-image: url({{ asset('uploads/productcovers/' ~ weekendofferitem.cover) }});">
+    <div class="jp-overlay-dark-b"></div>
+    <div class="jp-align-vertical-center-right uk-text-right uk-position-relative">
+      <div>
+        <p class="tag-title">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon: grid"></span>
+          Ofertas de la Semana</p>
+        <h1 class="product-title">{{ weekendofferitem.title }}</h1>
+      {#  <p class="availability-tag">{{ weekendofferitem.target }}</p> #}
+        <a class="circular-white-button" href="#">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon:  star"></span>
+          Ver ofertas</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-full-{{ weekendofferitem.id }}" class="uk-modal-full" uk-modal="uk-modal">
+    <div class="uk-modal-dialog ">
+      <button class="uk-modal-close-full uk-close-large" type="button" uk-close="uk-close"></button>
+      <div class="uk-grid-collapse uk-child-width-1-2@s uk-text-center uk-flex-middle modal-game" uk-grid="uk-grid">
+        <div class="uk-background-cover" style="background-image: url({{ asset('uploads/productcovers/' ~ weekendofferitem.cover) }});" uk-height-viewport="uk-height-viewport"></div>
+        <div class="uk-padding-large">
+          <h1 class="game-title">{{ weekendofferitem.title }}</h1>
+          {% if weekendofferitem.description is not null %}
+            <p class="game-description">{{ weekendofferitem.description }}</p>
+          {% endif %}
+          <a class="circular-white-button" href="{{ path('additemcart',{ 'productid' : weekendofferitem.id }) }}" onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> {{ weekendofferitem.title }} fue agregado al carro.'})">
+                    <span class="uk-icon uk-margin-small-right" uk-icon="icon: plus"></span>
+                    Agregar al carro <span class="uk-icon" uk-icon="icon: minus"></span>CLP ${{ weekendofferitem.finalprice|number_format(0) }}</a>
+                    <p class="previous-price"> CLP ${{ weekendofferitem.originalprice|number_format(0) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</li>
+
+{% endfor %}
+
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="center-container">
+
+        <div class="uk-child-width-1-2@s uk-grid-collapse uk-height-1-1" uk-grid="uk-grid">
+
+          <div class="uk-background-cover" style="background-image: url('{{ asset('images/support-bg.png') }}');">
+
+            <div class="jp-position-center">
+              <a href="{{ path('technical_support') }}" class="uk-padding-small">
+                <h4 class="support-item">SOPORTE</h4>
+              </a>
+            </div>
+
+          </div>
+
+          <div class="frequent-questions">
+
+            <div class="jp-position-center">
+              <a href="{{ path('frequent_questions') }}" class="uk-padding-small">
+                <h4>
+                  <span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span>
+                  Preguntas Frecuentes</h4>
+                <p>Las preguntas más frecuentes que recibimos de parte de nuestros usuarios.</p>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="bottom-container uk-overflow-hidden uk-position-relative">
+
+        <div class=" uk-height-1-1 uk-background-cover" style="background-image: url({{ asset('https://cdn.dribbble.com/users/288987/screenshots/2509892/amrita.gif') }});"></div>
+
+        <div class="uk-position-center uk-text-center pre-order">
+          <a href="{{ path('store-pspreorder') }}" class="uk-padding-small">
+
+            <h4>
+              <span class="uk-icon uk-margin-small-right" uk-icon="icon: clock"></span>
+              Preórdenes</h4>
+            <p>Consigue ese juego que tanto quieres antes que todos.</p>
+
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  {% if isSplashVisible.isvisible %}
+
+  <div id="splash-offer-modal-center" class="uk-flex-top" uk-modal>
+      <div class="uk-position-relative uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-height-large uk-background-cover" style="background-image: url({{ asset('uploads/productcovers/' ~ splashoffer.cover ) }});">
+        <a class="circular-white-button" href="{{ path('additemcart',{ 'productid' : splashoffer.id }) }}" uk-toggle>
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon: plus"></span>
+          Comprar</a>
+
+          <button class="uk-modal-close-default" type="button" uk-close></button>
+
+      </div>
+  </div>
+
+  {% endif %}
+
+  {% block javascripts %}
+
+  {{ parent() }}
+
+  <script>UIkit.modal('#splash-offer-modal-center').show();</script>
+
+  {% endblock %}
+
+
+{% endblock %}

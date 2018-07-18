@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="icon" href="{{ asset('images/icon.png') }}" type="image/png" >
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        {% block stylesheets %}
+          <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css') }}">
+          <link href= "{{asset('https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900') }}" rel="stylesheet">
+          <link rel="stylesheet" href="{{ asset('assets/adminapp.css') }}">
+      {% endblock %}
+
+
+    </head>
+    <body>
+
+        {% include 'dashboard/header.html.twig' %}
+        {% include 'dashboard/navigator.html.twig' %}
+        {% block body %}{% endblock %}
+
+
+        {% block javascripts %}
+          <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js') }}"></script>
+          <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js') }}"></script>
+          <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
+           <script src="{{ asset('https://unpkg.com/scrollreveal/dist/scrollreveal.min.js') }}"></script>
+           <script src="{{ asset('assets/adminapp.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

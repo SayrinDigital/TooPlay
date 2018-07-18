@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ controller_name }} {% endblock %}
+
+{% block body %}
+
+<div class="uk-background-cover" style="background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c0a6d423978617.563340e3aff03.jpg);">
+
+  <div class="uk-container uk-flex uk-flex-middle uk-flex-center height-container-home" >
+
+    <nav class="uk-navbar-container uk-navbar-transparent" style="border-radius: 5px; background: #fff; box-shadow: 0px 10px 20px rgba(0,0,0,0.08);" uk-navbar>
+      <div class="uk-navbar-left">
+        <div class="uk-navbar-item">
+        {{ form_start(formsearch, { 'attr': {'class': 'uk-search uk-search-large'} }) }}
+            {{ form_errors(formsearch) }}
+             <span uk-search-icon></span>
+            {{ form_widget(formsearch.search, { 'attr': {'class': 'uk-search-input', 'placeholder': 'Buscar...'} }) }}
+        {{ form_end(formsearch) }}
+        </div>
+      </div>
+    </nav>
+
+  </div>
+
+</div>
+
+
+{% endblock %}

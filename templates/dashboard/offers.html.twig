@@ -1,0 +1,70 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block title %}{{ controller_name }}
+{% endblock %}
+
+{% block body %}
+
+  <div class="background-accent">
+
+    <div class="uk-container">
+
+      <div class="uk-margin-medium-top">
+
+        <h6 class="admin-title">Ofertas</h6>
+        <h1 class="admin-title-section">Ofertas del Día</h1>
+        <p class="admin-description">Modifique y Agregue sus ofertas del día.</p>
+
+        <div class="uk-margin-small-top uk-margin-medium-bottom">
+          {% if dailyofferscontainer.isvisible %}
+           <a class=" button-style-a" href="{{ path('tooglemenu', {'id': dailyofferscontainer.id} ) }}">Activado</a>
+           {% else %}
+           <a class=" button-style-a disabled-item" href="{{ path('tooglemenu', {'id': dailyofferscontainer.id} ) }}">Desactivado</a>
+           {% endif %}
+        </div>
+
+
+        {{ include('dashboard/productslayout.html.twig', {'maintag': 'ofertas del día', 'products': dailyoffers}) }}
+
+        {# Another section #}
+
+        <h6 class="admin-title">Ofertas</h6>
+        <h1 class="admin-title-section">Ofertas PS4</h1>
+        <p class="admin-description">Modifique y Agregue sus ofertas ps4.</p>
+
+        <div class="uk-margin-small-top uk-margin-medium-bottom">
+          {% if psfourofferscontainer.isvisible %}
+           <a class=" button-style-a" href="{{ path('tooglemenu', {'id': psfourofferscontainer.id} ) }}">Activado</a>
+           {% else %}
+           <a class=" button-style-a disabled-item" href="{{ path('tooglemenu', {'id': psfourofferscontainer.id} ) }}">Desactivado</a>
+           {% endif %}
+
+        </div>
+
+
+        {{ include('dashboard/productslayout.html.twig', {'maintag': 'ofertas ps4', 'products': psfouroffers}) }}
+
+        <h6 class="admin-title">Ofertas</h6>
+        <h1 class="admin-title-section">Ofertas PS3</h1>
+        <p class="admin-description">Modifique y Agregue sus ofertas ps3.</p>
+
+        <div class="uk-margin-small-top uk-margin-medium-bottom">
+          {% if psthreeofferscontainer.isvisible %}
+           <a class=" button-style-a" href="{{ path('tooglemenu', {'id': psthreeofferscontainer.id} ) }}">Activado</a>
+           {% else %}
+           <a class=" button-style-a disabled-item" href="{{ path('tooglemenu', {'id': psthreeofferscontainer.id} ) }}">Desactivado</a>
+           {% endif %}
+        </div>
+
+
+        {{ include('dashboard/productslayout.html.twig', {'maintag': 'ofertas ps3', 'products': psthreeoffers}) }}
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+{% endblock %}

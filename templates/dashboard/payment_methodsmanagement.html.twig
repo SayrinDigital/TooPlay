@@ -1,0 +1,35 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block title %}{{ controller_name }}
+{% endblock %}
+
+{% block body %}
+
+<div id="modal-center" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+        <a class="uk-position-top-right uk-margin-small-right uk-margin-small-top" href="{{ path('dashboard-paymentmethods') }}" uk-icon="icon: close;"></a>
+
+{{ form_start(form) }}
+<div class="uk-margin">
+{{ form_widget(form.instructions, { 'attr': {'class': 'uk-textarea', 'rows': '5', 'placeholder': 'Instrucciones'} }) }}
+</div>
+
+<div class="uk-margin">
+{{ form_widget(form.save, { 'attr': {'class': 'uk-button uk-button-primary'} }) }}
+</div>
+
+{{ form_end(form) }}
+
+    </div>
+</div>
+
+{% block javascripts %}
+
+{{ parent() }}
+
+<script>UIkit.modal('#modal-center').show();</script>
+
+{% endblock %}
+
+{% endblock %}

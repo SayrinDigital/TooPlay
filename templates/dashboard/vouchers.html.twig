@@ -1,0 +1,48 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+
+<div class="uk-container">
+
+  <div class="uk-margin-medium-top">
+
+    <h6 class="admin-title">PRODUCTOS</h6>
+    <h1 class="admin-title-section">Notificaciones de Pago</h1>
+    <p class="admin-description">Una tabla con las ventas notificadas.</p>
+
+<div class="uk-overflow-auto">
+    <table class="uk-table uk-table-hover uk-table-middle uk-table-divider voucher-table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Detalles</th>
+            <th>Comprobante</th>
+        </tr>
+    </thead>
+    <tbody>
+
+{% for item in vouchers %}
+
+   <tr>
+       <td> {{ item.name }} </td>
+       <td> {{ item.mail }} </td>
+       <td> {{ item.phone }} </td>
+       <td> {{ item.details }} </td>
+       <td> <a href="{{ asset('uploads/vouchers/' ~ item.brochure) }}" class="uk-button uk-button-default" type="button">Abrir</a> </td>
+   </tr>
+
+{% endfor %}
+
+    </tbody>
+</table>
+  </div>
+  </div>
+
+</div>
+
+{% endblock %}

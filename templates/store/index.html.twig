@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+
+
+  <div class="store-panel background-accent">
+
+    <div class="uk-container ">
+      <div class="jp-margin-top-bottom">
+        <h1 class="title-container">{{ game_console }}</h1>
+      </div>
+
+{% if allgames|length == 0 %}
+
+<div style="height: calc(100vh - 162px);">
+  <p class="regular-paragraph uk-margin-small-bottom"> No tenemos stock disponible actualmente para esta sección.</p>
+</div>
+
+      {% else %}
+
+      {{ include('store/newgames.html.twig', {'newgames' : newgames, 'tag': 'ESTRENO'}) }}
+
+
+
+      <div class="jp-margin-top-bottom">
+        <h1 class="title-container">Géneros</h1>
+        <p class="regular-paragraph">Filtra los juegos basados en el género que te guste más.</p>
+      </div>
+
+      <div uk-filter="target: .js-filter">
+
+        {{ include('store/genres.html.twig') }}
+
+        {# List of all videogames #}
+
+        <div class="jp-margin-top-bottom">
+          <h1 class="title-container">Todos Nuestros Productos</h1>
+        </div>
+
+        {{ include('store/games.html.twig', {'allgames': allgames}) }}
+
+      </div>
+
+      {% endif %}
+
+    </div>
+  </div>
+
+             {% include 'footer.html.twig' %}
+
+{% endblock %}

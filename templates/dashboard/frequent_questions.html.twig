@@ -1,0 +1,55 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block title %}{{ controller_name }}
+{% endblock %}
+
+{% block body %}
+
+  <div class="background-accent">
+
+    <div class="uk-container">
+
+      <div class="uk-margin-medium-top">
+
+        <h6 class="admin-title">SOPORTE</h6>
+        <h1 class="admin-title-section">Preguntas Frecuentes</h1>
+        <p class="admin-description">Modifique y Agregue las preguntas frecuentas mostradas a sus clientes.</p>
+
+        <div class="uk-margin-small-top uk-margin-medium-bottom">
+          <a class=" button-style-a" href="">Activado</a>
+          <a class=" button-style-b" href="{{ path('dashboard-frequent_questions_management') }}" >Agregar</a>
+        </div>
+
+        <ul class="questions uk-list">
+          {% for question in questions %}
+            <li>
+                <div><p class="" href="#">{{ loop.index }}. ¿{{ question.question }}?</p></div>
+                <div class="uk-text-right">
+                  <a href="{{ path('dashboard-frequent_questions_edit', { 'id': question.id }) }}" class="uk-margin-small-right"><span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span>Modificar</a>
+                  <a href=""  uk-toggle="target: #modal-delete-confirmation-{{ question.id }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: trash"></span>Eliminar</a>
+                </div>
+            </li>
+
+            <div id="modal-delete-confirmation-{{ question.id }}" uk-modal>
+                <div class="uk-modal-dialog uk-modal-body">
+                    <h2 class="uk-modal-title">Acción Definitiva</h2>
+                    <p>¿Realmente desea eliminar este item?. No podrá recuperarlo después.</p>
+                    <p class="uk-text-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+                        <a class="uk-button uk-button-primary" href="{{ path('dashboard-frequent_questions_delete', {'id': question.id}) }}">Borrar</a>
+                    </p>
+                </div>
+            </div>
+
+            {% endfor %}
+        </ul>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+{% endblock %}

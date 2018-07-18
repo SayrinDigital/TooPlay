@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TooPlay - {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+
+<div class="store-panel background-accent">
+<div class="uk-container">
+
+  <div class="jp-margin-top-bottom">
+    <h1 class="title-container">Tienes {{ quantity }} items en tu carro de compras.</h1>
+  </div>
+
+
+ {{ include ('cart/games.html.twig', { 'newgames': cartitems }) }}
+
+<div class="uk-margin-medium-top uk-margin-medium-bottom">
+
+<div class="uk-text-center">
+  <p class=" uk-margin-medium-right total-price uk-width-1-1">Total: CLP ${{ totalsum|number_format(0) }}</p>
+  <a class="circular-yellow-button" href="{{ path('notification_payment', { 'details': purchase_details }) }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> Informar Pago</a>
+  <a class="circular-red-button uk-margin-small-top" href="{{ path('clearcartshop') }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: close"></span> Anular orden</a>
+</div>
+
+</div>
+
+
+<div>
+
+    <div class="uk-margin-large-top ">
+      <h1 class="title-container">Selecciona tu método de pago</h1>
+    </div>
+
+    <ul class="uk-child-width-1-4@s uk-margin-small-bottom uk-margin-small-top" uk-grid uk-switcher>
+
+<div >
+  <div ><li ><a href=""><div class="uk-card payment-card uk-card-default uk-card-body uk-background-contain" style="background-image: url(https://www.aguasdelaltiplano.cl/recursos-ada/img/pague8.jpg);"></div></a></li></div>
+</div>
+<div>
+  <div class="payment_card">    <li >
+        <a href=""><div class="uk-card payment-card uk-card-default uk-card-body uk-background-contain" style="background-image: url(https://www.citywidehomeloans.com/wp-content/uploads/2016/10/Ways-to-Get-a-Lower-Monthly-Payment-Part-1.jpg);"></div></a>
+      </li></div>
+</div>
+<div>
+  <div class="payment_card">
+        <li >
+          <a href=""><div class="uk-card payment-card uk-card-default uk-card-body uk-background-contain" style="background-image: url(https://www.asesora2.cl/servicios/45-large_default/instalar-webpay-plus.jpg);"></div></a>
+        </li></div>
+</div>
+<div>
+  <div class="payment_card">    <li >
+        <a href=""><div class="uk-card payment-card uk-card-default uk-card-body uk-background-contain" style="background-image: url(http://instagramnyc.com/images/PayPal-Logo-rcm992x0.jpg);"></div></a>
+      </li></div>
+</div>
+
+
+
+
+  </ul>
+
+  <ul class="uk-switcher payment-information-container">
+      <li>
+        <div class="uk-width-1-1 border-default uk-card uk-card-body uk-card-default">
+             <h4 class="title">Instrucciones Caja Vecina</h4>
+<div>
+  <pre class="jp-border-remove">{{ ins_cajavecina.instructions }}</pre>
+</div>
+        </div>
+      </li>
+
+      <li>
+        <div class="uk-width-1-1 border-default uk-card uk-card-body uk-card-default">
+             <h4 class="title">Instrucciones Transferencia Electrónica</h4>
+             <div>
+               <pre class="jp-border-remove">{{ ins_transferencia.instructions }}</pre>
+             </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="uk-width-1-1 border-default uk-card uk-card-body uk-card-default">
+             <h4 class="title">Instrucciones WebPay</h4>
+             <div>
+               <pre class="jp-border-remove">{{ ins_webpay.instructions }}</pre>
+             </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="uk-width-1-1 border-default uk-card uk-card-body uk-card-default">
+             <h4 class="title">Instrucciones PayPal</h4>
+             <div>
+               <pre class="jp-border-remove">{{ ins_paypal.instructions }}</pre>
+             </div>
+        </div>
+      </li>
+  </ul>
+
+</div>
+
+
+</div>
+</div>
+{% include 'footer.html.twig' %}
+
+
+{% endblock %}

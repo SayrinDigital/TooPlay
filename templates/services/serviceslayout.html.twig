@@ -1,0 +1,215 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+
+<div class="services-container">
+
+{% if netflixcontainer.isvisible %}
+
+   <div class="item-a uk-background-cover uk-background-center-right" style="background-image: url('{{ asset('images/services/netflix-background.png') }}');">
+
+    <div class="uk-container jp-align-vertical-center-left">
+      <div class="uk-width-1-1 uk-width-1-2@m">
+        <h1 class="service-title">Netflix</h1>
+        <p class="description-service">Mira tus series y películas desde la comodidad de tu hogar.</p>
+        <p class="service-plans-title">Planes:</p>
+        <div>
+
+          <div uk-slider="autoplay: true; autoplay-interval: 1000;">
+
+              <div class="uk-position-relative  uk-visible-toggle uk-light">
+
+                  <ul class="uk-slider-items uk-child-width-1-2@s uk-text-center uk-grid">
+
+
+                   {% for netflixitemplan in netflixplans %}
+
+                   <li>
+                       <div class="uk-card  plan-item netflix-item">
+                           <div class="uk-card-body">
+                               <h3 class="title-container">{{ netflixitemplan.description }}</h3>
+                               <p class="price-container">CLP ${{ netflixitemplan.finalprice|number_format(0) }}</p>
+                               <a class="buy-service-button" href="{{ path('additemcart',{ 'productid' : netflixitemplan.id }) }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: cart"></span>Comprar</a>
+                           </div>
+                       </div>
+                   </li>
+
+                   {% endfor %}
+
+                  </ul>
+
+                  <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                  <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+              </div>
+
+              <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+   </div>
+
+   {% endif %}
+
+   {% if spotifycontainer.isvisible %}
+
+   <div class="item-b uk-background-cover uk-background-center-right" style="background-image: url('{{ asset('images/services/spotify-background.png') }}');">
+
+    <div class="uk-container jp-position-center">
+      <div class="uk-width-1-1 uk-width-1-2@m">
+          <h1 class="service-title">Spotify</h1>
+        <p class="description-service">Escucha tu música favorita en todos tus dispositivos.</p>
+        <p class="service-plans-title">Planes:</p>
+        <div>
+
+          <div uk-slider="autoplay: true; autoplay-interval: 1000;">
+
+              <div class="uk-position-relative  uk-visible-toggle uk-light">
+
+                  <ul class="uk-slider-items uk-child-width-1-2@s uk-text-center uk-grid">
+
+                    {% for spotifyitemplan in spotifyplans %}
+
+                    <li>
+                        <div class="uk-card  plan-item spotify-item">
+                            <div class="uk-card-body">
+                                <h3 class="title-container">{{ spotifyitemplan.description }}</h3>
+                                <p class="price-container">CLP ${{ spotifyitemplan.finalprice|number_format(0) }}</p>
+                                <a class="buy-service-button" href="{{ path('additemcart',{ 'productid' : spotifyitemplan.id }) }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: cart"></span>Comprar</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    {% endfor %}
+
+
+                  </ul>
+
+                  <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                  <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+              </div>
+
+              <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+   </div>
+
+   {% endif %}
+
+   {% if iptvcontainer.isvisible %}
+
+   <div class="item-c uk-background-cover uk-background-center-right" style="background-image: url('{{ asset('images/services/iptv-background.png') }}');">
+
+    <div class="uk-container jp-align-vertical-center-left">
+      <div class="uk-width-1-1 uk-width-1-2@m">
+        <h1 class="service-title">IPTV</h1>
+        <p class="description-service">Mira tus series y películas desde la comodidad de tu hogar.</p>
+        <p class="service-plans-title">Planes:</p>
+        <div>
+
+          <div uk-slider="autoplay: true; autoplay-interval: 1000;">
+
+              <div class="uk-position-relative  uk-visible-toggle uk-light">
+
+                  <ul class="uk-slider-items uk-child-width-1-2@s uk-text-center uk-grid">
+
+                    {% for iptvitemplan in iptvplans %}
+
+                    <li>
+                        <div class="uk-card  plan-item iptv-item">
+                            <div class="uk-card-body">
+                                <h3 class="title-container">{{ iptvitemplan.description }}</h3>
+                                <p class="price-container">CLP ${{ iptvitemplan.finalprice|number_format(0) }}</p>
+                                <a class="buy-service-button" href="{{ path('additemcart',{ 'productid' : iptvitemplan.id }) }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: cart"></span>Comprar</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    {% endfor %}
+
+                  </ul>
+
+                  <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                  <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+              </div>
+
+              <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+   </div>
+   {% endif %}
+
+   {# crunchyroll #}
+
+    {% if crunchyrollcontainer.isvisible %}
+
+   <div class="item-d uk-background-cover uk-background-center-right" style="background-image: url('{{ asset('images/services/crunchyroll-background.png') }}');">
+
+    <div class="uk-container jp-position-center">
+      <div class="uk-width-1-1 uk-width-1-2@m">
+          <h1 class="service-title">Crunchyroll</h1>
+        <p class="description-service">Mira los últimos capítulos de tu anime favorito.</p>
+        <p class="service-plans-title">Planes:</p>
+        <div>
+
+          <div uk-slider="autoplay: true; autoplay-interval: 1000;">
+
+              <div class="uk-position-relative  uk-visible-toggle uk-light">
+
+                  <ul class="uk-slider-items uk-child-width-1-2@s uk-text-center uk-grid">
+
+
+                                        {% for crunchyrollitemplan in crunchyrollplans %}
+
+                                        <li>
+                                            <div class="uk-card  plan-item crunchyroll-item">
+                                                <div class="uk-card-body">
+                                                    <h3 class="title-container">{{ crunchyrollitemplan.description }}</h3>
+                                                    <p class="price-container">CLP ${{ crunchyrollitemplan.finalprice|number_format(0) }}</p>
+                                                    <a class="buy-service-button" href="{{ path('additemcart',{ 'productid' : crunchyrollitemplan.id }) }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: cart"></span>Comprar</a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        {% endfor %}
+
+                  </ul>
+
+                  <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                  <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+              </div>
+
+              <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+   </div>
+ {% endif %}
+</div>
+
+{% include 'footer.html.twig' %}
+{% endblock %}

@@ -1,0 +1,1067 @@
+/*------- RESET CSS -------*/
+
+a, a:hover, a:focus{
+   text-decoration: none;
+}
+
+html, body, body *{
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body{
+    background: #F7FAFB;
+}
+
+/*------- NAV -------*/
+
+$main-font: 'Poppins', sans-serif;
+$orange-shadow: 0px 10px 10px rgba(236, 158, 55, 0.1);
+$orange-gradient: linear-gradient(to right, #EC9E37, #FA5951);
+$yellow-color: #FFAB3D;
+$red-color: #FA5951;
+$green-color: #179F4B;
+$blue-color: #5162FA;
+$border-button: 50px;
+
+%medium-font{
+  font-family: $main-font;
+  font-weight: 500;
+}
+
+%regular-size-font{
+  font-size: 13px;
+}
+
+%small-size-font{
+  font-size: 10px;
+}
+
+%medium-size-font{
+  font-size: 20px;
+}
+
+%large-size-font{
+  font-size: 30px;
+}
+
+%regular-font{
+  font-weight: 300;
+}
+
+%black-font{
+  font-weight: 900;
+}
+
+%bold-font{
+  font-weight: 700;
+}
+
+%orange-button{
+  background: $orange-gradient;
+  box-shadow:$orange-shadow;
+  border-radius: $border-button;
+}
+
+%white-button{
+  border-radius: $border-button;
+  background: #fff;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.08);
+}
+
+%circular-orange-button{
+  background: $orange-gradient;
+  box-shadow:$orange-shadow;
+  border-radius: 50%;
+}
+
+%circular-button{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+%neutral-easing{
+  transition: all 150ms ease-in-out;
+}
+
+#mainnav{
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+
+  li{
+    a{
+      @extend %medium-font;
+      @extend %regular-size-font;
+      text-transform: capitalize;
+    }
+  }
+
+  li.payment-check{
+    @extend %neutral-easing;
+    &:hover{
+      transform: scale(1.05);
+    }
+  }
+
+  li.payment-check>a{
+    @extend %orange-button;
+    color: #fff;
+    padding: 15px 20px;
+  }
+
+}
+
+
+/*------- HOME -------*/
+
+#mainhome{
+  height: calc(100vh - 81px);
+
+  .top-container{
+    height: calc((100vh - 81px) * 0.4);
+  }
+
+  .center-container{
+    height: calc((100vh - 81px) * 0.2);
+  }
+
+  .bottom-container{
+    height: calc((100vh - 81px) * 0.4);
+  }
+
+ p.tag-title{
+   @extend %small-size-font;
+   @extend %bold-font;
+   margin: 0px 0 10px 0;
+   color: #fff;
+   background: #000;
+   padding: 10px 20px;
+   border-radius: 500px;
+   text-transform: uppercase;
+   display: inline-block;
+   box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+ }
+
+  h1.product-title{
+    @extend %large-size-font;
+    @extend %black-font;
+    margin: 10px 0;
+    color: #fff;
+
+     text-transform: capitalize;
+
+  }
+
+  h4.product-subtitle{
+    @extend %medium-size-font;
+    @extend %bold-font;
+    color: #fff;
+     margin: 10px 0;
+     text-transform: capitalize;
+  }
+
+  .availability-tag{
+    @extend %small-size-font;
+    margin: 10px 0 30px 0;
+    color: #fff;
+  }
+
+}
+
+.height-container-home{
+    height: calc(100vh - 81px);
+}
+
+.frequent-questions{
+  background: $orange-gradient;
+  color: #fff;
+  text-align: center;
+
+  a{
+    color: #fff;
+  }
+
+ h4{
+   @extend %regular-size-font;
+   @extend %bold-font;
+   color: #fff;
+   margin: 0 0 5px 0;
+   text-transform: uppercase;
+ }
+
+  p{
+    @extend %regular-size-font;
+    @extend %regular-font;
+    margin: 0;
+  }
+}
+
+h4.support-item{
+   color: #fff;
+   @extend %regular-size-font;
+   @extend %bold-font;
+   margin: 0;
+}
+
+.pre-order{
+
+   h4{
+     @extend %regular-size-font;
+     @extend %bold-font;
+     margin: 0 0 5px 0;
+     text-transform: uppercase;
+     color: #fff;
+   }
+
+   p{
+     @extend %regular-size-font;
+     @extend %regular-font;
+     margin: 0;
+     color: #fff;
+   }
+
+}
+
+.horizontal-social-networks{
+
+  li{
+      background: #fff;
+      @extend %circular-button;
+      position: relative;
+      box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+      padding-left: 0;
+      margin-left: 10px;
+      @extend %neutral-easing;
+
+      a{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+      }
+
+     &:hover{
+       background: $orange-gradient;
+       box-sizing: $orange-shadow;
+       transform: scale(1.05);
+       a{
+         color: #fff;
+       }
+
+     }
+  }
+
+}
+
+.circular-white-button{
+  @extend %white-button;
+  @extend %small-size-font;
+  @extend %medium-font;
+  padding: 15px 25px;
+  color: #999;
+  text-transform: uppercase;
+  display: inline-block;
+  @extend %neutral-easing;
+  &:hover{
+     background: #000;
+     color: #fff;
+  }
+
+}
+
+.circular-red-button{
+  @extend %white-button;
+  @extend %small-size-font;
+  @extend %medium-font;
+  padding: 15px 25px;
+  color: #fff;
+  text-transform: uppercase;
+  display: inline-block;
+  @extend %neutral-easing;
+  background: $red-color;
+  &:hover{
+     background: #fff;
+     color: #000;
+  }
+
+}
+
+.circular-yellow-button{
+  @extend %white-button;
+  @extend %small-size-font;
+  @extend %medium-font;
+  padding: 15px 25px;
+  color: #fff;
+  text-transform: uppercase;
+  display: inline-block;
+  @extend %neutral-easing;
+  background: $yellow-color;
+  &:hover{
+     background: #fff;
+     color: #000;
+  }
+
+}
+
+.total-price{
+  @extend %medium-size-font;
+  @extend %black-font;
+  color: #000;
+}
+
+/*------- STORE -------*/
+
+.store-panel{
+
+  h1.title-container{
+    @extend %medium-size-font;
+    @extend %bold-font;
+    margin: 0;
+  }
+
+  p.regular-paragraph{
+    @extend %medium-font;
+    @extend %regular-size-font;
+    color: #999;
+    margin: 0;
+  }
+
+.store-highlight-item{
+    padding: 20px;
+    @extend %neutral-easing;
+    border-radius: 5px;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.05);
+    height: 250px;
+
+  .price-new{
+    @extend %medium-size-font;
+    @extend %medium-font;
+    color: #fff;
+    border-radius: 500px;
+  }
+
+  p.tag-title{
+    @extend %small-size-font;
+    @extend %bold-font;
+    margin: 0px 0 10px 0;
+    color: #fff;
+    background: #000;
+    padding: 10px 20px;
+    border-radius: 500px;
+    text-transform: uppercase;
+    display: inline-block;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  }
+
+  }
+
+  .store-genre-item{
+
+    padding: 10px;
+    @extend %neutral-easing;
+    height: 220px;
+
+   .container-genre{
+    border-radius: 5px;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.05);
+  }
+
+  p.tag-title{
+    @extend %small-size-font;
+    @extend %bold-font;
+    margin: 0px 0 10px 0;
+    color: #fff;
+    background: #000;
+    padding: 10px 20px;
+    border-radius: 500px;
+    text-transform: uppercase;
+    display: inline-block;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  }
+
+}
+
+
+  div.videogame-item{
+    padding: 20px;
+
+
+   .header{
+     height: 200px;
+   }
+
+  .cover{
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+
+  .price{
+   background: #fff;
+   border-radius: 500px;
+   overflow: hidden;
+
+   .percent-container{
+     background: $yellow-color;
+     padding: 5px;
+     color: #fff;
+     @extend %small-size-font;
+     @extend %bold-font;
+   }
+
+   .finalprice-container{
+     background: #fff;
+     padding: 5px;
+
+
+  .previous-price{
+    @extend %small-size-font;
+    @extend %bold-font;
+    text-decoration: line-through;
+  }
+
+  .new-price{
+    color: #000;
+    @extend %regular-size-font;
+    @extend %bold-font;
+  }
+
+   }
+
+   p{
+     margin: 0;
+   }
+
+   }
+
+  }
+
+   .add-to-cart{
+     background: #FA5951;
+     box-shadow: 0 10px 20px rgba(250, 89, 81, 0.1);
+     border-radius: 500px;
+     @extend %small-size-font;
+     @extend %bold-font;
+     padding: 12px 10px;
+     color: #fff;
+     @extend %neutral-easing;
+     text-transform: uppercase;
+   }
+
+  }
+}
+
+.product-footer{
+  background: #fff;
+  padding: 10px;
+  color: #999;
+  @extend %regular-size-font;
+  @extend %bold-font;
+}
+
+/*------- MODAL -------*/
+
+.modal-game{
+
+ h1.game-title{
+     @extend %bold-font;
+     @extend %large-size-font;
+     color: #000;
+ }
+
+ p.game-description{
+   @extend %medium-font;
+   @extend %regular-size-font;
+   color: #999;
+ }
+
+ p.previous-price{
+   @extend %small-size-font;
+   @extend %bold-font;
+   text-decoration: line-through;
+ }
+}
+
+.jp-list-cards{
+  li{
+    background: #fff;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.04);
+    padding: 20px 10px;
+    margin: 10px 0;
+    @extend %neutral-easing;
+    border-radius: 5px;
+
+    &:hover{
+      box-shadow: 0 20px 20px rgba(0,0,0,0.06);
+    }
+
+  }
+}
+
+
+
+.services-container{
+
+  .item-a{
+     height: calc(100vh - 81px);
+
+     .service-title{
+       @extend %black-font;
+       @extend %large-size-font;
+       color: $red-color;
+     }
+
+     .description-service{
+       @extend %medium-font;
+       @extend %regular-size-font;
+     }
+
+     .service-plans-title{
+       @extend %bold-font;
+       @extend %medium-size-font;
+       color: #000;
+     }
+
+}
+
+.item-b{
+  height: 100vh;
+
+  .service-title{
+    @extend %black-font;
+    @extend %large-size-font;
+    color: $green-color;
+  }
+
+  .description-service{
+    @extend %medium-font;
+    @extend %regular-size-font;
+  }
+
+  .service-plans-title{
+    @extend %bold-font;
+    @extend %medium-size-font;
+    color: #000;
+  }
+
+  .plan-item.spotify-item{
+
+    padding: 10px;
+
+    div{
+      background: #fff;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      @extend  %neutral-easing;
+
+      .title-container{
+        @extend %bold-font;
+        @extend %medium-size-font;
+        color: #999;
+        margin: 5px 0;
+      }
+
+      .price-container{
+          @extend %bold-font;
+          @extend %large-size-font;
+          margin: 10px 0 20px 0;
+          color: $green-color;
+      }
+
+      .buy-service-button{
+        color: #fff;
+        @extend %bold-font;
+        @extend %small-size-font;
+        color: #fff;
+        background: $green-color;
+        padding: 10px 20px;
+        border-radius: 500px;
+        text-transform: uppercase;
+        box-shadow: 0px 10px 20px rgba(250,89,81, 0.08);
+        margin-top: 20px;
+      }
+
+      &:hover{
+
+        background: $green-color;
+
+         .title-container{
+           color: #fff;
+         }
+
+         .price-container{
+           color: #fff;
+         }
+
+         .buy-service-button{
+           background: #fff;
+           color: $green-color;
+           box-shadow: 0px 10px 20px rgba(0,0,0, 0.08);
+         }
+
+      }
+
+    }
+
+  }
+
+}
+
+.item-c{
+  height: 100vh;
+
+  .service-title{
+    @extend %black-font;
+    @extend %large-size-font;
+    color: $blue-color;
+  }
+
+  .description-service{
+    @extend %medium-font;
+    @extend %regular-size-font;
+  }
+
+  .service-plans-title{
+    @extend %bold-font;
+    @extend %medium-size-font;
+    color: #000;
+  }
+
+  .plan-item.iptv-item{
+
+    padding: 10px;
+
+    div{
+      background: #fff;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      @extend  %neutral-easing;
+
+      .title-container{
+        @extend %bold-font;
+        @extend %medium-size-font;
+        color: #999;
+        margin: 5px 0;
+      }
+
+      .price-container{
+          @extend %bold-font;
+          @extend %large-size-font;
+          margin: 10px 0 20px 0;
+          color: $blue-color;
+      }
+
+      .buy-service-button{
+        color: #fff;
+        @extend %bold-font;
+        @extend %small-size-font;
+        color: #fff;
+        background: $blue-color;
+        padding: 10px 20px;
+        border-radius: 500px;
+        text-transform: uppercase;
+        box-shadow: 0px 10px 20px rgba(250,89,81, 0.08);
+        margin-top: 20px;
+      }
+
+      &:hover{
+
+        background: $blue-color;
+
+         .title-container{
+           color: #fff;
+         }
+
+         .price-container{
+           color: #fff;
+         }
+
+         .buy-service-button{
+           background: #fff;
+           color: $blue-color;
+           box-shadow: 0px 10px 20px rgba(0,0,0, 0.08);
+         }
+
+      }
+
+    }
+
+  }
+
+}
+
+.item-d{
+  height: 100vh;
+
+  .service-title{
+    @extend %black-font;
+    @extend %large-size-font;
+    color: $yellow-color;
+  }
+
+  .description-service{
+    @extend %medium-font;
+    @extend %regular-size-font;
+  }
+
+  .service-plans-title{
+    @extend %bold-font;
+    @extend %medium-size-font;
+    color: #000;
+  }
+
+  .plan-item.crunchyroll-item{
+
+    padding: 10px;
+
+    div{
+      background: #fff;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      @extend  %neutral-easing;
+
+      .title-container{
+        @extend %bold-font;
+        @extend %medium-size-font;
+        color: #999;
+        margin: 5px 0;
+      }
+
+      .price-container{
+          @extend %bold-font;
+          @extend %large-size-font;
+          margin: 10px 0 20px 0;
+          color: $yellow-color;
+      }
+
+      .buy-service-button{
+        color: #fff;
+        @extend %bold-font;
+        @extend %small-size-font;
+        color: #fff;
+        background: $yellow-color;
+        padding: 10px 20px;
+        border-radius: 500px;
+        text-transform: uppercase;
+        box-shadow: 0px 10px 20px rgba(250,89,81, 0.08);
+        margin-top: 20px;
+      }
+
+      &:hover{
+
+        background: $yellow-color;
+
+         .title-container{
+           color: #fff;
+         }
+
+         .price-container{
+           color: #fff;
+         }
+
+         .buy-service-button{
+           background: #fff;
+           color: $yellow-color;
+           box-shadow: 0px 10px 20px rgba(0,0,0, 0.08);
+         }
+
+      }
+
+    }
+
+  }
+
+}
+
+
+   .plan-item.netflix-item{
+
+     padding: 10px;
+
+     div{
+       background: #fff;
+       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+       border-radius: 5px;
+       @extend  %neutral-easing;
+
+       .title-container{
+         @extend %bold-font;
+         @extend %medium-size-font;
+         color: #999;
+         margin: 5px 0;
+       }
+
+       .price-container{
+           @extend %bold-font;
+           @extend %large-size-font;
+           margin: 10px 0 20px 0;
+           color: $red-color;
+       }
+
+       .buy-service-button{
+         color: #fff;
+         @extend %bold-font;
+         @extend %small-size-font;
+         color: #fff;
+         background: $red-color;
+         padding: 10px 20px;
+         border-radius: 500px;
+         text-transform: uppercase;
+         box-shadow: 0px 10px 20px rgba(250,89,81, 0.08);
+         margin-top: 20px;
+       }
+
+       &:hover{
+
+         background: $red-color;
+
+          .title-container{
+            color: #fff;
+          }
+
+          .price-container{
+            color: #fff;
+          }
+
+          .buy-service-button{
+            background: #fff;
+            color: $red-color;
+            box-shadow: 0px 10px 20px rgba(0,0,0, 0.08);
+          }
+
+       }
+
+     }
+
+   }
+
+
+}
+
+/*------- PAYMENT-CARDS -------*/
+
+.payment-information-container{
+border-radius: 5px;
+margin-bottom: 10px!important;
+
+.title{
+  @extend %black-font;
+  @extend %regular-size-font;
+}
+
+.todo{
+  li{
+    @extend %regular-size-font;
+    @extend %medium-font;
+  }
+}
+
+}
+
+/*------- ACCORDION -------*/
+
+ul.questions-accordion{
+  li{
+  a{
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.05);
+    @extend %neutral-easing;
+    @extend %bold-font;
+    @extend %regular-size-font;
+    text-transform: uppercase;
+    border-radius: 5px;
+&:hover{
+box-shadow: 0px 20px 20px rgba(0,0,0,0.09);
+  }
+
+}
+p{
+  padding: 20px;
+  @extend %regular-size-font;
+  @extend %medium-font;
+  color: #999;
+}
+  }
+}
+
+/*------- FORMS -------*/
+
+.support-form{
+
+    input, textarea{
+      @extend %regular-size-font;
+      @extend %medium-font;
+      border-radius: 5px;
+    }
+
+    button{
+      border-radius: 500px;
+      background: $orange-gradient;
+      @extend %neutral-easing;
+      @extend %small-size-font;
+      @extend %bold-font;
+      &:hover{
+
+        transform: scale(1.1);
+
+      }
+
+    }
+
+}
+
+/*------- HELPERS -------*/
+
+.uk-notification *{
+  @extend %regular-size-font;
+  @extend %bold-font;
+}
+
+.jp-align-vertical-center-left{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.jp-align-vertical-center-right{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.jp-position-center{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jp-overlay-dark{
+  background: rgba(0,0,0,0.2);
+  width: 100%;
+  height: calc(100vh - 81px);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.jp-overlay-dark-b{
+  background: rgba(0,0,0,0.2);
+  width: 100%;
+  height: calc((100vh - 81px) * 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.jp-slider-dotnav-a{
+  margin: 0px 0px 6px 0px;
+
+}
+
+.jp-first-container{
+  height: calc(100vh - 81px);
+}
+
+.jp-border-remove{
+  border: 0;
+  @extend %regular-size-font;
+  @extend %medium-font;
+  color: #999;
+}
+
+  .uk-dotnav>*>* {
+      display: block;
+      box-sizing: border-box;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: transparent;
+      text-indent: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      border: 1px solid rgba(102,102,102,0.4);
+      transition: .2s ease-in-out;
+      transition-property: background-color,border-color;
+  }
+
+.jp-button-slider-a{
+  color: #fff;
+  @extend %neutral-easing;
+
+ &:hover{
+   color: $yellow-color;
+ }
+
+}
+
+.jp-margin-top-bottom{
+  margin: 20px 0;
+}
+
+.jp-margin-top-price{
+  margin-top: 20px!important;
+}
+
+#nav-logo{
+  width: 120px;
+}
+
+.background-accent{
+  background: #F7FAFB;
+}
+
+.jp-display-mobile{
+  display: none;
+}
+
+.payment-card{
+  height: 150px;
+  border-radius: 5px;
+}
+
+.border-default{
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 1200px) {
+
+    .jp-collapse-tablet{
+      display: none;
+    }
+
+}
+
+
+/* ------- RESPONSIVE MEDIA QUERIES -------*/
+
+@media only screen and (max-width: 640px) {
+
+  #mainhome{
+    .center-container{
+      height: calc((100vh - 81px) * 0.4);
+    }
+
+    .bottom-container{
+      height: calc((100vh - 81px) * 0.2);
+    }
+  }
+
+  .services-container{
+    .item-a, .item-b, .item-c, .item-d{
+      background: #fff;
+      height: 100%;
+    }
+  }
+
+  .jp-collapse-mobile{
+    display: none;
+  }
+
+  .jp-display-mobile{
+    display: inline-block;
+  }
+
+}

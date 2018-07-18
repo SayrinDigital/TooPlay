@@ -1,0 +1,84 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block title %}{{ controller_name }}
+{% endblock %}
+
+{% block body %}
+
+  <div class="background-accent">
+
+    <div class="uk-container">
+
+      <div class="uk-margin-medium-top">
+        <h6 class="admin-title">Servicios</h6>
+        <h1 class="admin-title-section">Netflix</h1>
+        <p class="admin-description">Modifique y Agregue sus planes de Netflix.</p>
+
+        <div class="uk-margin-small-top uk-margin-medium-bottom">
+
+          {% if netflixcontainer.isvisible %}
+           <a class=" button-style-a" href="{{ path('tooglemenu', {'id': netflixcontainer.id} ) }}">Activado</a>
+           {% else %}
+           <a class=" button-style-a disabled-item" href="{{ path('tooglemenu', {'id': netflixcontainer.id} ) }}">Desactivado</a>
+           {% endif %}
+
+        </div>
+
+
+        {{ include('dashboard/productslayout.html.twig', {'maintag': 'Netflix', 'products': netflixproducts}) }}
+
+        {# Another section #}
+
+        <h6 class="admin-title">Servicios</h6>
+        <h1 class="admin-title-section">Spotify</h1>
+        <p class="admin-description">Modifique y Agregue sus planes de Spotify.</p>
+
+        <div class="uk-margin-small-top uk-margin-medium-bottom">
+          {% if spotifycontainer.isvisible %}
+           <a class=" button-style-a" href="{{ path('tooglemenu', {'id': spotifycontainer.id} ) }}">Activado</a>
+           {% else %}
+           <a class=" button-style-a disabled-item" href="{{ path('tooglemenu', {'id': spotifycontainer.id} ) }}">Desactivado</a>
+           {% endif %}
+        </div>
+
+
+        {{ include('dashboard/productslayout.html.twig', {'maintag': 'Spotify', 'products': spotifyproducts}) }}
+
+        <h6 class="admin-title">Servicios</h6>
+        <h1 class="admin-title-section">IPTV</h1>
+        <p class="admin-description">Modifique y Agregue sus planes de IPTV.</p>
+
+        <div class="uk-margin-small-top uk-margin-medium-bottom">
+          {% if iptvcontainer.isvisible %}
+           <a class=" button-style-a" href="{{ path('tooglemenu', {'id': iptvcontainer.id} ) }}">Activado</a>
+           {% else %}
+           <a class=" button-style-a disabled-item" href="{{ path('tooglemenu', {'id': iptvcontainer.id} ) }}">Desactivado</a>
+           {% endif %}
+        </div>
+
+
+        {{ include('dashboard/productslayout.html.twig', {'maintag': 'IPTV', 'products': iptvproducts}) }}
+
+        <h6 class="admin-title">Servicios</h6>
+        <h1 class="admin-title-section">Crunchyroll</h1>
+        <p class="admin-description">Modifique y Agregue sus planes de Crunchyroll.</p>
+
+        <div class="uk-margin-small-top uk-margin-medium-bottom">
+          {% if crunchyrollcontainer.isvisible %}
+           <a class=" button-style-a" href="{{ path('tooglemenu', {'id': crunchyrollcontainer.id} ) }}">Activado</a>
+           {% else %}
+           <a class=" button-style-a disabled-item" href="{{ path('tooglemenu', {'id': crunchyrollcontainer.id} ) }}">Desactivado</a>
+           {% endif %}
+        </div>
+
+
+        {{ include('dashboard/productslayout.html.twig', {'maintag': 'Crunchyroll', 'products': crunchyrollproducts}) }}
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+{% endblock %}

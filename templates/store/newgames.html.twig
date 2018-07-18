@@ -1,0 +1,32 @@
+
+<div uk-slider="center: true; autoplay: true; autoplay-interval: 2000">
+
+    <div class="uk-position-relative uk-visible-toggle uk-light">
+
+        <ul class="uk-slider-items uk-child-width-1-2@s uk-grid">
+
+          {% for game in newgames %}
+
+            <li>
+                <div class="store-highlight-item uk-position-relative" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url({{  asset('uploads/productcovers/'~game.cover) }}) no-repeat center center/ cover;">
+                  <div class="uk-position-top-left uk-panel">
+                    <p class="tag-title uk-margin-small-left uk-margin-small-top">{{ tag }}</p>
+                  </div>
+                  <div class="uk-position-bottom-right uk-panel">
+                    <h1 class="price-new uk-margin-small-right uk-margin-small-bottom">CLP ${{ game.finalprice|number_format(0) }}</h1>
+                  </div>
+                </div>
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+    </div>
+
+    <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+
+</div>

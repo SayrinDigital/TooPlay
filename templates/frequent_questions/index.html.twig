@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+<div class="store-panel background-accent uk-height-viewport">
+
+<div class="uk-container">
+
+  <div class="jp-margin-top-bottom">
+    <h1 class="title-container">Preguntas Frecuentes</h1>
+    <p class="regular-paragraph">Aquí podrás conseguir las preguntas más realizadas por nuestros clientes. Si no encuentras la ayuda necesaria aquí, comunícate en el área de <a href="{{ path('technical_support') }}" class="uk-link">Soporte</a>.</p>
+  </div>
+
+  <ul class="questions-accordion" uk-accordion>
+    {% for question in questions %}
+      <li>
+          <a class="uk-accordion-title" href="#">{{ loop.index }}. ¿{{ question.question }}?</a>
+          <div class="uk-accordion-content">
+              <p>{{ question.answer }}</p>
+          </div>
+      </li>
+      {% endfor %}
+  </ul>
+
+</li>
+
+
+</div>
+
+
+</div>
+
+{% include 'footer.html.twig' %}
+
+{% endblock %}

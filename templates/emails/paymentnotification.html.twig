@@ -1,0 +1,55 @@
+{# templates/emails/support.html.twig #}
+
+<style>
+
+.email-container{
+   width: calc(100% - 40px);
+}
+
+img.voucher{
+  width: 100%;
+}
+
+h3{
+  font-weight: 800;
+  color: #000;
+}
+
+    p{
+          color: #999;
+    }
+
+ul.client>li{
+    list-style-type: circle;
+}
+
+img{
+  text-align: center;
+  uk-padding:20px;
+}
+
+</style>
+
+<div class="email-container">
+
+  <h3>Notificación de Pago - TooPlay</h3>
+
+  <p>{{ purchase.name }} notificó una compra. Información provista por el cliente:</p>
+
+  <ul class="client">
+    <li>Nombre: {{ purchase.name }}</li>
+    <li>Email: {{ purchase.mail }}</li>
+    <li>Phone: {{ purchase.phone }}</li>
+    <li>Detalles de Compra: {{ purchase.details }}</li>
+  </ul>
+
+  <h3>Notificación de Pago - TooPlay</h3>
+  <p>Comprobante provisto por el cliente:</p>
+
+  <img class="voucher" src="{{ absolute_url(asset('uploads/vouchers/' ~ purchase.brochure)) }}" alt="">
+
+  {# example, assuming you have a route named "login" #}
+   <a style="text-align: center; padding-top: 5px;" href="https://www.tooplay.cl">www.tooplay.cl</a>
+
+
+</div>

@@ -1,0 +1,48 @@
+<p class="admin-description">{{ products|length }} Productos encontrados</p>
+
+<div class="items uk-margin-medium-bottom">
+
+  <div class="uk-grid-match uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid>
+
+{% for item in products %}
+
+{# item#}
+    <div>
+      <div class="product-card">
+
+        <div class="header uk-background-cover uk-position-relative" style="background-image: url({{ asset('uploads/productcovers/' ~ item.cover) }}), url('https://cdn.dribbble.com/users/527354/screenshots/3947316/playground_animation.gif');">
+
+             <div class="tag uk-position-bottom-right uk-margin-small-bottom uk-margin-small-right"><p>{{ maintag }}</p></div>
+
+        </div>
+        <div class="description">
+            <p class="product-title"><span class="uk-icon uk-margin-small-right" uk-icon="icon: hashtag"></span>{{ item.id }}</p>
+            <p class="product-title"><span class="uk-icon uk-margin-small-right" uk-icon="icon: minus"></span> {{ item.title }}</p>
+
+            <div class="uk-text-center">
+
+
+<p class="product-description uk-display-inline uk-margin-small-right"><a href="{{ path('dashboard-modifyproduct', { 'id': item.id }) }}" uk-toggle="target: #modal-modiy-item-{{ item.id }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span>Modificar</a></p>
+<p class="product-description uk-display-inline"><a href="" uk-toggle="target: #modal-delete-confirmation-{{ item.id }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: trash"></span>Eliminar</a></p>
+            </div>
+
+        </div>
+
+      </div>
+
+      <div id="modal-delete-confirmation-{{ item.id }}" uk-modal>
+          <div class="uk-modal-dialog uk-modal-body">
+              <h2 class="uk-modal-title">Acción Definitiva</h2>
+              <p>¿Realmente desea eliminar este item?. No podrá recuperarlo después.</p>
+              <p class="uk-text-right">
+                  <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+                  <a class="uk-button uk-button-primary" href="{{ path('dashboard-deleteproduct', {'id': item.id}) }}">Borrar</a>
+              </p>
+          </div>
+      </div>
+</div>
+{% endfor %}
+
+  </div>
+
+</div>

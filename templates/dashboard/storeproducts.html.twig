@@ -1,0 +1,35 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block title %}{{ controller_name }}
+{% endblock %}
+
+{% block body %}
+
+  <div class="background-accent">
+
+    <div class="uk-container">
+
+      <div class="uk-margin-medium-top">
+
+        <h6 class="admin-title">{{ section }}</h6>
+        <h1 class="admin-title-section">{{ target }}</h1>
+        <p class="admin-description">Modifique y Agregue sus productos de la sección {{ target }}.</p>
+
+        <div class="uk-margin-small-top uk-margin-medium-bottom">
+          {% if container.isvisible %}
+           <a class=" button-style-a" href="{{ path('tooglemenu', {'id': container.id} ) }}">Activado</a>
+           {% else %}
+           <a class=" button-style-a disabled-item" href="{{ path('tooglemenu', {'id': container.id} ) }}">Desactivado</a>
+           {% endif %}
+        </div>
+
+        {{ include('dashboard/productslayout.html.twig', {'maintag': target, 'products': products }) }}
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+{% endblock %}

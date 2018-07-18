@@ -1,0 +1,61 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block title %}{{ controller_name }}
+{% endblock %}
+
+{% block body %}
+
+  <div class="background-accent">
+
+    <div class="uk-container">
+
+      <div class="uk-margin-medium-top">
+
+        <h6 class="admin-title">SOPORTE</h6>
+        <h1 class="admin-title-section">Preguntas Frecuentes</h1>
+        <p class="admin-description">Modifique y Agregue las preguntas frecuentas mostradas a sus clientes.</p>
+
+        <div>
+        <div >
+
+                {{ form_start(form, { 'attr': {'class': 'uk-form-stacked'} }) }}
+                {{ form_errors(form) }}
+
+          <div>
+
+
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">Pregunta</label>
+                    <div class="uk-form-controls">
+                        {{ form_widget(form.question, { 'attr': {'class': 'uk-input', 'placeholder': 'Ignorar Signos de Interrogación'} }) }}
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">Respuesta</label>
+                    <div class="uk-form-controls">
+                        {{ form_widget(form.answer, { 'attr': {'class': 'uk-textarea', 'placeholder': 'Explaye su respuesta'} }) }}
+                    </div>
+                </div>
+
+
+
+          </div>
+
+          <div class="uk-text-right uk-margin-small-bottom">
+              <a class="uk-button uk-button-default uk-modal-close" href="{{ path('dashboard-home') }}" type="button">Cancelar</a>
+              {{ form_widget(form.save, { 'attr': {'class': 'uk-button uk-button-primary', 'placeholder': 'Descripción'} }) }}
+          </div>
+        {{ form_end(form) }}
+        </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+{% endblock %}
