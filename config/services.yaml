@@ -9,20 +9,6 @@ parameters:
     locale: 'en'
     brochures_directory: '%kernel.project_dir%/public/uploads/vouchers'
     productcovers_directory: '%kernel.project_dir%/public/uploads/productcovers'
-    url_exito: 'URL/exito'
-    url_fracaso: 'URL/fracaso'
-    url_confirmacion: 'URL/confirmar'
-    url_pago: 'http://flow.tuxpan.com/app/kpf/pago.php'
-    key: '%kernel.project_dir%/keys/comercio.pem'
-    log_path: '%kernel.project_dir%/logs'
-    comercio: 'email@comercio-dev.com'
-    tasa_default: 2
-    tipo_integracion: 'f'
-
-    # prod:
-      # flowpagos:
-        # url_pago: 'https://www.flow.cl/app/kpf/pago.php'
-        # comercio: 'email@comercio-prod.com'
 
 
 services:

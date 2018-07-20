@@ -35,14 +35,13 @@ class DashboardProductController extends AbstractController
                     $product->setCover($fileName);
                     $product->setTitle($finalNameProduct);
                     $product->setDiscountPercentage($this->generateDiscountPercentage($product));
-
-
+                    $product->setIsVisible(1);
                     $entityManager->persist($product);
 
                     $entityManager->flush();
 
                     return $this->redirect($this->generateUrl('dashboard-home'));
-                }
+    }
 
 
 
@@ -127,9 +126,30 @@ class DashboardProductController extends AbstractController
 
                     $entityManager->flush();
 
-  return $this->redirect($this->generateUrl('dashboard-home'));
+          return $this->redirect($this->generateUrl('dashboard-home'));
 
     }
+
+  /**
+  *@Route("panel/producto/ocultar/{id}", name="dashboard-toggleproduct")
+  */
+
+  public function toggleProduct($id){
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $product = $entityManager->getRepository(Game::class)->findOneById($id);
+
+        $isvisible = ((bool) $product->getisvisible() ? 0 : 1);
+        $product->setIsVisible($isvisible);
+
+        $entityManager->persist($product);
+
+        $entityManager->flush();
+
+      return $this->redirect($this->generateUrl('dashboard-home'));
+
+  }
+
 
     /**
      * @return string

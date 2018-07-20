@@ -14,6 +14,8 @@
 
 {% for highlightgame in highlightgames %}
 
+{% if highlightgame.isvisible %}
+
 <li>
   <div class="uk-background-cover uk-position-relative" style="background-image: url({{ asset('uploads/productcovers/' ~ highlightgame.cover) }});">
     <div class="jp-overlay-dark"></div>
@@ -55,6 +57,8 @@
 
 </li>
 
+{% endif %}
+
 {% endfor %}
 
       </ul>
@@ -74,6 +78,8 @@
 
 {% for weekendofferitem in weekendoffergames %}
 
+{% if weekendofferitem.isvisible %}
+
 <li>
   <div class="uk-container  top-container uk-position-relative  uk-background-cover uk-background-center-left" style="background-image: url({{ asset('uploads/productcovers/' ~ weekendofferitem.cover) }});">
     <div class="jp-overlay-dark-b"></div>
@@ -84,7 +90,7 @@
           Ofertas de la Semana</p>
         <h1 class="product-title">{{ weekendofferitem.title }}</h1>
       {#  <p class="availability-tag">{{ weekendofferitem.target }}</p> #}
-        <a class="circular-white-button" href="#">
+        <a class="circular-white-button" href="{{ path('offers') }}">
           <span class="uk-icon uk-margin-small-right" uk-icon="icon:  star"></span>
           Ver ofertas</a>
       </div>
@@ -111,6 +117,8 @@
   </div>
 
 </li>
+
+{% endif %}
 
 {% endfor %}
 

@@ -65,6 +65,11 @@ class Game
      */
     private $status;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isvisible;
+
 
     public function getId(): ?int
     {
@@ -175,6 +180,18 @@ class Game
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getIsvisible(): ?bool
+    {
+        return $this->isvisible;
+    }
+
+    public function setIsvisible(bool $isvisible): self
+    {
+        $this->isvisible = $isvisible;
 
         return $this;
     }

@@ -22,8 +22,18 @@
             <div class="uk-text-center">
 
 
-<p class="product-description uk-display-inline uk-margin-small-right"><a href="{{ path('dashboard-modifyproduct', { 'id': item.id }) }}" uk-toggle="target: #modal-modiy-item-{{ item.id }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span>Modificar</a></p>
-<p class="product-description uk-display-inline"><a href="" uk-toggle="target: #modal-delete-confirmation-{{ item.id }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: trash"></span>Eliminar</a></p>
+<div class="uk-margin-small-bottom">
+  <p class="product-description uk-display-inline uk-margin-small-right"><a href="{{ path('dashboard-modifyproduct', { 'id': item.id }) }}" uk-toggle="target: #modal-modiy-item-{{ item.id }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span>Modificar</a></p>
+  <p class="product-description uk-display-inline"><a href="" uk-toggle="target: #modal-delete-confirmation-{{ item.id }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: trash"></span>Eliminar</a></p>
+</div>
+
+<p class="product-description uk-display-inline"><a style="border: 1px solid rgba(0,0,0,0.08); color: #999; border-radius: 5px; padding: 5px 10px;" href="{{ path('dashboard-toggleproduct', {'id' : item.id}) }}">
+  {% if item.isvisible %}
+  Activado
+  {% else %}
+  Desactivado
+  {% endif %}
+</a></p>
             </div>
 
         </div>
