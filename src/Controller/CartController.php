@@ -8,12 +8,13 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Game;
 use App\Entity\PaymentInstructions;
+use App\Service\flow\flowAPI;
 
 class CartController extends Controller
 {
 
     /**
-     * @Route("/cart", name="cart")
+     * @Route("/carro", name="cart")
      */
     public function index(Request $request)
     {
@@ -30,7 +31,7 @@ class CartController extends Controller
       $gamesOrderDescription = "";
       foreach($allgames as $value){
           $totalsumcart = $totalsumcart + $value->getFinalPrice();
-          $gamesOrderDescription = $gamesOrderDescription . 'id: ' . $value->getId() . ', ' . $value->getTitle() . ' (' .$value->getTarget() . ')';
+          $gamesOrderDescription = $gamesOrderDescription . 'id: ' . $value->getId() . ' ' . $value->getTitle() . ' (' .$value->getTarget() . ')';
       }
 
       $gamesOrderDescription = ltrim($gamesOrderDescription, ',');
@@ -119,6 +120,22 @@ $sessionCart->set('ProductIDs', $arrayOfProduct);
      $sessionCart->set('totalproductsincart', 0);
 
      return $this->redirectToRoute('home');
+
+    }
+
+    /**
+    *@Route("/carro/pagar", name="webpay")
+    */
+
+    public function payFlow(flowAPI $product){
+
+
+       $product->setOrderNumber(5);
+       $product->setConcept("Hola Mundo");
+       $product->setAmount(5000);
+       $product->setRate(1);
+       $product->new_order(5, 5000, "Hola Mundo","josepuma@sayrin.cl", 1);
+
 
     }
 

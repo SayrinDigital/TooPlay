@@ -22,6 +22,10 @@ $red-color: #FA5951;
 $green-color: #179F4B;
 $blue-color: #5162FA;
 $border-button: 50px;
+$distance: 180px;
+$angle: 90deg/4;
+$icon-color: #fff;
+
 
 %medium-font{
   font-family: $main-font;
@@ -331,13 +335,16 @@ h4.support-item{
     @extend %neutral-easing;
     border-radius: 5px;
     box-shadow: 0px 10px 10px rgba(0,0,0,0.05);
-    height: 250px;
+    height: 290px;
 
   .price-new{
     @extend %medium-size-font;
     @extend %medium-font;
     color: #fff;
     border-radius: 500px;
+    background: $orange-gradient;
+    padding: 10px 20px;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.05);
   }
 
   p.tag-title{
@@ -1026,6 +1033,9 @@ p{
   border-radius: 5px;
 }
 
+
+
+
 @media only screen and (max-width: 1200px) {
 
     .jp-collapse-tablet{
@@ -1062,6 +1072,45 @@ p{
 
   .jp-display-mobile{
     display: inline-block;
+  }
+
+  .social-mobile-container{
+
+   .maintainer{
+     background: $orange-gradient;
+     width: 50px;
+     height: 50px;
+     box-shadow: 0px 10px 20px rgba(0,0,0,0.05);
+     border-radius: 50%;
+     position: relative;
+        a{
+          color: #fff;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+      }
+
+   }
+
+   ul{
+     li{
+       width: 50px;
+       height: 50px;
+       box-shadow: 0px 10px 20px rgba(0,0,0,0.05);
+       background: #fff;
+       border-radius: 50%;
+       position: relative;
+       a{
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%,-50%);
+         color: #999;
+       }
+     }
+   }
+
   }
 
 }

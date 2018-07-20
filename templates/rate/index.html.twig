@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="store-panel background-accent">
+
+
+      <div class="uk-child-width-1-2@s uk-grid-match uk-grid-collapse" uk-grid>
+        <div>
+          <div class="uk-container uk-container-small jp-align-vertical-center-left">
+
+
+<div  class="uk-width-1-1">
+
+  <div class="jp-margin-top-bottom">
+    <h1 class="title-container">Califícanos</h1>
+    <p class="regular-paragraph">Déjanos tu opinión y sugerencias que nos servirán para darte el mejor servicio.</p>
+  </div>
+
+{# Form to contact technical support #}
+
+{{ form_start(form, { 'attr': {'class': 'support-form'} }) }}
+{{ form_errors(form) }}
+<div class="uk-margin">
+<div class="uk-inline uk-width-1-1">
+    <span class="uk-form-icon" uk-icon="icon: user"></span>
+            {{ form_widget(form.client_name, { 'attr': {'class': 'uk-input', 'placeholder': 'Nombres (Ej. Jhon Doe)'} }) }}
+
+</div>
+</div>
+
+    <div class="uk-margin">
+            <div class="uk-inline uk-width-1-1">
+                {{ form_widget(form.client_message, { 'attr': {'class': 'uk-textarea', 'placeholder': 'Opinión, Sugerencias, etc.', 'rows' : '5'} }) }}
+
+            </div>
+        </div>
+
+        {{ form_widget(form.save, { 'attr': {'class': 'uk-button uk-light uk-button-primary"'} }) }}
+
+{{ form_end(form) }}
+
+</div>
+
+</div>
+
+        </div>
+        <div class="jp-collapse-mobile">
+          <div class="uk-background-cover jp-first-container" style="background-image: url({{ asset('images/technical-support.jpg') }});"></div>
+        </div>
+      </div>
+
+
+
+</div>
+
+
+{% include 'footer.html.twig' %}
+
+{% endblock %}

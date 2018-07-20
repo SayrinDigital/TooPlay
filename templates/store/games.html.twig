@@ -14,7 +14,7 @@
 
   {% for game in allgames %}
 
-    <div class="videogame-item " data-tags="{{ game.genre }}" uk-tooltip="{{ game.title }}">
+    <div class="videogame-item " data-tags="{% for genre in game.genre %}{{ genre ~ ' ' }} {% endfor %}" uk-tooltip="{{ game.title }}">
       <div class="scrollrevealitem cover ">
         <div
           class="uk-height-1-1 uk-position-relative header"

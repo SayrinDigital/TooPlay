@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+<style>
+
+   article{
+     background: #fff;
+     padding: 15px;
+     border-radius: 5px;
+     box-shadow: 0px 5px 10px rgba(0,0,0,0.05);
+   }
+
+</style>
+
+
+<div class="store-panel background-accent">
+
+
+  <div class="uk-container uk-container-small">
+
+    <div class="jp-margin-top-bottom">
+      <h1 class="title-container">Valoraciones</h1>
+      <p class="regular-paragraph">Valoraciones y comentarios de nuestros clientes.</p>
+    </div>
+
+  <div class="uk-child-width-1-2@s uk-margin-small-bottom uk-grid-match" uk-grid>
+
+
+
+{% for rate in rates %}
+
+<div>
+  <div>  <article class="uk-comment">
+        <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+            <div class="uk-width-expand">
+                <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{ rate.name }}</a></h4>
+            </div>
+        </header>
+        <div class="uk-comment-body">
+            <p class="regular-paragraph">{{ rate.message }}</p>
+        </div>
+    </article></div>
+</div>
+
+{% endfor %}
+
+
+
+  </div>
+
+
+  </div>
+
+
+</div>
+
+
+{% include 'footer.html.twig' %}
+
+{% endblock %}

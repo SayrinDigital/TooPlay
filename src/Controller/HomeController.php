@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use App\Entity\Game;
 use App\Entity\SplashOffer;
 use App\Entity\Menu;
+use App\Entity\Configuration;
 
 class HomeController extends AbstractController
 {
@@ -22,6 +23,10 @@ class HomeController extends AbstractController
 
        $repository = $this->getDoctrine()->getRepository(Game::class);
        $menurepository = $this->getDoctrine()->getRepository(Menu::class);
+       $configrepository = $this->getDoctrine()->getRepository(Configuration::class);
+
+       $preorderbackground = $configrepository
+       ->findOneBy(['name' => 'preorder_background']);
 
        $highlightgames = $repository
        ->findBy( ['Target' => 'highlight'] );
@@ -46,7 +51,8 @@ class HomeController extends AbstractController
             'highlightgames' => $highlightgames,
             'weekendoffergames' => $weekendoffergames,
             'splashoffer' => $finalsplash,
-            'isSplashVisible' => $isSplashVisible
+            'isSplashVisible' => $isSplashVisible,
+            'preorderbackground' => $preorderbackground
         ]);
     }
 

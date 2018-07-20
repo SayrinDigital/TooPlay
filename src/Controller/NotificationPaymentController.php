@@ -50,8 +50,8 @@ class NotificationPaymentController extends AbstractController
               $entityManager->flush();
 
               $message = (new \Swift_Message('Notificación de Pago - TooPlay'))
-               ->setFrom('joscri2698@gmail.com')
-               ->setTo(['josepuma@sayrin.cl'] )
+               ->setFrom('joscri2698@gmail.com','Ventas')
+               ->setTo(['ventas@tooplay.cl','johanna@tooplay.cl'] )
                ->setBody(
                    $this->renderView(
                        // templates/emails/registration.html.twig

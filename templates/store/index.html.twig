@@ -42,6 +42,24 @@
 
         {{ include('store/games.html.twig', {'allgames': allgames}) }}
 
+        <ul class="uk-pagination uk-margin-medium-top uk-flex-center" uk-margin>
+  {% if currentPage > 1 %}
+    <li><a href="{{ path( route , {'page': currentPage - 1}) }}"><span uk-pagination-previous></span></a></li>
+  {% endif %}
+
+    {% for index in 1..pagesQuantity %}
+           {% if index == currentPage %}
+           <li class="uk-active"><a  href="{{ path('store-primaryps4games', {'page': index}) }}">{{ index }}</a></li>
+           {% else %}
+           <li><a href="{{ path(route, {'page': index}) }}">{{ index }}</a></li>
+           {% endif %}
+    {% endfor %}
+
+    {% if currentPage < pagesQuantity %}
+    <li><a href="{{ path(route, {'page': currentPage + 1}) }}"><span uk-pagination-next></span></a></li>
+    {% endif %}
+</ul>
+
       </div>
 
       {% endif %}

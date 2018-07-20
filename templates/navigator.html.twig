@@ -66,7 +66,15 @@
           </li>
           <li {% if app.request.attributes.get( '_route' ) starts with 'offers' %} class='uk-active'{% endif %}><a href="{{ path('offers') }}">Ofertas</a></li>
           <li {% if app.request.attributes.get( '_route' ) starts with 'services' %} class='uk-active'{% endif %}><a href="{{ path('services') }}">Servicios</a></li>
-          <li {% if app.request.attributes.get( '_route' ) starts with 'technical_support' %} class='uk-active'{% endif %}><a href="{{ path('technical_support') }}">Soporte</a></li>
+          <li>
+            <a>Cliente</a>
+            <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                      <li><a href="{{ path('technical_support') }}">Soporte</a></li>
+                      <li><a href="{{ path('rate-comments') }}">Valoraciones</a></li>
+                    </ul>
+                </div>
+          </li>
       </ul>
     </div>
 
@@ -127,7 +135,13 @@
                 </li>
                 <li {% if app.request.attributes.get( '_route' ) starts with 'offers' %} class='uk-active'{% endif %}><a href="{{ path('offers') }}">Ofertas</a></li>
                 <li {% if app.request.attributes.get( '_route' ) starts with 'services' %} class='uk-active'{% endif %}><a href="{{ path('services') }}">Servicios</a></li>
-                <li {% if app.request.attributes.get( '_route' ) starts with 'technical_support' %} class='uk-active'{% endif %}><a href="{{ path('technical_support') }}">Soporte</a></li>
+                <li class="uk-parent">
+                  <a>Cliente</a>
+                  <ul class="uk-nav-sub">
+                    <li><a href="{{ path('technical_support') }}">Soporte</a></li>
+                    <li><a href="{{ path('rate-comments') }}">Valoraciones</a></li>
+                  </ul>
+                </li>
             </ul>
 
         </div>

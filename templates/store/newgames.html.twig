@@ -12,8 +12,8 @@
                   <div class="uk-position-top-left uk-panel">
                     <p class="tag-title uk-margin-small-left uk-margin-small-top">{{ tag }}</p>
                   </div>
-                  <div class="uk-position-bottom-right uk-panel">
-                    <h1 class="price-new uk-margin-small-right uk-margin-small-bottom">CLP ${{ game.finalprice|number_format(0) }}</h1>
+                  <div class="uk-position-bottom-right" style="margin-bottom: 20px;">
+                    <a class="price-new uk-margin-small-right" uk-toggle href="#modal-full-{{ game.id }}"><span class="uk-icon uk-margin-small-right " uk-icon="icon: cart"> </span> CLP ${{ game.finalprice|number_format(0) }}</a>
                   </div>
                 </div>
             </li>

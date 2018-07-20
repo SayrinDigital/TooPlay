@@ -51,8 +51,8 @@ class Game
     private $Target;
 
     /**
-     * @ORM\Column(type="string", length=50)
-     */
+       * @ORM\Column(type="simple_array")
+       */
     private $Genre;
 
     /**
@@ -64,6 +64,7 @@ class Game
      * @ORM\Column(type="string", length=50)
      */
     private $status;
+
 
     public function getId(): ?int
     {
@@ -142,12 +143,12 @@ class Game
         return $this;
     }
 
-    public function getGenre(): ?string
+    public function getGenre(): ?array
     {
         return $this->Genre;
     }
 
-    public function setGenre(string $Genre): self
+    public function setGenre(array $Genre): self
     {
         $this->Genre = $Genre;
 
@@ -177,4 +178,5 @@ class Game
 
         return $this;
     }
+
 }

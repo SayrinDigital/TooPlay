@@ -21,6 +21,7 @@
         {% block stylesheets %}
           <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css') }}">
           <link href= "{{asset('https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900') }}" rel="stylesheet">
+              <link rel="stylesheet" href="{{asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css') }}" >
           <link rel="stylesheet" href="{{ asset('assets/app.css') }}">
       {% endblock %}
 
@@ -36,7 +37,7 @@
         {% block body %}{% endblock %}
 
 
-        <div style="z-index: 999;" class="horizontal-social-networks uk-position-bottom-left uk-position-fixed uk-margin-medium-bottom uk-margin-medium-left">
+        <div style="z-index: 999;" class="jp-collapse-mobile horizontal-social-networks uk-position-bottom-left uk-position-fixed uk-margin-medium-bottom uk-margin-medium-left">
 
           <ul class="uk-iconnav">
             <li>
@@ -55,6 +56,33 @@
 
         </div>
 
+        <div class="uk-inline social-mobile-container uk-position-fixed jp-display-mobile uk-margin-medium-bottom uk-margin-medium-left" style="z-index: 999; bottom: 20px;">
+    <div class="maintainer"><a href="#" uk-icon="icon: social"></a></div>
+    <div uk-drop="pos: top-center">
+      <div class="">
+
+        <ul class="uk-list">
+          <li>
+            <a href="https://www.facebook.com/tooplay.cl/" uk-icon="icon: facebook"></a>
+          </li>
+          <li>
+            <a href="#" uk-icon="icon: youtube"></a>
+          </li>
+          <li>
+            <a href="https://api.whatsapp.com/send?phone=+56940444172&text=Hola%20" uk-icon="icon: whatsapp"></a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/tooplay.cl/" uk-icon="icon: instagram"></a>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+</div>
+
+
+
 
       </div>
         {% block javascripts %}
@@ -63,6 +91,19 @@
           <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
            <script src="{{ asset('https://unpkg.com/scrollreveal/dist/scrollreveal.min.js') }}"></script>
            <script src="{{ asset('assets/app.js') }}"></script>
+          
+   <script type="text/javascript">
+   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+   (function(){
+   var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+   s1.async=true;
+   s1.src='https://embed.tawk.to/5b5190b1e21878736ba22715/default';
+   s1.charset='UTF-8';
+   s1.setAttribute('crossorigin','*');
+   s0.parentNode.insertBefore(s1,s0);
+   })();
+   </script>
+
         {% endblock %}
     </body>
 </html>

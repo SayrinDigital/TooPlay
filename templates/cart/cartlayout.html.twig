@@ -8,6 +8,8 @@
 <div class="store-panel background-accent">
 <div class="uk-container">
 
+{% if quantity > 0 %}
+
   <div class="jp-margin-top-bottom">
     <h1 class="title-container">Tienes {{ quantity }} items en tu carro de compras.</h1>
   </div>
@@ -20,6 +22,7 @@
 <div class="uk-text-center">
   <p class=" uk-margin-medium-right total-price uk-width-1-1">Total: CLP ${{ totalsum|number_format(0) }}</p>
   <a class="circular-yellow-button" href="{{ path('notification_payment', { 'details': purchase_details }) }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> Informar Pago</a>
+    <a class="circular-yellow-button" href="{{ path('webpay') }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> WebPay</a>
   <a class="circular-red-button uk-margin-small-top" href="{{ path('clearcartshop') }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: close"></span> Anular orden</a>
 </div>
 
@@ -98,6 +101,19 @@
   </ul>
 
 </div>
+
+{% else %}
+
+<div class="uk-height-viewport">
+  <div class="uk-container">
+    <div class="jp-margin-top-bottom">
+      <h1 class="title-container">El carro de compras se encuentra vacío.</h1>
+    </div>
+
+  </div>
+</div>
+
+{% endif %}
 
 
 </div>

@@ -36,7 +36,7 @@ class ProductExtraController extends AbstractController
       $repository = $this->getDoctrine()->getRepository(Game::class);
 
       $products = $repository
-      ->findBy( ['Target' => 'cd_ps'] );
+      ->findBy( ['Target' => 'cd_ps'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
             'controller_name' => 'Tarjetas PlayStation',
@@ -52,7 +52,7 @@ class ProductExtraController extends AbstractController
       $repository = $this->getDoctrine()->getRepository(Game::class);
 
       $products = $repository
-      ->findBy( ['Target' => 'cd_xbox'] );
+      ->findBy( ['Target' => 'cd_xbox'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
             'controller_name' => 'Tarjetas XBOX',
@@ -68,7 +68,7 @@ class ProductExtraController extends AbstractController
       $repository = $this->getDoctrine()->getRepository(Game::class);
 
       $products = $repository
-      ->findBy( ['Target' => 'gf_steam'] );
+      ->findBy( ['Target' => 'gf_steam'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
             'controller_name' => 'Tarjetas Steam',
@@ -84,7 +84,7 @@ class ProductExtraController extends AbstractController
       $repository = $this->getDoctrine()->getRepository(Game::class);
 
       $products = $repository
-      ->findBy( ['Target' => 'gf_itunes'] );
+      ->findBy( ['Target' => 'gf_itunes'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
             'controller_name' => 'Gift Card iTunes',
@@ -100,7 +100,7 @@ class ProductExtraController extends AbstractController
       $repository = $this->getDoctrine()->getRepository(Game::class);
 
       $products = $repository
-      ->findBy( ['Target' => 'gf_googleplay'] );
+      ->findBy( ['Target' => 'gf_googleplay'] ,['id' => 'DESC']);
 
         return $this->render('product_extra/index.html.twig', [
             'controller_name' => 'Gift Card Google Play',
@@ -116,7 +116,7 @@ class ProductExtraController extends AbstractController
       $repository = $this->getDoctrine()->getRepository(Game::class);
 
       $products = $repository
-      ->findBy( ['Target' => 'gf_psn'] );
+      ->findBy( ['Target' => 'gf_psn'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
             'controller_name' => 'Gift Card iTunes',
@@ -132,7 +132,7 @@ class ProductExtraController extends AbstractController
       $repository = $this->getDoctrine()->getRepository(Game::class);
 
       $products = $repository
-      ->findBy( ['Target' => 'gf_amazon'] );
+      ->findBy( ['Target' => 'gf_amazon'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
             'controller_name' => 'Gift Card iTunes',
@@ -148,7 +148,7 @@ class ProductExtraController extends AbstractController
       $repository = $this->getDoctrine()->getRepository(Game::class);
 
       $products = $repository
-      ->findBy( ['Target' => 'gf_paypal'] );
+      ->findBy( ['Target' => 'gf_paypal'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
             'controller_name' => 'Gift Card iTunes',
@@ -164,7 +164,7 @@ class ProductExtraController extends AbstractController
       $repository = $this->getDoctrine()->getRepository(Game::class);
 
       $products = $repository
-      ->findBy( ['Target' => 'gf_xbox'] );
+      ->findBy( ['Target' => 'gf_xbox'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
             'controller_name' => 'Gift Card iTunes',
@@ -180,7 +180,7 @@ class ProductExtraController extends AbstractController
       $repository = $this->getDoctrine()->getRepository(Game::class);
 
       $products = $repository
-      ->findBy( ['Target' => 'gf_nintendoeshop'] );
+      ->findBy( ['Target' => 'gf_nintendoeshop'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
             'controller_name' => 'Gift Card iTunes',

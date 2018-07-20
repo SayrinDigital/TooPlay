@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
@@ -25,6 +26,7 @@ class GameType extends AbstractType{
          ->add('originalprice', TextType::class)
          ->add('finalprice', TextType::class)
          ->add('genre', ChoiceType::class, array(
+           'multiple' => true,
    'choices'  => array(
        'Acción' => 'Accion',
        'Aventura' => 'Aventura',
@@ -32,11 +34,14 @@ class GameType extends AbstractType{
        'Casual' => 'Casual',
        'Deportes' => 'Deportes',
        'Estrategia' => 'Estrategia',
-       'Indie' => 'Indie',
+       'Terror' => 'Terror',
        'Multijugador' => 'Multijugador',
-       'Rol' => 'Rol',
        'Simuladores' => 'Simuladores',
-   )))
+   ),
+
+ ))
+
+
 
    ->add('status', ChoiceType::class, array(
      'choices' => array(
@@ -102,7 +107,9 @@ class GameType extends AbstractType{
          ->add('cover', FileType::class, array('label' => 'Portada (Imagen Jpg o Png)', 'required' => false))
          ->add('save', SubmitType::class, array('label'=> 'Guardar'));
 
-    }
+
+     }
+
 
     public function configureOptions(OptionsResolver $resolver)
     {

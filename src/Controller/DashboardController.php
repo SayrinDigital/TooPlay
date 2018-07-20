@@ -7,10 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Game;
 use App\Entity\Menu;
+use App\Entity\Configuration;
 use App\Entity\PaymentInstructions;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Form\GameType;
 
 class DashboardController extends AbstractController
@@ -18,10 +20,11 @@ class DashboardController extends AbstractController
     /**
      * @Route("/panel", name="dashboard-home")
      */
-    public function index()
+    public function index(Request $request)
     {
 
        $repository = $this->getDoctrine()->getRepository(Game::class);
+       $configrepository = $this->getDoctrine()->getRepository(Configuration::class);
        $highlightgames = $repository
        ->findBy( ['Target' => 'Highlight'] );
 
@@ -30,6 +33,9 @@ class DashboardController extends AbstractController
 
        $splash = $repository
        ->findBy( ['Target' => 'splashoffer'], ['id' => 'ASC']);
+
+       $preorderbackground = $configrepository
+       ->findOneBy(['name' => 'preorder_background']);
 
        $splash = array_values($splash);
        $quantity = count($splash) - 1;
@@ -40,12 +46,32 @@ class DashboardController extends AbstractController
        $splashcontainer = $menurepository
        ->findOneBy( ['name' => 'splashoffer']);
 
+       //Preorder Banner
+
+       if ($request->isXMLHttpRequest()) {
+
+      $file = $request->files->get('file');
+      $fileName = md5(uniqid()).'.'.$file->guessExtension();
+      $file->move(
+          $this->getParameter('productcovers_directory'),
+          $fileName
+      );
+
+      $preorderbackground->setValue($fileName);
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->persist($preorderbackground);
+      $entityManager->flush();
+
+       return new JsonResponse(array('bg' => $fileName));
+  }
+
         return $this->render('dashboard/home.html.twig', [
             'controller_name' => 'Panel de Administración - TooPlay',
             'highlightproducts' => $highlightgames,
             'weekendofferproducts' => $weekendoffergames,
             'finalsplash' => $finalsplash,
-            'splashcontainer' => $splashcontainer
+            'splashcontainer' => $splashcontainer,
+            'preorderbackground' => $preorderbackground
         ]);
 
     }
