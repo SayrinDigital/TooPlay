@@ -28,7 +28,7 @@ class StoreController extends AbstractController
  $allgames = $repository
 ->findBy(['Target' => 'po_playstation'],['id' => 'DESC']);
 
-$limit = 20;
+$limit = 42;
 $productsQuantity = count($allgames);
 $offset = ($page - 1) * $limit;
 $pagesQuantity = ceil($productsQuantity / $limit);
@@ -64,7 +64,7 @@ $pagination_games = array_slice($allgames, $offset, $limit);
  $allgames = $repository
 ->findBy( ['Target' => 'po_windows'],['id' => 'DESC']);
 
-$limit = 20;
+$limit = 42;
 $productsQuantity = count($allgames);
 $offset = ($page - 1) * $limit;
 $pagesQuantity = ceil($productsQuantity / $limit);
@@ -100,7 +100,7 @@ $pagination_games = array_slice($allgames, $offset, $limit);
  $allgames = $repository
  ->findBy( ['Target' => 'juegos_ps3'] ,['id' => 'DESC']);
 
- $limit = 20;
+ $limit = 42;
  $productsQuantity = count($allgames);
  $offset = ($page - 1) * $limit;
  $pagesQuantity = ceil($productsQuantity / $limit);
@@ -133,7 +133,7 @@ $pagination_games = array_slice($allgames, $offset, $limit);
  $allgames = $repository
  ->findBy( ['Target' => 'pack_ps3'] ,['id' => 'DESC']);
 
- $limit = 20;
+ $limit = 42;
  $productsQuantity = count($allgames);
  $offset = ($page - 1) * $limit;
  $pagesQuantity = ceil($productsQuantity / $limit);
@@ -166,7 +166,7 @@ $pagination_games = array_slice($allgames, $offset, $limit);
  $allgames = $repository
  ->findBy( ['Target' => 'primarias_ps4'],['id' => 'DESC'] );
 
-          $limit = 20;
+          $limit = 42;
           $productsQuantity = count($allgames);
           $offset = ($page - 1) * $limit;
           $pagesQuantity = ceil($productsQuantity / $limit);
@@ -200,7 +200,7 @@ $pagination_games = array_slice($allgames, $offset, $limit);
  $allgames = $repository
  ->findBy( ['Target' => 'secundarias_ps4'],['id' => 'DESC'] );
 
- $limit = 20;
+ $limit = 42;
  $productsQuantity = count($allgames);
  $offset = ($page - 1) * $limit;
  $pagesQuantity = ceil($productsQuantity / $limit);
@@ -233,7 +233,7 @@ $pagination_games = array_slice($allgames, $offset, $limit);
    $allgames = $repository
    ->findBy( ['Target' => 'primarias_offline_ps'] ,['id' => 'DESC']);
 
-   $limit = 20;
+   $limit = 42;
    $productsQuantity = count($allgames);
    $offset = ($page - 1) * $limit;
    $pagesQuantity = ceil($productsQuantity / $limit);
@@ -268,7 +268,7 @@ $pagination_games = array_slice($allgames, $offset, $limit);
    $allgames = $repository
    ->findBy( ['Target' => 'juegos_steam'] ,['id' => 'DESC']);
 
-   $limit = 20;
+   $limit = 42;
    $productsQuantity = count($allgames);
    $offset = ($page - 1) * $limit;
    $pagesQuantity = ceil($productsQuantity / $limit);
@@ -303,7 +303,7 @@ $pagination_games = array_slice($allgames, $offset, $limit);
    $allgames = $repository
    ->findBy( ['Target' => 'juegos_xbox'],['id' => 'DESC'] );
 
-   $limit = 20;
+   $limit = 42;
    $productsQuantity = count($allgames);
    $offset = ($page - 1) * $limit;
    $pagesQuantity = ceil($productsQuantity / $limit);
