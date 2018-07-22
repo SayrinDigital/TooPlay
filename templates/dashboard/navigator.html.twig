@@ -12,6 +12,7 @@
                             <ul class="uk-nav uk-navbar-dropdown-nav">
                                 <li class="uk-nav-header">Playstation</li>
 
+                                <li {% if app.request.attributes.get( '_route' ) starts with 'dashboard-store-pspreorder' %} class='uk-active'{% endif %}><a href="{{ path('dashboard-store-fortnite') }}">Fortnite</a></li>
 
                                 <li {% if app.request.attributes.get( '_route' ) starts with 'dashboard-store-pspreorder' %} class='uk-active'{% endif %}><a href="{{ path('dashboard-store-pspreorder') }}">Pre Orden</a></li>
 
@@ -65,6 +66,7 @@
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                       <li class="uk-nav-header">Acciones</li>
                       <li><a class="" href="{{ path('dashboard-addproduct') }}" >Agregar Producto</a></li>
+                      <li><a id="js-modal-prompt" class="" href="#" >Buscar Producto</a></li>
                       <li class="uk-nav-header">Control</li>
                       <li><a class="" href="{{ path('dashboard_voucher') }}" >Ventas notificadas</a></li>
                   </ul>
@@ -127,6 +129,8 @@
                 <li {% if app.request.attributes.get( '_route' ) starts with 'dashboard-frequent_questions' %} class='uk-active'{% endif %}><a href="{{ path('dashboard-frequent_questions') }}">Preguntas Frecuentes</a></li>
                 <li class="uk-nav-header">Productos</li>
                 <li {% if app.request.attributes.get( '_route' ) starts with 'dashboard-addproduct' %} class='uk-active'{% endif %}><a href="{{ path('dashboard-addproduct') }}" >Agregar Producto</a></li>
+                <li><a class="" href="" >Buscar Producto</a></li>
+                <li><a class="" href="{{ path('dashboard_voucher') }}" >Ventas notificadas</a></li>
             </ul>
 
         </div>

@@ -61,7 +61,7 @@
               <form action="{{ (path('dashboard-home')) }}" method="POST">
                 <div class="uk-margin">
                   <div uk-form-custom="uk-form-custom">
-                    <input class="ajax" type="file">
+                    <input id="change-preorderbackground" type="file">
                     <span  style="background: #fff; box-shadow: 0px 10px 20px rgba(0,0,0,0.09); border-radius: 500px; padding: 15px;" >Cambiar portada</span>
                   </div>
                 </div>
@@ -97,12 +97,12 @@
         <h6 class="admin-title">Inicio</h6>
         <h1 class="admin-title-section">Horarios de Atención</h1>
 
-        <form class="uk-grid-small uk-margin-medium-bottom uk-margin-small-top" uk-grid>
+        <form class="uk-grid-small uk-margin-medium-bottom uk-margin-small-top" action="{{ (path('dashboard-home')) }}" method="POST" uk-grid>
             <div class="uk-width-1-1">
-                <input class="uk-input" type="text" placeholder="100">
+                <input id="horarios_input" class="uk-input" type="text" value="{{ workdates.value }}" placeholder="LUNES A VIERNES">
             </div>
             <div class="uk-text-right">
-              <button class="button-style-a uk-button" style="padding: 0px 20px;">Guardar</button>
+              <button id="changedate_button" class="button-style-a uk-button" style="padding: 0px 20px;">Guardar</button>
             </div>
         </form>
 
@@ -112,6 +112,8 @@
 
   </div>
 
+
+
   {% block javascripts %}
 
     {{ parent() }}
@@ -119,6 +121,9 @@
     <script type="application/javascript">
 
       $(document).ready(function() {
+
+
+
           var clickHandler = function(e) {
 
             var file_data = $(this).get(0).files[0];
@@ -137,14 +142,37 @@
               success: function(data) {
                 $('#ajax-results').css('background-image', 'url({{ asset('uploads/productcovers/') }}' + data.bg + ')');
                 console.log(data.bg);
-                $('.ajax').one('change', clickHandler);
+                $('#change-preorderbackground').one('change', clickHandler);
+                UIkit.modal.dialog('<p class="uk-modal-body">Modificación realizada satisfactoriamente</p>');
               }
             });
             e.stopImmediatePropagation();
     return false;
           }
 
-          $('.ajax').one('change', clickHandler);
+          $('#change-preorderbackground').one('change', clickHandler);
+
+          var timeclickHandler = function(e) {
+
+            var horarios = $('#horarios_input').val();
+            console.log('owo');
+            $.ajax({
+              type: 'post',
+              url: '{{ path('dashboard-home') }}',
+              data: { "horarios" : horarios },
+              async: true,
+              success: function(data) {
+                //console.log(data.newdate);
+                $('#horarios_inputs').val(data.newdate);
+                UIkit.modal.dialog('<p class="uk-modal-body">Modificación realizada sastisfactoriamente.</p>');
+              }
+            });
+            e.stopImmediatePropagation();
+    return false;
+          }
+
+          $('#changedate_button').one('click', timeclickHandler);
+
       });
     </script>
 

@@ -17,10 +17,11 @@ class VoucherType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options){
 
          $builder
+         ->add('orderid', TextType::class, array('attr' => array('readonly' => true)))
          ->add('name', TextType::class)
          ->add('mail', EmailType::class)
          ->add('phone', TelType::class)
-         ->add('details', TextType::class)
+         ->add('details', TextType::class, array('attr' => array('readonly' => true)))
          ->add('brochure', FileType::class, array('label' => 'Brochure (PDF file)'));
     }
 

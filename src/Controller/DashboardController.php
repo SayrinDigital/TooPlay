@@ -11,6 +11,7 @@ use App\Entity\Configuration;
 use App\Entity\PaymentInstructions;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Form\GameType;
@@ -37,6 +38,9 @@ class DashboardController extends AbstractController
        $preorderbackground = $configrepository
        ->findOneBy(['name' => 'preorder_background']);
 
+       $horarios = $configrepository
+       ->findOneBy(['name' => 'horarios']);
+
        $splash = array_values($splash);
        $quantity = count($splash) - 1;
        $finalsplash = $splash[$quantity];
@@ -48,9 +52,7 @@ class DashboardController extends AbstractController
 
        //Preorder Banner
 
-       if ($request->isXMLHttpRequest()) {
-
-      $file = $request->files->get('file');
+       if ($file = $request->files->get('file')) {
       $fileName = md5(uniqid()).'.'.$file->guessExtension();
       $file->move(
           $this->getParameter('productcovers_directory'),
@@ -65,13 +67,25 @@ class DashboardController extends AbstractController
        return new JsonResponse(array('bg' => $fileName));
   }
 
+
+        if($newtime = $request->request->get('horarios')){
+
+        $horarios->setValue($newtime);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($horarios);
+        $entityManager->flush();
+
+         return new JsonResponse(array('newdate' => 'owo' . $newtime));
+        }
+
         return $this->render('dashboard/home.html.twig', [
             'controller_name' => 'Panel de Administración - TooPlay',
             'highlightproducts' => $highlightgames,
             'weekendofferproducts' => $weekendoffergames,
             'finalsplash' => $finalsplash,
             'splashcontainer' => $splashcontainer,
-            'preorderbackground' => $preorderbackground
+            'preorderbackground' => $preorderbackground,
+            'workdates' => $horarios,
         ]);
 
     }
@@ -131,9 +145,9 @@ class DashboardController extends AbstractController
           $dailyoffers = $repository
           ->findBy( ['Target' => 'dailyoffer'] );
           $psfouroffers = $repository
-          ->findBy( ['Target' => 'offerps4'] );
+          ->findBy( ['Target' => 'ps4offer'] );
           $psthreeoffers = $repository
-          ->findBy( ['Target' => 'offerps3'] );
+          ->findBy( ['Target' => 'ps3offer'] );
 
           $menurepository = $this->getDoctrine()->getRepository(Menu::class);
           $dailyofferscontainer = $menurepository
@@ -153,6 +167,28 @@ class DashboardController extends AbstractController
                 'dailyofferscontainer' => $dailyofferscontainer,
                 'psfourofferscontainer' => $psfourofferscontainer,
                 'psthreeofferscontainer' => $psthreeofferscontainer
+            ]);
+        }
+
+        /**
+         * @Route("/panel/tienda/fortnite", name="dashboard-store-fortnite")
+         */
+        public function fortnitedashboard(Request $request)
+        {
+
+         $menurepository = $this->getDoctrine()->getRepository(Menu::class);
+         $container = $menurepository->findOneBy([ 'name' => 'store-fortnite' ]);
+
+          $repository = $this->getDoctrine()->getRepository(Game::class);
+          $products = $repository
+          ->findBy( ['Target' => 'store-fortnite'] );
+
+            return $this->render('dashboard/storeproducts.html.twig', [
+                'controller_name' => 'Panel de Administración - Fortnite - TooPlay',
+                'section' => 'Tienda',
+                'target' => 'Fortnite',
+                'products' => $products,
+                'container' => $container,
             ]);
         }
 
@@ -628,6 +664,7 @@ class DashboardController extends AbstractController
 
           $form = $this->createFormBuilder($instructions)
           ->add('instructions', TextareaType::class)
+          ->add('voucherexample', FileType::class, array('data_class' => null))
           ->add('save', SubmitType::class, array('label' => 'Guardar'))
            ->getForm();
 
@@ -635,7 +672,20 @@ class DashboardController extends AbstractController
 
            if ($form->isSubmitted() && $form->isValid()) {
 
-             $instructions = $form->getData();
+             $file = $form->get('voucherexample')->getData();
+
+
+             if($file!=null){
+               $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+               $file->move(
+                   $this->getParameter('productcovers_directory'),
+                   $fileName
+               );
+
+               $instructions->setVoucherexample($fileName);
+             }
+
+
              $entityManager = $this->getDoctrine()->getManager();
              $entityManager->persist($instructions);
              $entityManager->flush();

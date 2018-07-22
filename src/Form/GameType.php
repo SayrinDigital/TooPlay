@@ -61,6 +61,7 @@ class GameType extends AbstractType{
 
 'Tienda' => array(
   'PlayStation' => array(
+             'Fornite' => 'store-fortnite',
              'PreOrden' => 'po_playstation',
              'Juegos PS3' => 'juegos_ps3',
              'Packs PS3' => 'pack_ps3',

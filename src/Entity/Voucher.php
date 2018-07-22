@@ -41,9 +41,14 @@ class Voucher
      * @ORM\Column(type="string", length=255)
      *
      * @Assert\NotBlank(message="Porfavor, adjunte el comprobante.")
-     * @Assert\File(mimeTypes={ "image/png", "image/jpg", "application/pdf" })
+     * @Assert\File(mimeTypes={ "image/png", "image/jpg", "image/jpeg", "application/pdf" })
      */
     private $brochure;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $orderid;
 
     public function getId(): ?int
     {
@@ -106,6 +111,18 @@ class Voucher
     public function setBrochure(string $brochure): self
     {
         $this->brochure = $brochure;
+
+        return $this;
+    }
+
+    public function getOrderid(): ?string
+    {
+        return $this->orderid;
+    }
+
+    public function setOrderid(string $orderid): self
+    {
+        $this->orderid = $orderid;
 
         return $this;
     }

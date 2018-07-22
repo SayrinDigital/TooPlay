@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Menu;
+use App\Entity\Configuration;
 use Symfony\Component\HttpFoundation\Request;
 
 class NavigatorController extends Controller
@@ -20,6 +21,14 @@ class NavigatorController extends Controller
         ]);
     }
 
+    public function footer(){
+      $menurepository = $this->getDoctrine()->getRepository(Configuration::class);
+      $times = $menurepository->findOneBy(['name' => 'horarios']);
+
+      return $this->render('footer.html.twig', [
+        'times' => $times
+      ]);
+    }
     /**
      * @Route("/panel/menu/toggle/{id}", name="tooglemenu")
      */

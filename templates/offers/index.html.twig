@@ -93,6 +93,7 @@
 
 
 
-
-{% include 'footer.html.twig' %}
+{{ render(controller(
+'App\\Controller\\NavigatorController::footer'
+)) }}
 {% endblock %}

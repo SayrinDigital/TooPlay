@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PaymentInstructionsRepository")
@@ -25,6 +26,14 @@ class PaymentInstructions
      * @ORM\Column(type="text")
      */
     private $instructions;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     *
+     * @Assert\File(mimeTypes={ "image/png", "image/jpg", "image/jpeg", "image/gif", "application/pdf" })
+     */
+    private $voucherexample;
 
     public function getId()
     {
@@ -51,6 +60,18 @@ class PaymentInstructions
     public function setInstructions(string $instructions): self
     {
         $this->instructions = $instructions;
+
+        return $this;
+    }
+
+    public function getVoucherexample(): ?string
+    {
+        return $this->voucherexample;
+    }
+
+    public function setVoucherexample(string $voucherexample): self
+    {
+        $this->voucherexample = $voucherexample;
 
         return $this;
     }

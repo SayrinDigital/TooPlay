@@ -61,7 +61,6 @@ class DashboardProductController extends AbstractController
 
       $product = new Game();
 
-
       $entityManager = $this->getDoctrine()->getManager();
           $producttomodify = $entityManager->getRepository(Game::class)->find($id);
       $form = $this->createForm(GameType::class, $product);
@@ -127,6 +126,23 @@ class DashboardProductController extends AbstractController
                     $entityManager->flush();
 
           return $this->redirect($this->generateUrl('dashboard-home'));
+
+    }
+
+    /**
+     * @Route("/panel/buscar-producto/{id}", name="dashboard-searchproduct")
+     */
+    public function searchProduct($id)
+    {
+
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $product = $entityManager->getRepository(Game::class)->findOneById($id);
+
+
+                    return $this->render('dashboard/product.html.twig', [
+                       'controller_name' => 'Búsqueda de Producto',
+                       'product' => $product
+                    ]);
 
     }
 

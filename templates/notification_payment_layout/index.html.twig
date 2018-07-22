@@ -28,6 +28,14 @@
 <div class="uk-margin">
 <div class="uk-inline uk-width-1-1">
     <span class="uk-form-icon" uk-icon="icon: user"></span>
+            {{ form_widget(form.orderid, { 'attr': {'class': 'uk-input', 'placeholder': '123', 'value' :  currentbuyid } }) }}
+
+</div>
+</div>
+
+<div class="uk-margin">
+<div class="uk-inline uk-width-1-1">
+    <span class="uk-form-icon" uk-icon="icon: user"></span>
             {{ form_widget(form.name, { 'attr': {'class': 'uk-input', 'placeholder': 'Nombres (Ej. Jhon Doe)'} }) }}
 
 </div>
@@ -87,8 +95,9 @@
 
 </div>
 
-
-{% include 'footer.html.twig' %}
+{{ render(controller(
+'App\\Controller\\NavigatorController::footer'
+)) }}
 
 {% block javascripts %}
 

@@ -17,72 +17,72 @@
   <div class="uk-position-relative">
 
       <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-5@m">
-        <li uk-filter-control class="  store-genre-item uk-height-medium ">
-            <a href="#">
+        <li class="  store-genre-item uk-height-medium ">
+            <a href="{{ path(app.request.attributes.get( '_route' , {"page": 1, "category": '' })) }}">
               <div class="uk-height-1-1 uk-background-cover  uk-position-relative container-genre " style="background:linear-gradient(to right, rgba(97, 226, 28, 0.8) 0%, rgba(148, 168, 230, 0.8) 100%), url({{ asset('images/genres/all.jpg') }}) no-repeat center center/ cover;">
                   <div class="uk-position-center uk-panel"><p class="tag-title uk-margin-small-left uk-margin-small-top">TODO</p></div>
               </div>
             </a>
         </li>
 
-          <li uk-filter-control="[data-tags*='Accion']" class="  store-genre-item uk-height-medium ">
-              <a href="#">
+          <li {# uk-filter-control="[data-tags*='Accion']" #} class="  store-genre-item uk-height-medium ">
+              <a href="{{ path(app.request.attributes.get( '_route' ), {"page": 1, "category": 'Accion' }) }}">
                 <div class="uk-height-1-1 uk-background-cover  uk-position-relative container-genre " style="background:linear-gradient(to right, rgba(46, 141, 238, 0.8) 0%, rgba(148, 168, 230, 0.8) 100%), url({{ asset('images/genres/accion.jpg') }}) no-repeat center center/ cover;">
                     <div class="uk-position-center uk-panel"><p class="tag-title uk-margin-small-left uk-margin-small-top">Acción</p></div>
                 </div>
               </a>
           </li>
 
-          <li uk-filter-control="[data-tags*='Aventura']"  class="  store-genre-item uk-height-medium ">
-              <a href="#">
+          <li class="  store-genre-item uk-height-medium ">
+              <a href="{{ path(app.request.attributes.get( '_route' ), {"page": 1, "category": 'Aventura' }) }}">
                 <div class="uk-height-1-1 uk-background-cover container-genre uk-position-relative" style="background:linear-gradient(to right, rgba(250, 89, 81, 0.8) 0%, rgba(230, 142, 65, 0.8) 100%), url({{ asset('images/genres/aventura.jpg') }}) no-repeat center center/ cover;">
                     <div class="uk-position-center uk-panel"><p class="tag-title uk-margin-small-left uk-margin-small-top">Aventura</p></div>
                 </div>
               </a>
           </li>
 
-          <li uk-filter-control="[data-tags*='Carreras']"  class="  store-genre-item uk-height-medium ">
-              <a href="">
+          <li  class="  store-genre-item uk-height-medium ">
+              <a href="{{ path(app.request.attributes.get( '_route' ), {"page": 1, "category": 'Carreras' }) }}">
                 <div class="uk-height-1-1 uk-background-cover container-genre uk-position-relative" style="background:linear-gradient(to right, rgba(42, 245, 152, 0.8) 0%, rgba(148, 65, 230, 0.8) 100%), url({{ asset('images/genres/carreras.jpg') }}) no-repeat center center/ cover;">
                     <div class="uk-position-center uk-panel"><p class="tag-title uk-margin-small-left uk-margin-small-top">Carreras</p></div>
                 </div>
               </a>
           </li>
 
-          <li uk-filter-control="[data-tags*='Casual']"  class="  store-genre-item uk-height-medium ">
-              <a href="#">
+          <li   class="  store-genre-item uk-height-medium ">
+              <a href="{{ path(app.request.attributes.get( '_route' ), {"page": 1, "category": 'Casual' }) }}">
                 <div class="uk-height-1-1 uk-background-cover container-genre uk-position-relative" style="background:linear-gradient(to right, rgba(254, 225, 64, 0.8) 0%, rgba(250, 112, 154, 0.8) 100%), url({{ asset('images/genres/casual.jpg') }}) no-repeat center center/ cover;">
                     <div class="uk-position-center uk-panel"><p class="tag-title uk-margin-small-left uk-margin-small-top">Casual</p></div>
                 </div>
               </a>
           </li>
 
-          <li uk-filter-control="[data-tags*='Deportes']"  class="  store-genre-item uk-height-medium ">
-              <a href="#">
+          <li  class="  store-genre-item uk-height-medium ">
+              <a href="{{ path(app.request.attributes.get( '_route' ), {"page": 1, "category": 'Deportes' }) }}">
                 <div class="uk-height-1-1 uk-background-cover container-genre uk-position-relative" style="background:linear-gradient(to right, rgba(130, 220, 199, 0.8) 0%, rgba(65, 98, 230, 0.8) 100%), url({{ asset('images/genres/deportes.png') }}) no-repeat center center/ cover;">
                     <div class="uk-position-center uk-panel"><p class="tag-title uk-margin-small-left uk-margin-small-top">Deportes</p></div>
                 </div>
               </a>
           </li>
 
-          <li uk-filter-control="[data-tags*='Estrategia']"  class="  store-genre-item uk-height-medium ">
-              <a href="#">
+          <li class="  store-genre-item uk-height-medium ">
+              <a href="{{ path(app.request.attributes.get( '_route' ), {"page": 1, "category": 'Estrategia' }) }}">
                 <div class="uk-height-1-1 uk-background-cover container-genre uk-position-relative" style="background:linear-gradient(to right, rgba(250, 89, 81, 0.8) 0%, rgba(230, 142, 65, 0.8) 100%), url({{ asset('images/genres/estrategia.jpg') }}) no-repeat center center/ cover;">
                     <div class="uk-position-center uk-panel"><p class="tag-title uk-margin-small-left uk-margin-small-top">Estrategia</p></div>
                 </div>
               </a>
           </li>
 
-          <li uk-filter-control="[data-tags*='Terror']"  class="  store-genre-item uk-height-medium ">
-              <a href="#">
+          <li class="  store-genre-item uk-height-medium ">
+              <a href="{{ path(app.request.attributes.get( '_route' ), {"page": 1, "category": 'Terror' }) }}">
                 <div class="uk-height-1-1 uk-background-cover container-genre uk-position-relative" style="background:linear-gradient(to right, rgba(42, 245, 152, 0.8) 0%, rgba(148, 65, 230, 0.8) 100%), url({{ asset('images/genres/terror.jpg') }}) no-repeat center center/ cover;">
                     <div class="uk-position-center uk-panel"><p class="tag-title uk-margin-small-left uk-margin-small-top">Terror</p></div>
                 </div>
               </a>
           </li>
 
-          <li uk-filter-control="[data-tags*='Multijugador']"  class="  store-genre-item uk-height-medium ">
-              <a href="#">
+          <li  class="  store-genre-item uk-height-medium ">
+              <a href="{{ path(app.request.attributes.get( '_route' ), {"page": 1, "category": 'Multijugador' }) }}">
                 <div class="uk-height-1-1 uk-background-cover container-genre uk-position-relative" style="background:linear-gradient(to right, rgba(130, 220, 199, 0.8) 0%, rgba(65, 98, 230, 0.8) 100%), url({{ asset('images/genres/multijugador.jpg') }}) no-repeat center center/ cover;">
                     <div class="uk-position-center uk-panel"><p class="tag-title uk-margin-small-left uk-margin-small-top">Multijugador</p></div>
                 </div>
@@ -90,8 +90,8 @@
           </li>
 
 
-                    <li uk-filter-control="[data-tags*='Simuladores']"  class="  store-genre-item uk-height-medium ">
-                        <a href="#">
+                    <li class="  store-genre-item uk-height-medium ">
+                        <a href="{{ path(app.request.attributes.get( '_route' ), {"page": 1, "category": 'Simuladores' }) }}">
                           <div class="uk-height-1-1 uk-background-cover container-genre uk-position-relative" style="background:linear-gradient(to right, rgba(250, 89, 81, 0.8) 0%, rgba(230, 142, 65, 0.8) 100%), url({{ asset('images/genres/simuladores.jpg') }}) no-repeat center center/ cover;">
                               <div class="uk-position-center uk-panel"><p class="tag-title uk-margin-small-left uk-margin-small-top">Simuladores</p></div>
                           </div>

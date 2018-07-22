@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Game;
 use App\Entity\PaymentInstructions;
-use App\Service\flow\flowAPI;
 
 class CartController extends Controller
 {
@@ -41,6 +40,14 @@ class CartController extends Controller
       $sessionCart->get('totalproductsincart');
       $sessionCart->set('totalproductsincart', $quantitygamesincart);
 
+      $currentbuyid = $sessionCart->get('buyid');
+
+      if($currentbuyid==""){
+      $sessionCart->set('buyid', hexdec(uniqid()));
+      }
+
+      $currentbuyid =  $sessionCart->get('buyid');
+
       $ins_cajavecina = $instructionsrepository
       ->findOneBy( ['name' => 'ins_cajavecina'] );
 
@@ -63,6 +70,7 @@ class CartController extends Controller
             'ins_transferencia' => $ins_transferencia,
             'ins_webpay' => $ins_webpay,
             'ins_paypal' => $ins_paypal,
+            'currentbuyid' => $currentbuyid
         ]);
     }
 
@@ -127,14 +135,10 @@ $sessionCart->set('ProductIDs', $arrayOfProduct);
     *@Route("/carro/pagar", name="webpay")
     */
 
-    public function payFlow(flowAPI $product){
+    public function payFlow(){
 
 
-       $product->setOrderNumber(5);
-       $product->setConcept("Hola Mundo");
-       $product->setAmount(5000);
-       $product->setRate(1);
-       $product->new_order(5, 5000, "Hola Mundo","josepuma@sayrin.cl", 1);
+       return $this->redirect('http://pagos.tooplay.cl');
 
 
     }

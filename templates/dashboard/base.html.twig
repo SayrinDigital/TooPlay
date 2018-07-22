@@ -28,6 +28,17 @@
           <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
            <script src="{{ asset('https://unpkg.com/scrollreveal/dist/scrollreveal.min.js') }}"></script>
            <script src="{{ asset('assets/adminapp.js') }}"></script>
+           <script>
+           UIkit.util.on('#js-modal-prompt', 'click', function (e) {
+               e.preventDefault();
+               e.target.blur();
+               e.stopImmediatePropagation();
+               UIkit.modal.prompt('ID:', '').then(function (name) {
+
+                   location.href = '/panel/buscar-producto/' + name;
+               });
+           });
+           </script>
         {% endblock %}
     </body>
 </html>

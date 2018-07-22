@@ -1,0 +1,29 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+{% if product is not null %}
+<div class="uk-container">
+  <div class="uk-margin-small-top">
+    <div class="product-card">
+
+      <div class="header uk-background-cover uk-position-relative" style="background-image: url({{ asset('uploads/productcovers/' ~ product.cover) }}), url('https://cdn.dribbble.com/users/527354/screenshots/3947316/playground_animation.gif');">
+
+
+
+      </div>
+      <div class="description">
+          <p class="product-title"><span class="uk-icon uk-margin-small-right" uk-icon="icon: hashtag"></span>{{ product.id }}</p>
+          <p class="product-title"><span class="uk-icon uk-margin-small-right" uk-icon="icon: minus"></span> {{ product.title }}</p>
+          <p class="product-title"><span class="uk-icon uk-margin-small-right" uk-icon="icon: minus"></span> {{ product.target }}</p>
+          <p class="product-title"><span class="uk-icon uk-margin-small-right" uk-icon="icon: minus"></span> CLP ${{ product.finalprice|number_format(0) }}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

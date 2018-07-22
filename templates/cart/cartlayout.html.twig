@@ -20,11 +20,16 @@
 <div class="uk-margin-medium-top uk-margin-medium-bottom">
 
 <div class="uk-text-center">
-  <p class=" uk-margin-medium-right total-price uk-width-1-1">Total: CLP ${{ totalsum|number_format(0) }}</p>
   <a class="circular-yellow-button" href="{{ path('notification_payment', { 'details': purchase_details }) }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> Informar Pago</a>
-    <a class="circular-yellow-button" href="{{ path('webpay') }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> WebPay</a>
+    <a class="circular-yellow-button" target="_blank" href="https://pagos.tooplay.cl"><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> WebPay</a>
   <a class="circular-red-button uk-margin-small-top" href="{{ path('clearcartshop') }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: close"></span> Anular orden</a>
 </div>
+
+</div>
+
+<div class="uk-margin-medium-top uk-text-center uk-margin-medium-bottom">
+      <h1 style="" class="title-container">Orden N° {{  currentbuyid }}</h1>
+  <h1 class="title-container">Total: CLP ${{ totalsum|number_format(0) }}</h1>
 
 </div>
 
@@ -38,7 +43,8 @@
     <ul class="uk-child-width-1-4@s uk-margin-small-bottom uk-margin-small-top" uk-grid uk-switcher>
 
 <div >
-  <div ><li ><a href=""><div class="uk-card payment-card uk-card-default uk-card-body uk-background-contain" style="background-image: url(https://www.aguasdelaltiplano.cl/recursos-ada/img/pague8.jpg);"></div></a></li></div>
+  <div >
+    <li ><a href=""><div class="uk-card payment-card uk-card-default uk-card-body uk-background-contain" style="background-image: url(https://www.aguasdelaltiplano.cl/recursos-ada/img/pague8.jpg);"></div></a></li></div>
 </div>
 <div>
   <div class="payment_card">    <li >
@@ -67,7 +73,10 @@
         <div class="uk-width-1-1 border-default uk-card uk-card-body uk-card-default">
              <h4 class="title">Instrucciones Caja Vecina</h4>
 <div>
-  <pre class="jp-border-remove">{{ ins_cajavecina.instructions }}</pre>
+  <div class="uk-child-width-1-2@s" uk-grid>
+    <div><div><pre class="jp-border-remove">{{ ins_cajavecina.instructions }}</pre></div></div>
+    <div><div><img style="min-height: 200px;" src="{{ 'uploads/productcovers/' ~ ins_cajavecina.voucherexample }}"  alt=""></div></div>
+  </div>
 </div>
         </div>
       </li>
@@ -76,7 +85,11 @@
         <div class="uk-width-1-1 border-default uk-card uk-card-body uk-card-default">
              <h4 class="title">Instrucciones Transferencia Electrónica</h4>
              <div>
-               <pre class="jp-border-remove">{{ ins_transferencia.instructions }}</pre>
+               <div class="uk-child-width-1-2@s" uk-grid>
+                 <div><div> <pre class="jp-border-remove">{{ ins_transferencia.instructions }}</pre></div></div>
+                 <div><div><img style="min-height: 200px;" src="{{ 'uploads/productcovers/' ~ ins_transferencia.voucherexample }}"  alt=""></div></div>
+               </div>
+
              </div>
         </div>
       </li>
@@ -85,7 +98,10 @@
         <div class="uk-width-1-1 border-default uk-card uk-card-body uk-card-default">
              <h4 class="title">Instrucciones WebPay</h4>
              <div>
-               <pre class="jp-border-remove">{{ ins_webpay.instructions }}</pre>
+               <div class="uk-child-width-1-2@s" uk-grid>
+                 <div><div> <pre class="jp-border-remove">{{ ins_webpay.instructions }}</pre></div></div>
+                 <div><div><img style="min-height: 200px;" src="{{ 'uploads/productcovers/' ~ ins_webpay.voucherexample }}"  alt=""></div></div>
+               </div>
              </div>
         </div>
       </li>
@@ -94,7 +110,11 @@
         <div class="uk-width-1-1 border-default uk-card uk-card-body uk-card-default">
              <h4 class="title">Instrucciones PayPal</h4>
              <div>
-               <pre class="jp-border-remove">{{ ins_paypal.instructions }}</pre>
+               <div class="uk-child-width-1-2@s" uk-grid>
+                 <div><div> <pre class="jp-border-remove">{{ ins_paypal.instructions }}</pre>></div></div>
+                 <div><div><img style="min-height: 200px;" src="{{ 'uploads/productcovers/' ~ ins_paypal.voucherexample }}"  alt=""></div></div>
+               </div>
+
              </div>
         </div>
       </li>
@@ -118,7 +138,9 @@
 
 </div>
 </div>
-{% include 'footer.html.twig' %}
+{{ render(controller(
+'App\\Controller\\NavigatorController::footer'
+)) }}
 
 
 {% endblock %}
