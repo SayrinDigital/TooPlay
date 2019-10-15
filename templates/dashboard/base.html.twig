@@ -28,6 +28,210 @@
           <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
            <script src="{{ asset('https://unpkg.com/scrollreveal/dist/scrollreveal.min.js') }}"></script>
            <script src="{{ asset('assets/adminapp.js') }}"></script>
+           <script>
+           UIkit.util.on('#js-modal-prompt-searchbyname', 'click', function (e) {
+               e.preventDefault();
+               e.target.blur();
+               e.stopImmediatePropagation();
+               UIkit.modal.prompt('Nombre:', '').then(function (name) {
+
+                   location.href = '/panel/buscar-producto-nombre/' + name;
+               });
+           });
+
+           UIkit.util.on('#js-modal-prompt', 'click', function (e) {
+               e.preventDefault();
+               e.target.blur();
+               e.stopImmediatePropagation();
+               UIkit.modal.prompt('ID:', '').then(function (name) {
+
+                   location.href = '/panel/buscar-producto/' + name;
+               });
+           });
+
+             $(document).ready(function() {
+
+               var clickHandler = function(e) {
+
+                 var file_data = $(this).get(0).files[0];
+                 console.log(file_data);
+                 var form_data = new FormData();
+                 form_data.append('file', file_data, file_data.name);
+
+                 $.ajax({
+                   type: 'post',
+                   url: '{{ path('dashboard-home') }}',
+                   data: form_data,
+                   processData: false,
+                   async: true,
+                   contentType: false,
+                   cache: false,
+                   success: function(data) {
+                     $('#ajax-results').css('background-image', 'url({{ asset('uploads/productcovers/') }}' + data.bg + ')');
+                     console.log(data.bg);
+                     $('#change-preorderbackground').one('change', clickHandler);
+                     UIkit.modal.dialog('<p class="uk-modal-body">Modificación realizada satisfactoriamente</p>');
+                   }
+                 });
+                 e.stopImmediatePropagation();
+                 return false;
+               }
+
+               $('#change-preorderbackground').one('change', clickHandler);
+
+               var timeclickHandler = function(e) {
+
+                 var horarios = $('#horarios_input').val();
+
+                 $.ajax({
+                   type: 'post',
+                   url: '{{ path('dashboard-home') }}',
+                   data: {
+                     "horarios": horarios
+                   },
+                   async: true,
+                   success: function(data) {
+                     //console.log(data.newdate);
+                     $('#horarios_inputs').val(data.newdate);
+                     UIkit.modal.dialog('<p class="uk-modal-body">Modificación realizada sastisfactoriamente.</p>');
+                   }
+                 });
+                 e.stopImmediatePropagation();
+                 return false;
+               }
+
+               $('#changedate_button').one('click', timeclickHandler);
+
+               var splashclickHandler = function(e) {
+
+                 var form = $('#splash-form');
+                 var file_data = form.find('#splashfile').get(0).files[0];
+
+                 var splash_form_data = new FormData();
+                 splash_form_data.append('splashfile', file_data, file_data.name);
+                 splash_form_data.append('splashprice', $('#splashprice').val());
+                 splash_form_data.append('splashtitle', $('#splashtitle').val());
+
+                 $.ajax({
+                   type: 'post',
+                   url: '{{ path('dashboard-home') }}',
+                   data: splash_form_data,
+                   processData: false,
+                   async: true,
+                   contentType: false,
+                   cache: false,
+                   success: function(data) {
+                     $('#splashtitle_text').text(data.splashtitle);
+                       $('#splashprice_text').text(data.splashprice);
+                       $('#splashcover').css('background-image', 'url({{ asset('uploads/productcovers/') }}' + data.splashcover + ')');
+                       UIkit.modal('#modal-section-editsplash').hide();
+                       UIkit.modal.dialog('<p class="uk-modal-body">Modificación realizada sastisfactoriamente.</p>');
+                   }
+                 });
+                 e.stopImmediatePropagation();
+                 return false;
+               }
+
+               $('#splash_button').one('click', splashclickHandler);
+
+$('.toggle-product-button').click(function(){
+
+UIkit.notification('Cambiando estado');
+$(this).addClass('uk-disabled');
+var productId = $(this).data('productid');
+
+$.ajax({
+  type: 'post',
+  url: '{{ path('dashboard-toggleproductrequest') }}',
+  dataType: "json",
+ data: {
+    "productId": productId
+  },
+  async: true,
+  success: function(data) {
+
+   if(data.isvisible){
+     $('#link-toggleproduct-' + data.id).removeClass('disabled-item uk-disabled').text('Activado');
+   }else{
+     $('#link-toggleproduct-' + data.id).addClass('disabled-item').removeClass('uk-disabled').text('Desactivado');
+   }
+
+   UIkit.notification({
+    message: 'El estado del producto ha sido cambiado',
+    status: 'success'
+});
+
+  }
+});
+return false;
+
+});
+
+$('.toggle-comment-button').click(function(){
+
+UIkit.notification('Cambiando estado');
+$(this).addClass('uk-disabled');
+var commentId = $(this).data('commentid');
+
+$.ajax({
+  type: 'post',
+  url: '{{ path('dashboard-togglecommentrequest') }}',
+  dataType: "json",
+ data: {
+    "commentId": commentId
+  },
+  async: true,
+  success: function(data) {
+
+   if(data.isvisible){
+     $('#link-togglecomment-' + data.id).removeClass('uk-disabled').text('Activado');
+   }else{
+     $('#link-togglecomment-' + data.id).removeClass('uk-disabled').text('Desactivado');
+   }
+
+   UIkit.notification({
+    message: 'El estado del producto ha sido cambiado',
+    status: 'success'
+});
+
+  }
+});
+return false;
+
+});
+
+
+
+             });
+
+
+$('.toggle-paymentmethod-button').click(function(){
+
+console.log('clicked');
+
+  var paymentMethodId = $(this).data('paymentmethodid');
+$(this).addClass('uk-disabled');
+  $.ajax({
+    type: 'post',
+    url: '{{ path('dashboard-togglepaymentmethods') }}',
+    dataType: "json",
+    data: {
+      "paymentmethodid" : paymentMethodId
+    },
+    async: true,
+    success: function(data){
+
+      if(data.isvisible){
+        $('#link-togglepaymentmethod-' + data.id).removeClass('uk-disabled disabled-item').text('Activado');
+      }else{
+        $('#link-togglepaymentmethod-' + data.id).addClass('disabled-item').removeClass('uk-disabled').text('Desactivado');
+      }
+
+    }
+  });
+});
+
+           </script>
         {% endblock %}
     </body>
 </html>

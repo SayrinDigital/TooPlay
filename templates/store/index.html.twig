@@ -24,15 +24,18 @@
       {{ include('store/newgames.html.twig', {'newgames' : newgames, 'tag': 'ESTRENO'}) }}
 
 
-
+{% if isgenrevisible %}
       <div class="jp-margin-top-bottom">
         <h1 class="title-container">Géneros</h1>
         <p class="regular-paragraph">Filtra los juegos basados en el género que te guste más.</p>
       </div>
-
+    {% endif %}
       <div uk-filter="target: .js-filter">
 
+
+         {% if isgenrevisible %}
         {{ include('store/genres.html.twig') }}
+        {% endif %}
 
         {# List of all videogames #}
 
@@ -67,6 +70,8 @@
     </div>
   </div>
 
-             {% include 'footer.html.twig' %}
+  {{ render(controller(
+  'App\\Controller\\NavigatorController::footer'
+  )) }}
 
 {% endblock %}

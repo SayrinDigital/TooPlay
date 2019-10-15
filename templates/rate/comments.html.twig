@@ -16,12 +16,12 @@
 </style>
 
 
-<div class="store-panel background-accent">
+<div class="store-panel uk-background-fixed" data-src="{{ asset('images/comment-cover.png') }}" uk-img>
 
 
   <div class="uk-container uk-container-small">
 
-    <div class="jp-margin-top-bottom">
+    <div class="jp-margin-top-bottom uk-light">
       <h1 class="title-container">Valoraciones</h1>
       <p class="regular-paragraph">Valoraciones y comentarios de nuestros clientes.</p>
     </div>
@@ -45,6 +45,7 @@
     </article></div>
 </div>
 
+
 {% endfor %}
 
 
@@ -58,6 +59,8 @@
 </div>
 
 
-{% include 'footer.html.twig' %}
+{{ render(controller(
+'App\\Controller\\NavigatorController::footer'
+)) }}
 
 {% endblock %}

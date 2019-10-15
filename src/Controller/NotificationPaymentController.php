@@ -17,15 +17,16 @@ use App\Form\VoucherType;
 class NotificationPaymentController extends AbstractController
 {
     /**
-     * @Route("/notificacion/informatupago/{details}", name="notification_payment")
+     * @Route("/notificacion/informatupago/{id}/{details}", name="notification_payment")
      */
-    public function index(Request $request, \Swift_Mailer $mailer, $details = "")
+    public function index(Request $request, \Swift_Mailer $mailer, $id = 0, $details = "")
     {
 
           $product = new Voucher();
           $form = $this->createForm(VoucherType::class, $product);
           $form->handleRequest($request);
-
+          $sessionCart = $request->getSession();
+              $currentbuyid =  $sessionCart->get('buyid');
           if ($form->isSubmitted() && $form->isValid()) {
               // $file stores the uploaded PDF file
               /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
@@ -41,6 +42,10 @@ class NotificationPaymentController extends AbstractController
 
               // updates the 'brochure' property to store the PDF file name
               // instead of its contents
+              $sessionCart = $request->getSession();
+
+
+              $product->setOrderId($id);
               $product->setBrochure($fileName);
 
               $entityManager = $this->getDoctrine()->getManager();
@@ -49,9 +54,9 @@ class NotificationPaymentController extends AbstractController
 
               $entityManager->flush();
 
-              $message = (new \Swift_Message('Notificación de Pago - TooPlay'))
+              $messagetouser = (new \Swift_Message('Notificación de Pago - TooPlay'))
                ->setFrom('joscri2698@gmail.com','Ventas')
-               ->setTo(['ventas@tooplay.cl','johanna@tooplay.cl'] )
+               ->setTo(['ventas@tooplay.cl','johanna@tooplay.cl', 'mauricio@tooplay.cl'] )
                ->setBody(
                    $this->renderView(
                        // templates/emails/registration.html.twig
@@ -60,13 +65,32 @@ class NotificationPaymentController extends AbstractController
                      ),
                      'text/html'
                  )
+                // ->attach(\Swift_Attachment::fromPath('uploads/productcovers/' . $product->getBrochure()))
 
              ;
 
+             $message = (new \Swift_Message('Confirmación De Compra - TooPlay'))
+              ->setFrom('joscri2698@gmail.com','Ventas')
+              ->setTo([$product->getMail()] )
+              ->setBody(
+                  $this->renderView(
+                      // templates/emails/registration.html.twig
+                      'emails/notification-received.html.twig',
+                      array('purchase' => $product)
+                    ),
+                    'text/html'
+                )
+               // ->attach(\Swift_Attachment::fromPath('uploads/productcovers/' . $product->getBrochure()))
+
+            ;
+
        $mailer->send($message);
+        $mailer->send($messagetouser);
        $sessionCart = $request->getSession();
        $sessionCart->get('totalproductsincart');
        $sessionCart->set('totalproductsincart', 0);
+       $sessionCart->set('buyid', "");
+       $sessionCart->set('ProductIDs', array());
 
               // ... persist the $product variable or any other work
 
@@ -74,7 +98,8 @@ class NotificationPaymentController extends AbstractController
                 'controller_name' => 'Informa Tu Pago',
                   'form' => $form->createView(),
                   'message_result' => 'enviado',
-                  'details' => $details
+                  'details' => $details,
+                  'currentbuyid' => $id
               ));
 
 
@@ -85,7 +110,8 @@ class NotificationPaymentController extends AbstractController
               'controller_name' => 'Informa Tu Pago',
                 'form' => $form->createView(),
                 'message_result' => 'fallo',
-                'details' => $details
+                'details' => $details,
+                'currentbuyid' => $id
             ));
           }
 
@@ -93,7 +119,8 @@ class NotificationPaymentController extends AbstractController
             'controller_name' => 'Informa Tu Pago',
               'form' => $form->createView(),
               'message_result' => '',
-              'details' => $details
+              'details' => $details,
+              'currentbuyid' => $id
           ));
       }
 

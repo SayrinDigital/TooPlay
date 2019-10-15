@@ -70,6 +70,21 @@ class Game
      */
     private $isvisible;
 
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $size;
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $sizeinconsole;
+
+    /**
+     * @ORM\Column(type="string", length=150, nullable=true)
+     */
+    private $console;
+
 
     public function getId(): ?int
     {
@@ -192,6 +207,42 @@ class Game
     public function setIsvisible(bool $isvisible): self
     {
         $this->isvisible = $isvisible;
+
+        return $this;
+    }
+
+    public function getSize(): ?string
+    {
+        return $this->size;
+    }
+
+    public function setSize(?string $size): self
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    public function getSizeinconsole(): ?string
+    {
+        return $this->sizeinconsole;
+    }
+
+    public function setSizeinconsole(?string $sizeinconsole): self
+    {
+        $this->sizeinconsole = $sizeinconsole;
+
+        return $this;
+    }
+
+    public function getConsole(): ?string
+    {
+        return $this->console;
+    }
+
+    public function setConsole(?string $console): self
+    {
+        $this->console = $console;
 
         return $this;
     }

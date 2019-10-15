@@ -68,17 +68,22 @@
   <div id="modal-full-{{ game.id }}" class="uk-modal-full" uk-modal="uk-modal">
     <div class="uk-modal-dialog ">
       <button class="uk-modal-close-full uk-close-large" type="button" uk-close="uk-close"></button>
-      <div class="uk-grid-collapse uk-child-width-1-2@s uk-text-center uk-flex-middle modal-game" uk-grid="uk-grid">
+      <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle modal-game" uk-grid="uk-grid">
         <div class="uk-background-cover" style="background-image: url({{ asset('uploads/productcovers/' ~ game.cover) }});" uk-height-viewport="uk-height-viewport"></div>
         <div class="uk-padding-large">
-          <h1 class="game-title">{{ game.title }}</h1>
-          {% if game.description is not null %}
-            <p class="game-description">{{ game.description }}</p>
-          {% endif %}
+          <h1 class="game-title uk-text-center">{{ game.title }}</h1>
+
+<p class="game-description"> <span class="uk-text-bold">Consola: </span> {{ game.console }} </p>
+<p class="game-description"> <span class="uk-text-bold">Peso Del Juego: </span> {{ game.size }} </p>
+            <p class="game-description"> <span class="uk-text-bold">Espacio Necesario En La Consola: </span> {{ game.sizeinconsole }} </p>
+                        <p class="game-description"><span class="uk-text-bold">Descripción: </span>  {{ game.description|nl2br }}</p>
+
+        <div class="uk-text-center">
           <a class="circular-white-button" href="{{ path('additemcart',{ 'productid' : game.id }) }}" onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> {{ game.title }} fue agregado al carro.'})">
                     <span class="uk-icon uk-margin-small-right" uk-icon="icon: plus"></span>
                     Agregar al carro <span class="uk-icon" uk-icon="icon: minus"></span>CLP ${{ game.finalprice|number_format(0) }}</a>
                     <p class="previous-price"> CLP ${{ game.originalprice|number_format(0) }}</p>
+        </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ title }}{% endblock %}
+{% block body %}
+
+<div class="uk-background-cover  uk-position-relative" uk-img>
+
+<div class="uk-section">
+  <div class="uk-container tm-container-medium">
+
+<div class="uk-flex uk-flex-center uk-flex-middle uk-text-center">
+  <div class="uk-width-xlarge">
+    <div class="service-container">
+      <h1 class="title uk-margin-remove title-anim" data-in-effect="bounceIn">Confirmación de Pago</h1>
+      <p class="content-description">
+        {% if (status == 1) or (status == 3) or (status == 4) %}
+           No se pudo completar tu compra! :(
+        {% elseif status == 2 %}
+           Recibimos tu pago satisfactoriamente. Se enviará una copia con los detalles de tu compra al correo proporcionado.
+        {% endif %}
+      </p>
+{% if (status == 2)  %}
+<p>Nos contactaremos contigo dentro de un plazo máximo de 3 horas para la entrega de tu producto.</p>
+<p>Si tienes alguna duda visita nuestras preguntas frecuentes:</p>
+<div>
+    <a href="{{ path('frequent_questions') }}" class="uk-margin circular-yellow-button">Preguntas Frecuentes</a>
+</div>
+<p>Si tienes alguna otra duda puedes consultar en el área de Soporte.</p>
+<div>
+    <a href="{{ path('technical_support') }}" class="uk-margin circular-red-button">Soporte</a>
+</div>
+{% endif %}
+   </div>
+ </div>
+</div>
+
+  </div>
+</div>
+
+<div class="uk-section">
+  <div class="uk-container tm-container-medium">
+
+    <div class="uk-card uk-margin-auto uk-border-rounded uk-card-default uk-card-body uk-width-1-2@m">
+        <div class="uk-card-badge uk-label uk-text-capitalize">{{ order.status }}</div>
+        <h3 class="uk-margin-remove">Orden N°{{ order.orderid }}</h3>
+<h3 class="uk-margin-remove pink-accent">Total: ${{ order.total|number_format(0) }} CLP</h3>
+<hr class="uk-hr">
+<div class="uk-list">
+  {% for item in resume %}
+  <li>
+    <div>
+      <h4 class="uk-margin-remove">{{ loop.index }} - {{ item.title }} - <span class="pink-accent">${{ item.finalprice|number_format(0) }} CLP</span></h4>
+      {#<p class="uk-margin-remove">{{ item.units }} unidad{% if item.units > 1 %}es{% endif %}</p>#}
+    </div>
+  </li>
+  {% endfor %}
+</div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+{% endblock %}

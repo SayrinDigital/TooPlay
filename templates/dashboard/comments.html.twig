@@ -29,7 +29,7 @@
    <tr>
        <td> {{ item.name }} </td>
        <td> {{ item.message }} </td>
-       <td> <a href="{{ path('dashboard-rate-comments-toggle', {'id': item.id}) }}"> {% if item.isvisible  == 1 %} Activado {% else %} Desactivado {% endif %} </a> </td>
+       <td> <a id="link-togglecomment-{{ item.id }}" data-commentid="{{ item.id }}"  class="toggle-comment-button" href="#"> {% if item.isvisible  == 1 %} Activado {% else %} Desactivado {% endif %} </a> </td>
    </tr>
 
 {% endfor %}

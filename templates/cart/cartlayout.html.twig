@@ -20,91 +20,83 @@
 <div class="uk-margin-medium-top uk-margin-medium-bottom">
 
 <div class="uk-text-center">
-  <p class=" uk-margin-medium-right total-price uk-width-1-1">Total: CLP ${{ totalsum|number_format(0) }}</p>
-  <a class="circular-yellow-button" href="{{ path('notification_payment', { 'details': purchase_details }) }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> Informar Pago</a>
-    <a class="circular-yellow-button" href="{{ path('webpay') }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> WebPay</a>
-  <a class="circular-red-button uk-margin-small-top" href="{{ path('clearcartshop') }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: close"></span> Anular orden</a>
-</div>
+  {% if ins_webpay.isvisible %}
+   <a class="circular-yellow-button uk-button-large uk-margin-small-top" href="#generate_order" uk-toggle><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> Pagar con WebPay</a>
+   <div id="generate_order" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-border-rounded uk-modal-body uk-margin-auto-vertical">
 
-</div>
+        <button class="uk-modal-close-default" type="button" uk-close></button>
 
-
-<div>
-
-    <div class="uk-margin-large-top ">
-      <h1 class="title-container">Selecciona tu método de pago</h1>
+        <div class="service-container">
+                <div class="uk-width-xlarge@s uk-width-1-1  uk-margin-auto">
+                          <div class="form_modal">
+                  <p>Déjanos tus datos para procesar la compra.</p>
+                  <form class="uk-grid-small" uk-grid>
+                   <div class="uk-width-1-1">
+                       <input class="uk-input uk-form-large" id="sale_name" type="text" placeholder="Nombre Completo">
+                   </div>
+                   <div class="uk-width-1-2@s">
+                       <input class="uk-input uk-form-large" id="sale_phone" type="text" placeholder="Teléfono">
+                   </div>
+                   <div class="uk-width-1-2@s">
+                       <input class="uk-input uk-form-large" id="sale_mail" type="text" placeholder="Correo">
+                   </div>
+                                 <div class="uk-margin-medium-top">
+                        <a id="store-checkout" class="circular-yellow-button">Adelante</a>
+                        <div id="loader" class="uk-hidden uk-margin-small-left" uk-spinner></div>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
     </div>
-
-    <ul class="uk-child-width-1-4@s uk-margin-small-bottom uk-margin-small-top" uk-grid uk-switcher>
-
-<div >
-  <div ><li ><a href=""><div class="uk-card payment-card uk-card-default uk-card-body uk-background-contain" style="background-image: url(https://www.aguasdelaltiplano.cl/recursos-ada/img/pague8.jpg);"></div></a></li></div>
 </div>
-<div>
-  <div class="payment_card">    <li >
-        <a href=""><div class="uk-card payment-card uk-card-default uk-card-body uk-background-contain" style="background-image: url(https://www.citywidehomeloans.com/wp-content/uploads/2016/10/Ways-to-Get-a-Lower-Monthly-Payment-Part-1.jpg);"></div></a>
-      </li></div>
-</div>
-<div>
-  <div class="payment_card">
-        <li >
-          <a href=""><div class="uk-card payment-card uk-card-default uk-card-body uk-background-contain" style="background-image: url(https://www.asesora2.cl/servicios/45-large_default/instalar-webpay-plus.jpg);"></div></a>
-        </li></div>
-</div>
-<div>
-  <div class="payment_card">    <li >
-        <a href=""><div class="uk-card payment-card uk-card-default uk-card-body uk-background-contain" style="background-image: url(http://instagramnyc.com/images/PayPal-Logo-rcm992x0.jpg);"></div></a>
-      </li></div>
-</div>
+<div id="checkout-modal" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-border-rounded uk-margin-auto-vertical">
 
+        <button class="uk-modal-close-default" type="button" uk-close></button>
 
-
-
-  </ul>
-
-  <ul class="uk-switcher payment-information-container">
-      <li>
-        <div class="uk-width-1-1 border-default uk-card uk-card-body uk-card-default">
-             <h4 class="title">Instrucciones Caja Vecina</h4>
-<div>
-  <pre class="jp-border-remove">{{ ins_cajavecina.instructions }}</pre>
-</div>
+        <div class="uk-child-width-1-2@s uk-flex uk-flex-middle" uk-grid>
+          <div>
+            <img class="uk-border-rounded" src="https://cdn.dribbble.com/users/400493/screenshots/2942562/krue_stickets_set02_ae_01.gif" alt="">
+          </div>
+          <div>
+            <div class="uk-text-center">
+              {#<div>
+                <h3 class="uk-margin-remove">Orden de Compra</h3>
+                <p class="uk-margin-remove">Nro° {{ app.session.get('buyid') }}</p>
+              </div>#}
+              <div>
+                <h3>Total: $<span class="title-b" id="totaltopay"></span> CLP </h3>
+              </div>
+              <div>
+                <a href="{{ path('store-checkout-flow', { "id" : app.session.get('buyid') }) }}" class="circular-yellow-button">Ir a WebPay</a>
+              </div>
+            </div>
+          </div>
         </div>
-      </li>
 
-      <li>
-        <div class="uk-width-1-1 border-default uk-card uk-card-body uk-card-default">
-             <h4 class="title">Instrucciones Transferencia Electrónica</h4>
-             <div>
-               <pre class="jp-border-remove">{{ ins_transferencia.instructions }}</pre>
-             </div>
-        </div>
-      </li>
-
-      <li>
-        <div class="uk-width-1-1 border-default uk-card uk-card-body uk-card-default">
-             <h4 class="title">Instrucciones WebPay</h4>
-             <div>
-               <pre class="jp-border-remove">{{ ins_webpay.instructions }}</pre>
-             </div>
-        </div>
-      </li>
-
-      <li>
-        <div class="uk-width-1-1 border-default uk-card uk-card-body uk-card-default">
-             <h4 class="title">Instrucciones PayPal</h4>
-             <div>
-               <pre class="jp-border-remove">{{ ins_paypal.instructions }}</pre>
-             </div>
-        </div>
-      </li>
-  </ul>
+    </div>
+</div>
+ {#<a class="circular-red-button uk-button-large uk-margin-small-top" target="_blank" href="{{ path('webpay', { "id" : currentbuyid, "total": totalsum, "details" : purchase_details }) }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> Pagar con WebPay</a>#}
+   {% endif %}
+  <a class="circular-red-button uk-margin-small-top uk-button-large" href="{{ path('clearcartshop') }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: close"></span> Anular orden</a>
+</div>
 
 </div>
+
+<div class="uk-margin-medium-top uk-text-center uk-margin-medium-bottom">
+      <h1 style="" class="title-container">Orden N° {{  currentbuyid }}</h1>
+  <h1 class="title-container">Total: CLP ${{ totalsum|number_format(0) }}</h1>
+
+</div>
+
+
+
 
 {% else %}
 
-<div class="uk-height-viewport">
+<div class="">
   <div class="uk-container">
     <div class="jp-margin-top-bottom">
       <h1 class="title-container">El carro de compras se encuentra vacío.</h1>
@@ -115,10 +107,79 @@
 
 {% endif %}
 
+<div>
+
+    <div class="uk-margin-large-top ">
+      <h1 class="title-container">Otros Métodos de Pago</h1>
+    </div>
+
+    <ul  uk-accordion>
+
+        <li class="uk-card uk-card-body uk-card-default">
+            <a class="uk-accordion-title" href="#"><img style="max-height: 100px;" src="{{ asset('images/cajavecina.jpg') }}" alt=""></a>
+            <div class="uk-accordion-content">
+                <p><pre>{{ ins_cajavecina.instructions }}</pre></p>
+                  <div class="">
+                    <a class="circular-yellow-button" href="{{ path('notification_payment', { "id" : currentbuyid, 'details': purchase_details }) }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> Informar Pago</a>
+                  </div>
+                <div class="uk-text-center">
+                  <img style="min-height: 100px; max-height: 300px;" src="{{ 'uploads/productcovers/' ~ ins_cajavecina.voucherexample }}"  alt="">
+                </div>
+            </div>
+        </li>
+
+        <li class="uk-card uk-card-body uk-card-default">
+            <a class="uk-accordion-title" href="#"><img style="max-height: 60px;" src="{{ asset('images/transferencia-bancaria-oto.png') }}" alt=""></a>
+            <div class="uk-accordion-content">
+                <p><pre>{{ ins_transferencia.instructions }}</pre></p>
+                  <a class="circular-yellow-button" href="{{ path('notification_payment', { "id" : currentbuyid, 'details': purchase_details }) }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: credit-card"></span> Informar Pago</a>
+                <div class="uk-text-center">
+                  <img style="min-height: 100px; max-height: 300px;" src="{{ 'uploads/productcovers/' ~ ins_transferencia.voucherexample }}"  alt="">
+                </div>
+            </div>
+        </li>
+
+{% if ins_webpay.isvisible %}
+
+        <li class="uk-card uk-card-body uk-card-default">
+            <a class="uk-accordion-title" href="#"><img style="max-height: 100px;" src="https://www.brouter.cl/wp-content/uploads/2017/07/WEB-PAY-BLANCO-AD.jpg" alt=""></a>
+            <div class="uk-accordion-content">
+                <p><pre>{{ ins_webpay.instructions }}</pre></p>
+                <div class="uk-text-center">
+                  <img style="min-height: 100px; max-height: 300px;" src="{{ 'uploads/productcovers/' ~ ins_webpay.voucherexample }}"  alt="">
+                </div>
+            </div>
+        </li>
+
+        {% endif %}
+
+        {#<li>
+            <a class="uk-accordion-title" href="#"><img style="max-height: 100px;" src="https://fidoalliance.org/wp-content/uploads/paypal_2014_logo_detail.png" alt=""></a>
+            <div class="uk-accordion-content">
+                <p><pre>{{ ins_paypal.instructions }}</pre></p>
+                <div class="uk-text-center">
+                  <img style="min-height: 100px; max-height: 300px;" src="{{ 'uploads/productcovers/' ~ ins_paypal.voucherexample }}"  alt="">
+                </div>
+            </div>
+        </li>#}
+
+    </ul>
+
+</div>
+
 
 </div>
 </div>
-{% include 'footer.html.twig' %}
+{{ render(controller(
+'App\\Controller\\NavigatorController::footer'
+)) }}
+
+
+<script>
+
+
+
+</script>
 
 
 {% endblock %}

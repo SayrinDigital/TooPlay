@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\ClientRate;
 
 class RateController extends Controller
@@ -103,5 +104,32 @@ return $this->redirect($this->generateUrl('home'));
      return $this->redirect($this->generateUrl('dashboard-rate-comments'));
 
    }
+
+   /**
+   *@Route("panel/valoracion/toggle", name="dashboard-togglecommentrequest")
+   */
+     public function toggleCommentRequest(Request $request){
+
+       if($rateId = $request->request->get('commentId')){
+             //make something curious, get some unbelieveable data
+
+             $entityManager = $this->getDoctrine()->getManager();
+             $rate = $entityManager->getRepository(ClientRate::class)->findOneById($rateId);
+             $isvisible = ((bool) $rate->getisvisible() ? 0 : 1);
+             $arrData = array('id' => $rateId,'isvisible' => $isvisible);
+
+             $rate->setIsVisible($isvisible);
+
+             $entityManager->persist($rate);
+
+             $entityManager->flush();
+
+
+             return new JsonResponse($arrData);
+         }
+
+       return $this->redirect($this->generateUrl('dashboard-home'));
+
+     }
 
 }

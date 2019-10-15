@@ -88,6 +88,10 @@ $icon-color: #fff;
   transition: all 150ms ease-in-out;
 }
 
+#tawkchat-minified-wrapper{
+  display: none;
+}
+
 #mainnav{
   background: #fff;
   border-bottom: 1px solid rgba(0,0,0,0.06);
@@ -972,6 +976,13 @@ p{
   height: calc(100vh - 81px);
 }
 
+.form_modal{
+  .uk-input{
+    font-size: 15px;
+    border-radius: 10px;
+  }
+}
+
 .jp-border-remove{
   border: 0;
   @extend %regular-size-font;
@@ -1034,9 +1045,15 @@ p{
 }
 
 
+  .whatsapp-icon{
+          background-color: #25D366!important;
+    a{
+      color: #fff;
+    }
+  }
 
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 800px) {
 
     .jp-collapse-tablet{
       display: none;
@@ -1073,6 +1090,7 @@ p{
   .jp-display-mobile{
     display: inline-block;
   }
+
 
   .social-mobile-container{
 

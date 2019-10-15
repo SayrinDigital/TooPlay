@@ -11,6 +11,7 @@ use App\Entity\Configuration;
 use App\Entity\PaymentInstructions;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Form\GameType;
@@ -32,15 +33,13 @@ class DashboardController extends AbstractController
        ->findBy( ['Target' => 'WeekendOffer'] );
 
        $splash = $repository
-       ->findBy( ['Target' => 'splashoffer'], ['id' => 'ASC']);
+       ->findOneBy( ['Target' => 'splashoffer']);
 
        $preorderbackground = $configrepository
        ->findOneBy(['name' => 'preorder_background']);
 
-       $splash = array_values($splash);
-       $quantity = count($splash) - 1;
-       $finalsplash = $splash[$quantity];
-
+       $horarios = $configrepository
+       ->findOneBy(['name' => 'horarios']);
 
        $menurepository = $this->getDoctrine()->getRepository(Menu::class);
        $splashcontainer = $menurepository
@@ -48,9 +47,7 @@ class DashboardController extends AbstractController
 
        //Preorder Banner
 
-       if ($request->isXMLHttpRequest()) {
-
-      $file = $request->files->get('file');
+       if ($file = $request->files->get('file')) {
       $fileName = md5(uniqid()).'.'.$file->guessExtension();
       $file->move(
           $this->getParameter('productcovers_directory'),
@@ -65,13 +62,51 @@ class DashboardController extends AbstractController
        return new JsonResponse(array('bg' => $fileName));
   }
 
+
+        if($newtime = $request->request->get('horarios')){
+
+        $horarios->setValue($newtime);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($horarios);
+        $entityManager->flush();
+
+         return new JsonResponse(array('newdate' => 'owo' . $newtime));
+        }
+
+        if($splashfile = $request->files->get('splashfile')){
+           $splashtitle = $request->get('splashtitle');
+           $splashprice = $request->get('splashprice');
+
+           $splashfileName = md5(uniqid()).'.'.$splashfile->guessExtension();
+           $splashfile->move(
+               $this->getParameter('productcovers_directory'),
+               $splashfileName
+           );
+
+           $splash->setCover($splashfileName);
+           $splash->setOriginalPrice($splashprice);
+           $splash->setFinalPrice($splashprice);
+           $splash->setTitle($splashtitle);
+
+           $entityManager = $this->getDoctrine()->getManager();
+           $entityManager->persist($splash);
+           $entityManager->flush();
+
+         return new JsonResponse(array(
+           'splashtitle' => $splashtitle,
+           'splashprice' => $splashprice,
+           'splashcover' => $splashfileName
+         ));
+        }
+
         return $this->render('dashboard/home.html.twig', [
             'controller_name' => 'Panel de Administración - TooPlay',
             'highlightproducts' => $highlightgames,
             'weekendofferproducts' => $weekendoffergames,
-            'finalsplash' => $finalsplash,
+            'finalsplash' => $splash,
             'splashcontainer' => $splashcontainer,
-            'preorderbackground' => $preorderbackground
+            'preorderbackground' => $preorderbackground,
+            'workdates' => $horarios,
         ]);
 
     }
@@ -131,9 +166,9 @@ class DashboardController extends AbstractController
           $dailyoffers = $repository
           ->findBy( ['Target' => 'dailyoffer'] );
           $psfouroffers = $repository
-          ->findBy( ['Target' => 'offerps4'] );
+          ->findBy( ['Target' => 'ps4offer'] );
           $psthreeoffers = $repository
-          ->findBy( ['Target' => 'offerps3'] );
+          ->findBy( ['Target' => 'ps3offer'] );
 
           $menurepository = $this->getDoctrine()->getRepository(Menu::class);
           $dailyofferscontainer = $menurepository
@@ -153,6 +188,28 @@ class DashboardController extends AbstractController
                 'dailyofferscontainer' => $dailyofferscontainer,
                 'psfourofferscontainer' => $psfourofferscontainer,
                 'psthreeofferscontainer' => $psthreeofferscontainer
+            ]);
+        }
+
+        /**
+         * @Route("/panel/tienda/fortnite", name="dashboard-store-fortnite")
+         */
+        public function fortnitedashboard(Request $request)
+        {
+
+         $menurepository = $this->getDoctrine()->getRepository(Menu::class);
+         $container = $menurepository->findOneBy([ 'name' => 'store-fortnite' ]);
+
+          $repository = $this->getDoctrine()->getRepository(Game::class);
+          $products = $repository
+          ->findBy( ['Target' => 'store-fortnite'] );
+
+            return $this->render('dashboard/storeproducts.html.twig', [
+                'controller_name' => 'Panel de Administración - Fortnite - TooPlay',
+                'section' => 'Tienda',
+                'target' => 'Fortnite',
+                'products' => $products,
+                'container' => $container,
             ]);
         }
 
@@ -619,6 +676,32 @@ class DashboardController extends AbstractController
         }
 
         /**
+        * @Route("panel/metodos-de-pago/toggle", name="dashboard-togglepaymentmethods")
+        */
+        public function togglepaymentmethodsdashboard(Request $request){
+
+        if($paymentmethodId = $request->request->get('paymentmethodid')){
+                 $instructionsrepository = $this->getDoctrine()->getRepository(PaymentInstructions::class);
+                 $paymentMethod = $instructionsrepository->findOneById($paymentmethodId);
+
+                 $isvisible = ((bool) $paymentMethod->getisvisible() ? 0 : 1);
+
+                 $paymentMethod->setIsVisible($isvisible);
+                 $entityManager = $this->getDoctrine()->getManager();
+                 $entityManager->persist($paymentMethod);
+                 $entityManager->flush();
+
+
+                 return new JsonResponse( array(
+                      'id' => $paymentmethodId,
+                      'isvisible' => $isvisible
+                 ));
+
+        }
+
+        }
+
+        /**
         * @Route("panel/metodos-de-pago/editar/{id}", name="dashboard-paymentmethods-edit")
         */
 
@@ -628,6 +711,7 @@ class DashboardController extends AbstractController
 
           $form = $this->createFormBuilder($instructions)
           ->add('instructions', TextareaType::class)
+          ->add('voucherexample', FileType::class, array('data_class' => null))
           ->add('save', SubmitType::class, array('label' => 'Guardar'))
            ->getForm();
 
@@ -635,7 +719,20 @@ class DashboardController extends AbstractController
 
            if ($form->isSubmitted() && $form->isValid()) {
 
-             $instructions = $form->getData();
+             $file = $form->get('voucherexample')->getData();
+
+
+             if($file!=null){
+               $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+               $file->move(
+                   $this->getParameter('productcovers_directory'),
+                   $fileName
+               );
+
+               $instructions->setVoucherexample($fileName);
+             }
+
+
              $entityManager = $this->getDoctrine()->getManager();
              $entityManager->persist($instructions);
              $entityManager->flush();

@@ -26,7 +26,7 @@ class OffersController extends AbstractController
       ->findBy(['Target' => 'ps4offer']);
 
       $psthreeofferproducts = $repository
-      ->findBy(['Target' => 'ps3ffer']);
+      ->findBy(['Target' => 'ps3offer']);
 
 
         return $this->render('offers/index.html.twig', [

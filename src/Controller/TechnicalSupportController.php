@@ -37,7 +37,7 @@ class TechnicalSupportController extends AbstractController
 
        $message = (new \Swift_Message('Soporte Técnico - TooPlay'))
         ->setFrom('mauricio@tooplay.cl','Soporte')
-        ->setTo(['soporte@gmail.com', 'josepuma@sayrin.cl'])
+        ->setTo(['soporte@tooplay.cl', 'mauricio@tooplay.cl'])
         ->setBody(
             $this->renderView(
                 // templates/emails/registration.html.twig

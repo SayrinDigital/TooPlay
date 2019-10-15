@@ -1,0 +1,46 @@
+{# templates/emails/support.html.twig #}
+
+<style>
+
+html, body, html *, body *{
+       font-family: 'Poppins', sans-serif;
+}
+
+h3{
+  font-weight: 800;
+  color: #000;
+}
+
+    p{
+          color: #999;
+    }
+
+ul.client>li{
+    list-style-type: circle;
+}
+
+</style>
+
+<h3>TooPlay</h3>
+
+<img src="https://www.tooplay.cl/images/logo-web.svg" alt="Tooplay.cl">
+
+<p>Hola {{ purchase.name }} !</p>
+
+<ul class="client">
+  <li><p>Te informamos que tu notificación de pago la recibimos con éxito!</p></li>
+  <li><p>Nos contactaremos contigo dentro de un plazo máximo de 3 horas para la entrega de tu producto!</p></li>
+  <li>
+    <p>Nuestro horario de entrega y atención de clientes es de llas 11:00 a.m. a 23:00 p.m.</p>
+  </li>
+  <li><p>Si tienes más consultas puedes revisar <a href="https://www.tooplay.cl/preguntas/frecuentes">Nuestras Frecuentas Frecuentes</a></p></li>
+  <li><p>Si tienes alguna consulta que no aparezca ahí puedes consultarla en <a href="https://www.tooplay.cl/preguntas/frecuentes">Soporte</a></p></li>
+  <li><p>Rogamos no responder este correo electrónico. Generado automáticamente para informar su pago.</p></li>
+</ul>
+
+<p>Saludos Cordiales!</p>
+<p>ATTE</p>
+<p>Tooplay.cl</p>
+
+{# example, assuming you have a route named "login" #}
+ <a href="https://www.tooplay.cl">www.tooplay.cl</a>

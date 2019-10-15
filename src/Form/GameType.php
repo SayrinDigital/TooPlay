@@ -55,12 +55,12 @@ class GameType extends AbstractType{
 
 'Inicio' => array(
   'Destacados' => 'highlight',
-  'Ofertas de la Semana' => 'weekendoffer',
-  'Splash' => 'splashoffer'
+  'Ofertas de la Semana' => 'weekendoffer'
 ),
 
 'Tienda' => array(
   'PlayStation' => array(
+             'Fornite' => 'store-fortnite',
              'PreOrden' => 'po_playstation',
              'Juegos PS3' => 'juegos_ps3',
              'Packs PS3' => 'pack_ps3',
@@ -104,6 +104,9 @@ class GameType extends AbstractType{
 
 )))
          ->add('description', TextareaType::class)
+         ->add('size', TextareaType::class)
+         ->add('sizeinconsole', TextareaType::class)
+         ->add('console', TextareaType::class)
          ->add('cover', FileType::class, array('label' => 'Portada (Imagen Jpg o Png)', 'required' => false))
          ->add('save', SubmitType::class, array('label'=> 'Guardar'));
 

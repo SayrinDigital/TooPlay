@@ -119,7 +119,7 @@ class ProductExtraController extends AbstractController
       ->findBy( ['Target' => 'gf_psn'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
-            'controller_name' => 'Gift Card iTunes',
+            'controller_name' => 'Gift Card PSN',
             'cards' => $products
         ]);
     }
@@ -135,7 +135,7 @@ class ProductExtraController extends AbstractController
       ->findBy( ['Target' => 'gf_amazon'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
-            'controller_name' => 'Gift Card iTunes',
+            'controller_name' => 'Gift Card Amazon',
             'cards' => $products
         ]);
     }
@@ -151,7 +151,7 @@ class ProductExtraController extends AbstractController
       ->findBy( ['Target' => 'gf_paypal'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
-            'controller_name' => 'Gift Card iTunes',
+            'controller_name' => 'Gift Card Paypal',
             'cards' => $products
         ]);
     }
@@ -167,7 +167,7 @@ class ProductExtraController extends AbstractController
       ->findBy( ['Target' => 'gf_xbox'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
-            'controller_name' => 'Gift Card iTunes',
+            'controller_name' => 'Gift Card XBOX',
             'cards' => $products
         ]);
     }
@@ -183,7 +183,7 @@ class ProductExtraController extends AbstractController
       ->findBy( ['Target' => 'gf_nintendoeshop'],['id' => 'DESC'] );
 
         return $this->render('product_extra/index.html.twig', [
-            'controller_name' => 'Gift Card iTunes',
+            'controller_name' => 'Gift Card Nintendo EShop',
             'cards' => $products
         ]);
     }

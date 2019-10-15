@@ -20,12 +20,17 @@
           {% else %}
             <a class=" button-style-a disabled-item" href="{{ path('tooglemenu', {'id': splashcontainer.id} ) }}">Desactivado</a>
           {% endif %}
+          <p class="product-description uk-display-inline">
+            <a href="#modal-section-editsplash" uk-toggle style="border: 1px solid rgba(0,0,0,0.08); color: #999; border-radius: 5px; padding: 5px 10px;">
+              Editar
+            </a>
+          </p>
         </div>
 
         <div class="uk-grid-match uk-flex uk-flex-middle uk-margin-medium-top uk-margin-medium-bottom uk-child-width-1-1 uk-child-width-1-2@s splash" uk-grid="uk-grid">
 
           <div>
-            <div class="cover uk-background-cover uk-height-medium uk-position-relative" style="background-image: url({{ asset('uploads/productcovers/' ~ finalsplash.cover) }});">
+            <div id="splashcover" class="cover uk-background-cover uk-height-medium uk-position-relative" style="background-image: url({{ asset('uploads/productcovers/' ~ finalsplash.cover) }});">
 
               <div class="tag uk-position-bottom-right uk-margin-small-bottom uk-margin-small-right">
                 <p>Destacado</p>
@@ -38,14 +43,8 @@
             <div class="description">
               <h4>Promoción del Día</h4>
               <p>Splash mostrado cuando se apertura su sitio web catalogado como la promoción del día.</p>
-              <p>
-                <span class="uk-icon uk-margin-small-right" uk-icon="icon: tag"></span>{{ finalsplash.title }}</p>
-              <p class="jp-text-strike">
-                <span class="uk-icon uk-margin-small-right" uk-icon="icon: hashtag"></span>CLP ${{ finalsplash.originalprice|number_format(0) }}</p>
-              <p>
-                <span class="uk-icon uk-margin-small-right uk-text-strike" uk-icon="icon: hashtag"></span>CLP ${{ finalsplash.finalprice|number_format(0) }}</p>
-              <p>
-                <span class="uk-icon uk-margin-small-right" uk-icon="icon: minus"></span>{{ finalsplash.discountpercentage }}%</p>
+              <p><span class="uk-icon uk-margin-small-right" uk-icon="icon: tag"></span><span id="splashtitle_text">{{ finalsplash.title }}</span></p>
+              <p>  <span class="uk-icon uk-margin-small-right uk-text-strike" uk-icon="icon: hashtag"></span><span id="splashprice_text">CLP ${{ finalsplash.finalprice|number_format(0) }}</span></p>
             </div>
           </div>
 
@@ -61,8 +60,8 @@
               <form action="{{ (path('dashboard-home')) }}" method="POST">
                 <div class="uk-margin">
                   <div uk-form-custom="uk-form-custom">
-                    <input class="ajax" type="file">
-                    <span  style="background: #fff; box-shadow: 0px 10px 20px rgba(0,0,0,0.09); border-radius: 500px; padding: 15px;" >Cambiar portada</span>
+                    <input id="change-preorderbackground" type="file">
+                    <span style="background: #fff; box-shadow: 0px 10px 20px rgba(0,0,0,0.09); border-radius: 500px; padding: 15px;">Cambiar portada</span>
                   </div>
                 </div>
               </form>
@@ -93,61 +92,57 @@
 
         {{ include('dashboard/productslayout.html.twig', {'maintag': 'Destacados', 'products': weekendofferproducts}) }}
 
-
         <h6 class="admin-title">Inicio</h6>
         <h1 class="admin-title-section">Horarios de Atención</h1>
 
-        <form class="uk-grid-small uk-margin-medium-bottom uk-margin-small-top" uk-grid>
-            <div class="uk-width-1-1">
-                <input class="uk-input" type="text" placeholder="100">
-            </div>
-            <div class="uk-text-right">
-              <button class="button-style-a uk-button" style="padding: 0px 20px;">Guardar</button>
-            </div>
+        <form class="uk-grid-small uk-margin-medium-bottom uk-margin-small-top" action="{{ (path('dashboard-home')) }}" method="POST" uk-grid="uk-grid">
+          <div class="uk-width-1-1">
+            <input id="horarios_input" class="uk-input" type="text" value="{{ workdates.value }}" placeholder="LUNES A VIERNES">
+          </div>
+          <div class="uk-text-right">
+            <button id="changedate_button" class="button-style-a uk-button" style="padding: 0px 20px;">Guardar</button>
+          </div>
         </form>
 
       </div>
 
     </div>
 
+    {# SPLASH MODIFIER #}
+
+    <div id="modal-section-editsplash" uk-modal="uk-modal">
+      <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close="uk-close"></button>
+        <form id="splash-form" action="{{ (path('dashboard-home')) }}" method="POST">
+
+          <div class="uk-modal-header">
+            <h2 class="uk-modal-title">Modificación Splash</h2>
+          </div>
+          <div class="uk-modal-body">
+
+            <div class="uk-margin">
+              <input id="splashtitle" value="{{ finalsplash.title }}" class="uk-input" type="text" placeholder="Titulo (Producto Estreno)" required>
+            </div>
+
+            <div class="uk-margin">
+              <input id="splashprice"  value="{{ finalsplash.finalprice }}" class="uk-input" type="text" placeholder="Precio (12990)" required>
+            </div>
+
+            <div class="uk-margin" uk-margin="uk-margin">
+              <div uk-form-custom="target: true" class="uk-width-1-1">
+                <input id="splashfile" type="file" required>
+                <input class="uk-input uk-width-1-1 uk-form-width-1-1" type="text" placeholder="Seleccionar imagen" disabled="disabled">
+              </div>
+            </div>
+          </div>
+          <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+            <button id="splash_button" class="uk-button uk-button-primary" type="button">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
   </div>
-
-  {% block javascripts %}
-
-    {{ parent() }}
-
-    <script type="application/javascript">
-
-      $(document).ready(function() {
-          var clickHandler = function(e) {
-
-            var file_data = $(this).get(0).files[0];
-            console.log(file_data);
-            var form_data = new FormData();
-            form_data.append('file', file_data, file_data.name);
-
-            $.ajax({
-              type: 'post',
-              url: '{{ path('dashboard-home') }}',
-              data: form_data,
-              processData: false,
-              async: true,
-              contentType: false,
-              cache: false,
-              success: function(data) {
-                $('#ajax-results').css('background-image', 'url({{ asset('uploads/productcovers/') }}' + data.bg + ')');
-                console.log(data.bg);
-                $('.ajax').one('change', clickHandler);
-              }
-            });
-            e.stopImmediatePropagation();
-    return false;
-          }
-
-          $('.ajax').one('change', clickHandler);
-      });
-    </script>
-
-  {% endblock %}
 
 {% endblock %}

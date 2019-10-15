@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Game;
 use App\Form\GameType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DashboardProductController extends AbstractController
 {
@@ -61,7 +62,6 @@ class DashboardProductController extends AbstractController
 
       $product = new Game();
 
-
       $entityManager = $this->getDoctrine()->getManager();
           $producttomodify = $entityManager->getRepository(Game::class)->find($id);
       $form = $this->createForm(GameType::class, $product);
@@ -73,6 +73,9 @@ class DashboardProductController extends AbstractController
       $form->get('finalprice')->setData($producttomodify->getFinalPrice());
       $form->get('genre')->setData($producttomodify->getGenre());
       $form->get('description')->setData($producttomodify->getDescription());
+      $form->get('console')->setData($producttomodify->getconsole());
+      $form->get('size')->setData($producttomodify->getsize());
+      $form->get('sizeinconsole')->setData($producttomodify->getsizeinconsole());
       $form->handleRequest($request);
 
 
@@ -98,6 +101,10 @@ class DashboardProductController extends AbstractController
           $producttomodify->setFinalPrice($form->get('finalprice')->getData());
           $producttomodify->setGenre($form->get('genre')->getData());
           $producttomodify->setDescription($form->get('description')->getData());
+          $producttomodify->setSize($form->get('size')->getData());
+          $producttomodify->setConsole($form->get('console')->getData());
+          $producttomodify->setSizeinconsole($form->get('sizeinconsole')->getData());
+          $producttomodify->setDiscountPercentage($this->generateDiscountPercentage($producttomodify));
 
           $entityManager->flush();
 
@@ -130,6 +137,40 @@ class DashboardProductController extends AbstractController
 
     }
 
+    /**
+     * @Route("/panel/buscar-producto/{id}", name="dashboard-searchproduct")
+     */
+    public function searchProduct($id)
+    {
+
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $product = $entityManager->getRepository(Game::class)->findOneById($id);
+
+
+                    return $this->render('dashboard/product.html.twig', [
+                       'controller_name' => 'Búsqueda de Producto',
+                       'product' => $product
+                    ]);
+
+    }
+
+    /**
+     * @Route("/panel/buscar-producto-nombre/{name}", name="dashboard-searchproduct")
+     */
+    public function searchProductByName($name)
+    {
+
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $products = $entityManager->getRepository(Game::class)->findByTitlePart($name);
+
+
+                    return $this->render('dashboard/listproduct.html.twig', [
+                       'controller_name' => 'Búsqueda de Producto',
+                       'products' => $products
+                    ]);
+
+    }
+
   /**
   *@Route("panel/producto/ocultar/{id}", name="dashboard-toggleproduct")
   */
@@ -150,6 +191,35 @@ class DashboardProductController extends AbstractController
 
   }
 
+  /**
+  *@Route("panel/producto/toggle", name="dashboard-toggleproductrequest")
+  */
+    public function toggleProductRequest(Request $request){
+
+      if($productId = $request->request->get('productId')){
+            //make something curious, get some unbelieveable data
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $product = $entityManager->getRepository(Game::class)->findOneById($productId);
+            $isvisible = ((bool) $product->getisvisible() ? 0 : 1);
+            $arrData = array('id' => $productId,'isvisible' => $isvisible);
+
+            $product->setIsVisible($isvisible);
+
+            $entityManager->persist($product);
+
+            $entityManager->flush();
+
+
+            return new JsonResponse($arrData);
+        }
+
+      return $this->redirect($this->generateUrl('dashboard-home'));
+
+    }
+
+  
+
 
     /**
      * @return string
@@ -166,7 +236,7 @@ class DashboardProductController extends AbstractController
      */
     private function generateDiscountPercentage($product)
     {
-        return (100 - ($product->getFinalPrice() * 100) / $product->getOriginalPrice());
+        return (100 - (($product->getFinalPrice() * 100) / $product->getOriginalPrice()));
     }
 
   }

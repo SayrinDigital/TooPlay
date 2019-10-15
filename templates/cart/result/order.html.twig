@@ -1,0 +1,28 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block title %}{{ title }}{% endblock %}
+{% block body %}
+
+<div class="uk-section">
+
+  <div class="uk-section">
+    <div class="uk-container tm-container-medium">
+
+      <div class="uk-margin-auto uk-card uk-border-rounded uk-card-default uk-card-body">
+          <div class="uk-card-badge uk-label uk-text-capitalize">{{ order.status }}</div>
+          <h3 class="uk-margin-remove">Orden N°{{ order.orderid }}</h3>
+  <h3 class="uk-margin-remove pink-accent">Total: ${{ order.total|number_format(0) }} CLP</h3>
+  <hr class="uk-hr">
+  {{ include('dashboard/productslayout.html.twig', {'maintag': 'Productos', 'products': resume}) }}
+
+  <hr class="uk-hr">
+  <h3 class="uk-margin-remove">Cliente: {{ order.clientname }}</h3>
+  <h4 class="uk-margin-remove pink-accent">Email: {{ order.clientmail }} </h4>
+  <h4 class="uk-margin-remove">Teléfono: {{ order.clientphone }} </h4>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

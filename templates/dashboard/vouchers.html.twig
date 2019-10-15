@@ -17,6 +17,7 @@
     <table class="uk-table uk-table-hover uk-table-middle uk-table-divider voucher-table">
     <thead>
         <tr>
+            <th>Orden de Compra</th>
             <th>Nombre</th>
             <th>Correo</th>
             <th>Teléfono</th>
@@ -29,6 +30,7 @@
 {% for item in vouchers %}
 
    <tr>
+     <td> {{ item.orderid }} </td>
        <td> {{ item.name }} </td>
        <td> {{ item.mail }} </td>
        <td> {{ item.phone }} </td>

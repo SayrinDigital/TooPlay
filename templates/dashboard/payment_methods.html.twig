@@ -33,6 +33,7 @@ ul.uk-subnav>li>a{
             <pre>{{ ins_cajavecina.instructions }}</pre>
         </div>
         <a href="{{ path('dashboard-paymentmethods-edit', { 'id' : ins_cajavecina.id }) }}">EDITAR</a>
+
 </li>
     <li><div class="uk-margin">
             <pre>{{ ins_transferencia.instructions }}</pre>
@@ -43,13 +44,21 @@ ul.uk-subnav>li>a{
     <li><div class="uk-margin">
             <pre>{{ ins_webpay.instructions }}</pre>
         </div>
-        <a href="{{ path('dashboard-paymentmethods-edit', { 'id' : ins_webpay.id }) }}">EDITAR</a>
+        <a class="uk-margin-medium-right" href="{{ path('dashboard-paymentmethods-edit', { 'id' : ins_webpay.id }) }}">EDITAR</a>
+        <a id="link-togglepaymentmethod-{{ ins_webpay.id }}" data-paymentmethodid="{{ ins_webpay.id }}" class="uk-button toggle-paymentmethod-button button-style-a {% if ins_webpay.isvisible == false %} disabled-item {% endif %}" style="padding: 0 30px;">
+          {% if ins_webpay.isvisible %}
+            Activado
+            {% else %}
+            Desactivado
+            {% endif %}
+        </a>
 </li>
 </li>
 <li><div class="uk-margin">
         <pre>{{ ins_paypal.instructions }}</pre>
     </div>
     <a href="{{ path('dashboard-paymentmethods-edit', { 'id' : ins_paypal.id }) }}">EDITAR</a>
+
 </li>
 </li>
 </ul>

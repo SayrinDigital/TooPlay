@@ -29,6 +29,17 @@ class GameRepository extends ServiceEntityRepository
        return $qb->execute();
 }
 
+public function findByGenre($target, $category): array
+{
+$qb = $this->createQueryBuilder('a')
+       ->where('a.Target = :target')
+       ->andWhere('a.Genre LIKE :category')
+       ->setParameters(['target'=> $target, 'category'=> '%'.$category.'%'])
+       ->getQuery();
+
+   return $qb->execute();
+}
+
 //    /**
 //     * @return Game[] Returns an array of Game objects
 //     */

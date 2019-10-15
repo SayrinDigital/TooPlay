@@ -7,7 +7,7 @@
 {% for item in products %}
 
 {# item#}
-    <div>
+    <div id="product-id-{{ item.id }}">
       <div class="product-card">
 
         <div class="header uk-background-cover uk-position-relative" style="background-image: url({{ asset('uploads/productcovers/' ~ item.cover) }}), url('https://cdn.dribbble.com/users/527354/screenshots/3947316/playground_animation.gif');">
@@ -18,22 +18,28 @@
         <div class="description">
             <p class="product-title"><span class="uk-icon uk-margin-small-right" uk-icon="icon: hashtag"></span>{{ item.id }}</p>
             <p class="product-title"><span class="uk-icon uk-margin-small-right" uk-icon="icon: minus"></span> {{ item.title }}</p>
+            <p class="product-title"><span class="uk-icon uk-margin-small-right" uk-icon="icon: minus"></span> {{ item.target }}</p>
+            <p class="product-title"><span class="uk-icon uk-margin-small-right" uk-icon="icon: minus"></span> CLP ${{ item.finalprice|number_format(0) }}</p>
 
             <div class="uk-text-center">
 
 
 <div class="uk-margin-small-bottom">
-  <p class="product-description uk-display-inline uk-margin-small-right"><a href="{{ path('dashboard-modifyproduct', { 'id': item.id }) }}" uk-toggle="target: #modal-modiy-item-{{ item.id }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span>Modificar</a></p>
+  <p class="product-description uk-display-inline uk-margin-small-right"><a href="{{ path('dashboard-modifyproduct', { 'id': item.id }) }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span>Modificar</a></p>
   <p class="product-description uk-display-inline"><a href="" uk-toggle="target: #modal-delete-confirmation-{{ item.id }}"><span class="uk-icon uk-margin-small-right" uk-icon="icon: trash"></span>Eliminar</a></p>
 </div>
 
-<p class="product-description uk-display-inline"><a style="border: 1px solid rgba(0,0,0,0.08); color: #999; border-radius: 5px; padding: 5px 10px;" href="{{ path('dashboard-toggleproduct', {'id' : item.id}) }}">
+<p class=" uk-display-inline">
+
+<a id="link-toggleproduct-{{ item.id }}" data-productid="{{ item.id }}" class="uk-button toggle-product-button button-style-a {% if item.isvisible == false %} disabled-item {% endif %}" style="padding: 0 30px;" href="#">
   {% if item.isvisible %}
-  Activado
-  {% else %}
-  Desactivado
-  {% endif %}
-</a></p>
+    Activado
+    {% else %}
+    Desactivado
+    {% endif %}
+</a>
+
+</p>
             </div>
 
         </div>

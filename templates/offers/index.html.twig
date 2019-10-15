@@ -11,6 +11,8 @@
 
 {% for offerproduct in offerproducts %}
 
+{% if offerproduct.isvisible %}
+
 <li>
 <div class="uk-background-cover uk-position-relative" style="background-image: url({{ asset('uploads/productcovers/' ~ offerproduct.cover) }});">
 <div class="jp-overlay-dark"></div>
@@ -37,20 +39,27 @@
   <div class="uk-grid-collapse uk-child-width-1-2@s uk-text-center uk-flex-middle modal-game" uk-grid="uk-grid">
     <div class="uk-background-cover" style="background-image: url({{ asset( 'uploads/productcovers/' ~ offerproduct.cover) }});" uk-height-viewport="uk-height-viewport"></div>
     <div class="uk-padding-large">
-      <h1 class="game-title">{{ offerproduct.title }}</h1>
-      {% if offerproduct.description is not null %}
-        <p class="game-description">{{ offerproduct.description }}</p>
-      {% endif %}
+      <h1 class="game-title uk-text-center">{{ offerproduct.title }}</h1>
+
+<p class="game-description"> <span class="uk-text-bold">Consola: </span> {{ offerproduct.console }} </p>
+<p class="game-description"> <span class="uk-text-bold">Peso Del Juego: </span> {{ offerproduct.size }} </p>
+        <p class="game-description"> <span class="uk-text-bold">Espacio Necesario En La Consola: </span> {{ offerproduct.sizeinconsole }} </p>
+                    <p class="game-description"><span class="uk-text-bold">Descripción: </span>  {{ offerproduct.description|nl2br }}</p>
+
+    <div class="uk-text-center">
       <a class="circular-white-button" href="{{ path('additemcart',{ 'productid' : offerproduct.id }) }}" onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> {{ offerproduct.title }} fue agregado al carro.'})">
                 <span class="uk-icon uk-margin-small-right" uk-icon="icon: plus"></span>
                 Agregar al carro <span class="uk-icon" uk-icon="icon: minus"></span>CLP ${{ offerproduct.finalprice|number_format(0) }}</a>
                 <p class="previous-price"> CLP ${{ offerproduct.originalprice|number_format(0) }}</p>
+    </div>
     </div>
   </div>
 </div>
 </div>
 
 </li>
+
+{% endif %}
 
 {% endfor %}
 
@@ -65,27 +74,26 @@
 
 <div class="uk-container store-panel">
 
-
+    {% if dailyofferproducts|length > 0 %}
     <div class="jp-margin-top-bottom">
       <h1 class="title-container">Ofertas Del Día</h1>
     </div>
-
-
     {{ include('store/newgames.html.twig', {'newgames': dailyofferproducts, 'tag' : 'OFERTA DEL DÍA'}) }}
+    {% endif %}
 
+    {% if psfourofferproducts|length > 0 %}
     <div class="jp-margin-top-bottom">
       <h1 class="title-container">Ofertas PS4</h1>
     </div>
-
-
     {{ include('store/newgames.html.twig', {'newgames': psfourofferproducts, 'tag' : 'OFERTA PS4'}) }}
+    {% endif %}
 
+    {% if psthreeofferproducts|length > 0 %}
     <div class="jp-margin-top-bottom">
       <h1 class="title-container">Ofertas PS3</h1>
     </div>
-
-
     {{ include('store/newgames.html.twig', {'newgames': psthreeofferproducts, 'tag' : 'OFERTA PS3'}) }}
+    {% endif %}
 
 </div>
 
@@ -93,6 +101,7 @@
 
 
 
-
-{% include 'footer.html.twig' %}
+{{ render(controller(
+'App\\Controller\\NavigatorController::footer'
+)) }}
 {% endblock %}
